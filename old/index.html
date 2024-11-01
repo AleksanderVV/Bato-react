@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&family=Oswald:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="normalize.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+  <title>01. Toolbox Selection</title>
+</head>
+<body id="main">
+  <header class="header">
+    <div class="container">
+      <div class="row justify-content-between">
+        <div class="col-1 align-middle">
+          <a href="index.html" class="header__logo">BATO</a>
+        </div>
+        <div class="col-1 d-none justify-content-end d-md-flex">
+          <div class="header__langswicher">
+            <select>
+              <option>En</option>
+              <option>De</option>
+              <option>Fi</option>
+              <option>Se</option>
+              <option>No</option>
+              <option>Dk</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-6 d-flex justify-content-end align-items-center d-md-none">
+          <div class="header__total-item d-flex justify-content-end">
+            <p><span>0</span> item added</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <section class="result">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-md-9 col-lg-8">
+          <div class="result__items justify-content-between">
+            <div class="result__item result__item_first">
+              01. Toolbox Selection
+            </div>
+            <div class="result__delimiter flex-fill"></div>
+            <div class="result__item result__item_second">
+              02. Accessorie Selection
+            </div>
+            <div class="result__delimiter flex-fill"></div>
+            <div class="result__item result__item_last">
+              03. Summary
+            </div>
+          </div>
+        </div>
+        <div class="col-3 col-lg-4 d-none d-md-block">
+          <div class="result__total-item d-flex justify-content-end">
+            <p><span>0</span> item added</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="main-header">
+      <h1>BATO trolley product builder</h1>
+      <p class="text">
+        Here you now have the opportunity to combine your own trolley – of course 100% non-binding. Build the trolley you have dreamed of, and only with the tool you need.
+      </p>
+  </section>
+  <section class="main-boxes">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="main-boxes__filter filter-boxes d-flex justify-content-end">
+            <div class="filter-boxes__drawers filter-drawers">
+              <div class="filter-drawers__top d-flex align-items-center justify-content-center">
+                <div class="filter-drawers__text">Number of drawers:</div>
+                <div class="filter-drawers__number">All</div>
+                <div class="filter-drawers__close open"><img src="img/icon/arrow-down-black.svg" alt="Open"></div>
+                <!-- <div class="filter-drawers__open close"><img src="img/icon/arrow-up-black.svg" alt="Close"></div> -->
+              </div>
+              <div class="filter-drawers__down close">
+                <div class="filter-drawers__item d-flex justify-content-between align-items-center selected">
+                  <div class="filter-drawers__number">All</div>
+                </div>
+                <div class="filter-drawers__item d-flex justify-content-between align-items-center">
+                  <div class="filter-drawers__number">04</div>
+                </div>
+                <div class="filter-drawers__item d-flex justify-content-between align-items-center">
+                  <div class="filter-drawers__number">07</div>
+                </div>
+                <div class="filter-drawers__item d-flex justify-content-between align-items-center">
+                  <div class="filter-drawers__number">08</div>
+                </div>
+                <div class="filter-drawers__item d-flex justify-content-between align-items-center">
+                  <div class="filter-drawers__number">09</div>
+                </div>
+                <div class="filter-drawers__item d-flex justify-content-between align-items-center">
+                  <div class="filter-drawers__number">10</div>
+                </div>
+                <div class="filter-drawers__item d-flex justify-content-between align-items-center">
+                  <div class="filter-drawers__number">11</div>
+                </div>
+                <div class="filter-drawers__item d-flex justify-content-between align-items-center">
+                  <div class="filter-drawers__number">14</div>
+                </div>
+                <div class="filter-drawers__item d-flex justify-content-between align-items-center">
+                  <div class="filter-drawers__number">16</div>
+                </div>
+                <div class="filter-drawers__item d-flex justify-content-between align-items-center">
+                  <div class="filter-drawers__number">20</div>
+                </div>
+              </div>
+            </div>
+            <div class="filter-boxes__color filter-color">
+              <div class="filter-color__top d-flex align-items-center justify-content-center">
+                <div class="filter-color__text">Color:</div>
+                <div class="filter-color__view filter-color__view-all"></div>
+                <div class="filter-color__close open"><img src="img/icon/arrow-down-black.svg" alt="Open"></div>
+                <!-- <div class="filter-color__open close"><img src="img/icon/arrow-up-black.svg" alt="Close"></div> -->
+              </div>
+              <div class="filter-color__down close">
+                <div class="filter-color__item d-flex justify-content-center justify-content-sm-between align-items-center selected">
+                  <div class="filter-color__text">All</div>
+                  <div class="filter-color__view filter-color__view-all"></div>
+                </div>
+                <div class="filter-color__item d-flex justify-content-center justify-content-sm-between align-items-center">
+                  <div class="filter-color__text">Red</div>
+                  <div class="filter-color__view filter-color__view-red"></div>
+                </div>
+                <div class="filter-color__item d-flex justify-content-center justify-content-sm-between align-items-center">
+                  <div class="filter-color__text">Blue</div>
+                  <div class="filter-color__view filter-color__view-blue"></div>
+                </div>
+                <div class="filter-color__item d-flex justify-content-center justify-content-sm-between align-items-center">
+                  <div class="filter-color__text">Black</div>
+                  <div class="filter-color__view filter-color__view-black"></div>
+                </div>
+                <div class="filter-color__item d-flex justify-content-center justify-content-sm-between align-items-center">
+                  <div class="filter-color__text">Grey</div>
+                  <div class="filter-color__view filter-color__view-grey"></div>
+                </div>
+              </div>
+            </div>
+            <div class="filter-boxes__wheels d-flex align-items-center">
+              <p>Wheels</p>
+              <label class="switch">
+                <input type="checkbox">
+                <span class="slider round"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="main-boxes__items d-flex flex-wrap justify-content-left">
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer>
+    <div class="container">
+      <div class="row justify-content-start justify-content-sm-between gap-3 gap-sm-2 gap-lg-0">
+        <div class="col-lg-6 col-md-12 d-inline-flex justify-content-lg-start justify-content-center">
+          <div class="footer__copywrite">
+            BATO© Nordic a/s Fåborgvej 1, DK-4200 Slagelse
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-12 d-inline-flex justify-content-lg-end justify-content-sm-center">
+          <div class="footer__info d-flex gap-1 gap-sm-3">
+            <div class="footer__phone">Phone: +45 5850 2210</div>
+            <div class="footer__email">E-mail: info@batonordic.dk</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+<script src="js/data.js"></script>
+<script src="js/items.js"></script>
+<script src="js/filterBoxes.js"></script>
+<script src="js/script.js"></script>
+
+</html>
