@@ -5,8 +5,8 @@ import './mainContentFirstScreen.scss';
 
 const MainContentFirstScreen = () => {
     return (
-        <section class="main-boxes">
-            <div class="container">
+        <section className="main-boxes">
+            <div className="container">
                 <ToolboxFilters/>
                 <ToolboxList/>
             </div>

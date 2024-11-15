@@ -1,10 +1,10 @@
 const WheelsFilterToolbox = () => {
     return (
-        <div class="filter-boxes__wheels d-flex align-items-center">
+        <div className="filter-boxes__wheels d-flex align-items-center">
         <p>Wheels</p>
-        <label class="switch">
+        <label className="switch">
           <input type="checkbox"/>
-          <span class="slider round"></span>
+          <span className="slider round"></span>
         </label>
       </div>
     )
