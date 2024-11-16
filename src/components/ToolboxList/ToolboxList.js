@@ -3,6 +3,9 @@ import setContent from "../../utils/setContent";
 import { useEffect, useMemo, useState } from "react";
 
 import xIcon from '../../data/images/icon/x-icon.svg';
+import checkIcon from '../../data/images/icon/check.svg';
+
+import './toolboxList.scss';
 
 const ToolboxList = () => {
   const [toolboxList, setToolboxList] = useState([]);
@@ -23,6 +26,16 @@ const ToolboxList = () => {
 
   const renderItems = (arr) => {
     const items = arr.map((item, idx) => {
+
+      const sizeContent = 
+        <>
+          <span className="box-height">{item.size[0]}</span>
+          <img src={xIcon} alt="x"/>
+          <span className="box-length">{item.size[1]}</span>
+          <img src={xIcon} alt="x"/>
+          <span className="box-width">{item.size[2]} mm</span>
+        </>;
+
       return (
         <div 
           className="main-boxes__item box-item d-flex flex-column" 
@@ -47,18 +60,16 @@ const ToolboxList = () => {
               </div>
               <div className="box-item__wheel-box d-flex justify-content-between pb-2">
                 <p className="box-item__wheel-subtitle">Wheels:</p>
-                <p className="box-item__wheel">—</p>
+                <p className="box-item__wheel">
+                  {item.wheels ? <img src={checkIcon} alt="wheels true"/> : '—'}
+                </p>
               </div>
               <div className="box-item__size-box d-flex justify-content-between pb-4 pb-sm-5">
-                <p className="box-size-subtitle">
+                <p className="box-item__size">
                   Size H<img src={xIcon} alt="x"/>
                   L<img src={xIcon} alt="x"/>W:</p>
                 <p className="box-item__size">
-                  <span className="box-height">{item.size[0]}</span>
-                  <img src="img/icon/x-icon.svg" alt="x"/>
-                  <span className="box-length">{item.size[1]}</span>
-                  <img src="img/icon/x-icon.svg" alt="x"/>
-                  <span className="box-width">{item.size[2]} mm</span>
+                   {item.size.length ? sizeContent : '—'}
                 </p>
               </div>
               <div className="box-item__footer d-flex justify-content-between align-items-center">
