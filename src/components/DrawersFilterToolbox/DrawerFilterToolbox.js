@@ -1,4 +1,6 @@
-import arrowDown from '../../data/images/icon/arrow-down-black.svg'
+import './drawerFilterToolbox.scss';
+
+import arrowDown from '../../data/images/icon/arrow-down-black.svg';
 
 const DrawerFilterToolbox = () => {
     return (
