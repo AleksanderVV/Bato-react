@@ -3,7 +3,7 @@
         {
             "id": 9133,
             "name": "BATO Tools cabinet 4 drawers mini without wheels. Blue.",
-            "image": "img/box1.png",
+            "image": "./src/data/images/box1.png",
             "color": ["blue", "#006ABA"],
             "wheels": false,
             "size": [400, 690, 465],
