@@ -1,31 +1,16 @@
-import useToolboxService from "../../services/ToolboxService";
+
 import setContent from "../../utils/setContent";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo } from "react";
 
 import xIcon from '../../data/images/icon/x-icon.svg';
 import checkIcon from '../../data/images/icon/check.svg';
 
 import './toolboxList.scss';
 
-const ToolboxList = () => {
-  const [toolboxList, setToolboxList] = useState([]);
+const ToolboxList = ({data, process}) => {
 
-  const {process, setProcess, getAllToolbox} = useToolboxService();
-
-  useEffect(() => {
-    onRequest();
-    
-    // eslint-disable-next-line
-  }, []);
-
-  const onRequest = () => {
-    getAllToolbox()
-      .then(setToolboxList)
-      .then(() => setProcess('confirmed'));
-  }
-
-  const renderItems = (arr) => {
-    const items = arr.map((item, idx) => {
+  const renderItems = (data) => {
+    const items = data.map(item => {
 
       const sizeContent = 
         <>
@@ -85,14 +70,14 @@ const ToolboxList = () => {
     })
 
     return (
-      <div className="main-boxes__items d-flex flex-wrap justify-content-left">
+      <div className="main-boxes__items d-flex flex-wrap justify-content-center">
         {items}
       </div>
     )
   }
 
   const elements = useMemo(() => {
-    return setContent(process, () => renderItems(toolboxList))
+    return setContent(process, () => renderItems(data))
     // eslint-disable-next-line
   }, [process])
 
