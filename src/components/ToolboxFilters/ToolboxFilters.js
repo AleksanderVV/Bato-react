@@ -4,13 +4,13 @@ import WheelsFilterToolbox from '../WheelsFilterToolbox/WheelsFilterToolbox';
 
 import './toolboxFilters.scss';
 
-const ToolboxFilters = () => {
+const ToolboxFilters = (data) => {
     return (
         <div className="row">
         <div className="col-12">
           <div className="main-boxes__filter filter-boxes d-flex justify-content-end">
-            <DrawerFilterToolbox/>
-            <ColorFilterToolbox/>
+            <DrawerFilterToolbox data={data}/>
+            <ColorFilterToolbox data={data}/>
             <WheelsFilterToolbox/>
           </div>
         </div>
