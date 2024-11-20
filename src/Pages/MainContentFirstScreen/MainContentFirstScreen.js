@@ -10,6 +10,11 @@ const MainContentFirstScreen = () => {
 
     const [toolboxList, setToolboxList] = useState([]);
     const [filteredToolboxList, setFilteredToolboxList] = useState([]);
+    const [filters, setFilters] = useState({
+        wheels: 'all',
+        color: 'all',
+        numberDrawers: 'all'
+    });
 
     const {process, setProcess, getAllToolbox} = useToolboxService();
   
@@ -27,21 +32,38 @@ const MainContentFirstScreen = () => {
         .then(() => setProcess('confirmed'));
     }
 
-    const filterToolboxes = (currentValue = 'all') => {
-        let filteredData = toolboxList;
+    const filterToolboxes = (filters) => {
+        const {wheels, color, numberDrawers} = filters;
 
-        if (currentValue !== 'all') {
-            filteredData = toolboxList.filter(newVal => newVal.wheels === currentValue);
-        } 
+        const filteredData = toolboxList.filter(item => {
+            return (
+                (wheels === 'all' || item.wheels === wheels) &&
+                (color === 'all' || item.color[0] === color) &&
+                (numberDrawers === 'all' || item.numberDrawers === numberDrawers)
+            );
+        });
+        
 
         setFilteredToolboxList(filteredData);
+    }
+
+     // Update filters when a filter value changes
+    const updateFilter = (filterType, value) => {
+        setFilters(prevFilters => {
+            const updatedFilters = {...prevFilters, [filterType]: value};
+            filterToolboxes(updatedFilters);
+            return updatedFilters;
+        });
     }
     
 
     return (
         <section className="main-boxes">
             <div className="container">
-                <ToolboxFilters data={toolboxList} filterToolboxes={filterToolboxes} />
+                <ToolboxFilters 
+                    data={toolboxList} 
+                    filters={filters} 
+                    updateFilter={updateFilter} />
                 <ToolboxList data={filteredToolboxList} process={process}/>
             </div>
         </section>

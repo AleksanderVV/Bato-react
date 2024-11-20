@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 import arrowDown from '../../data/images/icon/arrow-down-black.svg'
 
-const ColorFilterToolbox = ({data}) => {
+const ColorFilterToolbox = ({data, filterToolboxes}) => {
   const [colorsData, setColorsData] = useState([]);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 

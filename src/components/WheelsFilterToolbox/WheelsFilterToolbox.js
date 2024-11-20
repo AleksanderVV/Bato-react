@@ -1,12 +1,12 @@
 import { useState } from "react";
 
-const WheelsFilterToolbox = ({ filterToolboxes }) => {
-    const [checked, setChecked] = useState(false);
+const WheelsFilterToolbox = ({ selected, updateFilter }) => {
+    const [checked, setChecked] = useState(selected === 'true');
 
     const toggleCheckbox = () => {
       const newChecked = !checked;
       setChecked(newChecked);
-      filterToolboxes(newChecked);
+      updateFilter(newChecked ? true : false);
     }
 
     return (
