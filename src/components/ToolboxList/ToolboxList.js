@@ -79,7 +79,7 @@ const ToolboxList = ({data, process}) => {
   const elements = useMemo(() => {
     return setContent(process, () => renderItems(data))
     // eslint-disable-next-line
-  }, [process])
+  }, [process,data])
 
   return (
       <div className="row">

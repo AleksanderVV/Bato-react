@@ -9,6 +9,7 @@ import './mainContentFirstScreen.scss';
 const MainContentFirstScreen = () => {
 
     const [toolboxList, setToolboxList] = useState([]);
+    const [filteredToolboxList, setFilteredToolboxList] = useState([]);
 
     const {process, setProcess, getAllToolbox} = useToolboxService();
   
@@ -19,15 +20,29 @@ const MainContentFirstScreen = () => {
   
     const onRequest = () => {
       getAllToolbox()
-        .then(setToolboxList)
+        .then(data => {
+            setToolboxList(data);
+            setFilteredToolboxList(data);
+        })
         .then(() => setProcess('confirmed'));
     }
+
+    const filterToolboxes = (currentValue = 'all') => {
+        let filteredData = toolboxList;
+
+        if (currentValue !== 'all') {
+            filteredData = toolboxList.filter(newVal => newVal.wheels === currentValue);
+        } 
+
+        setFilteredToolboxList(filteredData);
+    }
+    
 
     return (
         <section className="main-boxes">
             <div className="container">
-                <ToolboxFilters data={toolboxList} />
-                <ToolboxList data={toolboxList} process={process}/>
+                <ToolboxFilters data={toolboxList} filterToolboxes={filterToolboxes} />
+                <ToolboxList data={filteredToolboxList} process={process}/>
             </div>
         </section>
     )

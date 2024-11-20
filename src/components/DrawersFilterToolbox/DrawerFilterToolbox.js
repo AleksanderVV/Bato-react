@@ -7,11 +7,11 @@ import arrowDown from '../../data/images/icon/arrow-down-black.svg';
 const DrawerFilterToolbox = ({data}) => {
   const [numberDrawers, setNumberDrawers] = useState([]);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+  
   const menuRef = useRef(null);
 
   useEffect(() => {
-    const filters = [...new Set(data.data.map(i => i.numberDrawers))].sort((a,b) => a - b);
+    const filters = [...new Set(data.map(i => i.numberDrawers))].sort((a,b) => a - b);
     setNumberDrawers(filters);
   },[data]);
 

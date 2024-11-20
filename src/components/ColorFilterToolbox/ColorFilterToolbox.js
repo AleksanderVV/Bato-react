@@ -9,7 +9,7 @@ const ColorFilterToolbox = ({data}) => {
 
   useEffect(() => {
     const filters = Array.from(
-      new Map(data.data.map(i => [i.color[1], [i.color[0], i.color[1]]])).values()
+      new Map(data.map(i => [i.color[1], [i.color[0], i.color[1]]])).values()
     );
     setColorsData(filters);
     
