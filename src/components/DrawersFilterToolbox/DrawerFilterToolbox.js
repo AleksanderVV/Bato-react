@@ -4,7 +4,7 @@ import './drawerFilterToolbox.scss';
 
 import arrowDown from '../../data/images/icon/arrow-down-black.svg';
 
-const DrawerFilterToolbox = ({data, filterToolboxes}) => {
+const DrawerFilterToolbox = ({data, updateFilter}) => {
   const [numberDrawers, setNumberDrawers] = useState([]);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [handleChooseNumberOfDrawers, setHandleChooseNumberOfDrawers] = useState('all');
@@ -40,8 +40,14 @@ const DrawerFilterToolbox = ({data, filterToolboxes}) => {
 
   const changeNumberOfDrawers = (selectedValue) => {
     setHandleChooseNumberOfDrawers(selectedValue);
-    filterToolboxes('all','all', selectedValue);
     setIsMenuOpen(false);
+
+    if (!isNaN(parseInt(selectedValue))) {
+      updateFilter(parseInt(selectedValue));
+    } else {
+      updateFilter(selectedValue);
+    }
+    
   }
 
   return (
