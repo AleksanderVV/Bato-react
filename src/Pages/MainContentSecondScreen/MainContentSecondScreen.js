@@ -3,6 +3,7 @@ import './mainContentSecondScreen.scss';
 const MainContentSecondScreen = () => {
     return (
         <>
+        SecondScreen
         </>
     )
 }

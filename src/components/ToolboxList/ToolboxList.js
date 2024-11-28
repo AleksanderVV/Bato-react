@@ -1,6 +1,6 @@
-
-import setContent from "../../utils/setContent";
 import { useMemo } from "react";
+import setContent from "../../utils/setContent";
+import { useNavigate } from "react-router-dom";
 
 import xIcon from '../../data/images/icon/x-icon.svg';
 import checkIcon from '../../data/images/icon/check.svg';
@@ -8,23 +8,30 @@ import checkIcon from '../../data/images/icon/check.svg';
 import './toolboxList.scss';
 
 const ToolboxList = ({data, process}) => {
+  const navigate = useNavigate();
 
   const renderItems = (data) => {
     const items = data.map(item => {
 
-      const sizeContent = 
+      const sizeContent = (
         <>
-          <span className="box-height">{item.size[0]}</span>
-          <img src={xIcon} alt="x"/>
-          <span className="box-length">{item.size[1]}</span>
-          <img src={xIcon} alt="x"/>
-          <span className="box-width">{item.size[2]} mm</span>
-        </>;
+        <span className="box-height">{item.size[0]}</span>
+        <img src={xIcon} alt="x"/>
+        <span className="box-length">{item.size[1]}</span>
+        <img src={xIcon} alt="x"/>
+        <span className="box-width">{item.size[2]} mm</span>
+      </>
+      );
+
+      const handleClick = () => {
+        navigate("/chooseAccessories", {state: {item}});
+      }
 
       return (
         <div 
           className="main-boxes__item box-item d-flex flex-column" 
-          key={item.id}>
+          key={item.id}
+          onClick={handleClick}>
           <div className="main-boxes__item_first">
             <div className="box-item__img">
               <img src={item.image} alt="Box"/>
@@ -58,7 +65,9 @@ const ToolboxList = ({data, process}) => {
                 </p>
               </div>
               <div className="box-item__footer d-flex justify-content-between align-items-center">
-                <button type="button">Select</button>
+                <button 
+                  type="button"
+                  onClick={handleClick}>Select</button>
                 <p className="box-item__price"><span>{item.price}</span>,00 EUR</p>
               </div>
             </div>
@@ -67,7 +76,7 @@ const ToolboxList = ({data, process}) => {
           </div>
         </div>
       )
-    })
+    });
 
     return (
       <div className="main-boxes__items d-flex flex-wrap justify-content-center">
