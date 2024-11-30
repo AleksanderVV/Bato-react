@@ -1,10 +1,11 @@
 
-const accessoriesList = () => {
+const AccessoriesList = () => {
 
     return (
         <>
+        List
         </>
     )
 }
 
-export default accessoriesList;
+export default AccessoriesList;

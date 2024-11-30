@@ -1,11 +1,12 @@
 import './accessoriesFilters.scss';
 
-const accessoriesFilters = () => {
+const AccessoriesFilters = () => {
 
     return (
         <>
+        Filters
         </>
     )
 }
 
-export default accessoriesFilters;
+export default AccessoriesFilters;
