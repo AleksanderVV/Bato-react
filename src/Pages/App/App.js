@@ -10,7 +10,6 @@ import MainContentSecondScreen from "../MainContentSecondScreen/MainContentSecon
 import MainTitleThirdScreen from "../MainTitleThirdScreen/MainTitleThirdScreen";
 import MainContentThirdScreen from "../MainContentThirdScreen/MainContentThirdScreen";
 
-
 import './App.scss';
 
 const App = () => (

@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import AccessoriesFilters from '../../components/AccessoriesFilters/AccessoriesFilters';
 import AccessoriesList from '../../components/AccessoriesList/AccessoriesList';
 import DrawerSideBar from '../../components/DrawerSideBar/DrawerSideBar';
@@ -19,10 +21,10 @@ const MainContentSecondScreen = () => {
                     </div>
                 </div>
             </div>
-            <a className="choose-accessories__filter-top d-sm-none">
+            <Link className="choose-accessories__filter-top d-sm-none">
                 <img src={filterMobile} alt="icon" />
                 <span>1</span>
-            </a>
+            </Link>
         </section>
     )
 }

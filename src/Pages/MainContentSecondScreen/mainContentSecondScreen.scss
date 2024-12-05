@@ -200,7 +200,7 @@
                 border-radius: 6px;
                 justify-content: center;
                 align-items: center;
-                // background: #fff url('img/icon/x-icon.svg') no-repeat center;
+                background: #fff url('../../data/images/icon/x-icon.svg') no-repeat center;
               }
             }
             &>img {
@@ -403,7 +403,7 @@
             border-radius: 12px;
             // border: 1px solid #BFBFBF;
             transition: all 0.3s ease;
-            // background: url(img/hover-cards.svg) no-repeat center bottom;
+            background: url('../../data/images/hover-cards.svg') no-repeat center bottom;
           }
           &_first:hover {
             transform: translateY(-20px);
@@ -433,7 +433,7 @@
           max-height: 190px;
           height: 100%;
           width: 100%;
-        //   background: url(img/back-acc.png), lightgray 50% / cover no-repeat;
+          background: url('../../data/images/back-acc.png'), lightgray 50% / cover no-repeat;
           &-wrapper {
             display: flex;
             align-items: center;
@@ -499,7 +499,7 @@
           .accessory-cards__footer button {
             background-color: #66A6D6;
             border: none;
-            // background: #66A6D6 url(img/icon/check-white.svg) no-repeat center center /24%;
+            background: #66A6D6 url('../../data/images/icon/check-white.svg') no-repeat center center /24%;
             img {
               display: none;
             }
@@ -507,7 +507,7 @@
           .accessory-cards__item_first:hover {
             .accessory-cards__footer button{
               border: 1px solid #66A6D6;
-            //   background: $baseWhite-color url(img/icon/minus-blue.svg) no-repeat center center /40%;
+              background: $baseWhite-color url('../../data/images/icon/minus-blue.svg') no-repeat center center /40%;
               img {
                 display: none;
               }
@@ -563,12 +563,13 @@
         left: 6px;
         height: 14px;
         width: 15px;
-        // background: url('img/icon/search.svg') no-repeat center / contain;
+        background: url('../../data/images/icon/search.svg') no-repeat center / contain;
       }
       input {
         max-width: 505px;
         width: 100%;
         background-color: transparent;
+        border: none;
         border-bottom: 1px solid $base800-color;
         height: 35px;
         padding-left: 26px;
