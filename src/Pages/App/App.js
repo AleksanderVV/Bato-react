@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
 
 import Header from "../Header/Header";
@@ -12,18 +13,32 @@ import MainContentThirdScreen from "../MainContentThirdScreen/MainContentThirdSc
 
 import './App.scss';
 
-const App = () => (
-    <Router>
-        <Header/>
-        <TopBar/>
-        <Routes>
-            <Route path="/" element={<FirstScreen />} />
-            <Route path="/chooseAccessories" element={<SecondScreen />} />
-            <Route path="/sendForm" element={<ThirdScreen />} />
-        </Routes>
-        <Footer/>
-    </Router>
-);
+const App = () => {
+    const [currentToolbox, setCurrentToolbox] = useState(null);
+    const [totalPrice, setTotalPrice] = useState(0);
+
+    return (
+        <Router>
+            <Header/>
+            <TopBar 
+                currentToolbox={currentToolbox} 
+                setCurrentToolbox={setCurrentToolbox} 
+                totalPrice={totalPrice} 
+                setTotalPrice={setTotalPrice}/>
+            <Routes>
+                <Route path="/" element={<FirstScreen />} />
+                <Route 
+                    path="/chooseAccessories" 
+                    element={
+                        <SecondScreen 
+                            currentToolbox={currentToolbox} 
+                            totalPrice={totalPrice}/>} />
+                <Route path="/sendForm" element={<ThirdScreen />} />
+            </Routes>
+            <Footer/>
+        </Router>
+    )
+}
 
 const FirstScreen = () =>  (
     <>
@@ -32,14 +47,14 @@ const FirstScreen = () =>  (
     </>
 );
 
-const SecondScreen = () =>  (
+const SecondScreen = ({currentToolbox, totalPrice}) =>  (
     <>
         <MainTitleSecondScreen />
-        <MainContentSecondScreen />
+        <MainContentSecondScreen currentToolbox={currentToolbox} totalPrice={totalPrice} />
     </>
 );
 
-const ThirdScreen = () =>  (
+const ThirdScreen = ({currentToolbox}) =>  (
     <>
         <MainTitleThirdScreen />
         <MainContentThirdScreen />

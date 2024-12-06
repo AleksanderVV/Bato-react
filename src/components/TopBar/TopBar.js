@@ -8,10 +8,20 @@ import arrowDown from '../../data/images/icon/arrow-down.svg';
 import arrowUpWhite from '../../data/images/icon/arrow-up-white.svg';
 import cartImage from '../../data/images/icon/cart.svg';
 
-const TopBar = () => {
+const TopBar = ({currentToolbox, setCurrentToolbox, totalPrice, setTotalPrice}) => {
     const [isMenuOpen, setMenuOpen] = useState(false);
     const location = useLocation();
     const dropdownRef = useRef(null);
+
+    useEffect(() => {
+        if(location.pathname === '/chooseAccessories' && location.state?.item) {
+            const toolbox = location.state.item;
+
+            setCurrentToolbox(toolbox);
+            setTotalPrice(toolbox.price);
+        }
+    }, [location]);
+
 
     const toggleDropdownMenuOpen = () => {setMenuOpen(!isMenuOpen)}
 
@@ -106,10 +116,10 @@ const TopBar = () => {
                         <div className="col-12">
                         <div className="result-dropdown__box box-selected d-flex justify-content-between align-items-center">
                             <div className="box-selected__item">
-                            Tools Cabinet, 7 drawers and cabinet, 5 small, 1 medium, 1 large, blue color
+                                {currentToolbox?.name}
                             </div>
                             <div className="box-selected__price">
-                                <span>1960</span>,00 EUR
+                                <span>{currentToolbox?.price}</span>,00 EUR
                             </div>
                         </div>
                         </div>
@@ -126,7 +136,7 @@ const TopBar = () => {
                             <div className="result-dropdown__total total-selected d-flex justify-content-between align-items-end">
                             <div className="total-selected__text">Total price</div>
                             <div className="total-selected__delimiter flex-fill"></div>
-                            <div className="total-selected__price"><span></span>,00 EUR</div>
+                            <div className="total-selected__price"><span>{totalPrice}</span>,00 EUR</div>
                             </div>
                         </div>
                         <div className="col-12 d-flex justify-content-end">

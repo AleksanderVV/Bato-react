@@ -12,7 +12,7 @@ const Header = () => {
                     <a href="index.html" className="header__logo">BATO</a>
                     </div>
                     <div className="col-1 d-none justify-content-end d-md-flex">
-                    <div className="header__langswicher">
+                    {/* <div className="header__langswicher">
                         <select>
                         <option>En</option>
                         <option>De</option>
@@ -21,7 +21,7 @@ const Header = () => {
                         <option>No</option>
                         <option>Dk</option>
                         </select>
-                    </div>
+                    </div> */}
                     </div>
                     <div className="col-6 d-flex justify-content-end align-items-center d-md-none">
                     <div className="header__total-item d-flex justify-content-end">

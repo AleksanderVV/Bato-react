@@ -1,6 +1,6 @@
 import './drawerSideBar.scss';
 
-const DrawerSideBar = () => {
+const DrawerSideBar = ({currentToolbox, totalPrice}) => {
 
     return (
         <div className="col-xl-6 col-xxl-4">
@@ -25,7 +25,7 @@ const DrawerSideBar = () => {
                     Total price
                     </p>
                     <p className="choose-accessories__drawers-price-summ">
-                    <span></span>,00 EUR
+                    <span>{totalPrice}</span>,00 EUR
                     </p>
                 </div>
                 <div className="choose-accessories__drawers-price-info d-flex justify-content-between">
