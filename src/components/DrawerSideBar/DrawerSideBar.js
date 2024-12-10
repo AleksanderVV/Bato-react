@@ -1,83 +1,94 @@
+import { useEffect } from 'react';
+
 import './drawerSideBar.scss';
 
 import xIcon from '../../data/images/icon/x-icon.svg';
 import drawer3 from '../../data/images/drawer3.webp';
+import drawer4 from '../../data/images/drawer4.webp';
+import drawer5 from '../../data/images/drawer5.webp';
 import resetImage from '../../data/images/icon/reset.svg';
+import cart from '../../data/images/icon/cart.svg';
 
+import { Tab, Tabs } from 'react-bootstrap';
 const DrawerSideBar = ({currentToolbox, totalPrice}) => {
+    if (!currentToolbox) {
+        return <p>No toolbox selected</p>;
+    }
+
+    const drawersCurrentToolbox = currentToolbox.drawers.length;
+
+    const mobileListDrawers = Array.from({ length: drawersCurrentToolbox }, (_, i) => (
+        <option key={i} value={i + 1}>
+            Drawer {i + 1}
+        </option>
+    ));
+
+    const drawerButtons = Array.from({length: drawersCurrentToolbox}, (_,i) => {
+        const drawerDepth = currentToolbox.drawers[i];
+        const drawerCells = Array.from({length: drawerDepth}, (_, i) => (<div key={i} className="nav-img__item"></div>))
+
+        return (
+            <button 
+                key={i}
+                className={`nav-link d-flex align-items-center ${i===0 ? 'active' : ''}`}
+                id={`v-pills-${i + 1}-tab`}
+                data-bs-toggle="pill" 
+                data-bs-target={`#v-pills-${i + 1}`} 
+                type="button" 
+                role="tab" 
+                aria-controls={`v-pills-${i + 1}`}
+                aria-selected="false">
+                <div className="choose-accessories__nav-img nav-img d-flex">
+                    {drawerCells}
+                </div>
+                <span className="button-number">{i + 1 < 10 ? `0${i + 1}` : i + 1}</span>
+                <span className="d-sm-none me-1">Drawer</span>
+            </button>
+        )
+    });
 
     const drawersNavigation = () => {
         return (
             <>
                 <p className="d-none d-sm-block">Drawer</p>
-                <button className="nav-link d-flex align-items-center active" id="v-pills-1-tab" data-bs-toggle="pill" data-bs-target="#v-pills-1" type="button" role="tab" aria-controls="v-pills-1" aria-selected="true">
-                    <div className="choose-accessories__nav-img nav-img d-flex">
-                        <div className="nav-img__item"></div>
-                        <div className="nav-img__item"></div>
-                        <div className="nav-img__item"></div>
-                    </div>
-                    <span className="button-number">01</span>
-                    <span className="d-sm-none me-1">Drawer</span>
-                </button>
-                <button className="nav-link d-flex align-items-center" id="v-pills-2-tab" data-bs-toggle="pill" data-bs-target="#v-pills-2" type="button" role="tab" aria-controls="v-pills-2" aria-selected="false" tabIndex="-1">
-                    <div className="choose-accessories__nav-img nav-img d-flex">
-                        <div className="nav-img__item"></div>
-                        <div className="nav-img__item"></div>
-                        <div className="nav-img__item"></div>
-                    </div>
-                    <span className="button-number">02</span>
-                    <span className="d-sm-none me-1">Drawer</span>
-                </button>
-                <button className="nav-link d-flex align-items-center" id="v-pills-3-tab" data-bs-toggle="pill" data-bs-target="#v-pills-3" type="button" role="tab" aria-controls="v-pills-3" aria-selected="false" tabIndex="-1">
-                    <div className="choose-accessories__nav-img nav-img d-flex">
-                        <div className="nav-img__item"></div>
-                        <div className="nav-img__item"></div>
-                        <div className="nav-img__item"></div>
-                    </div>
-                    <span className="button-number">03</span>
-                    <span className="d-sm-none me-1">Drawer</span>
-                </button>
-                <button className="nav-link d-flex align-items-center" id="v-pills-4-tab" data-bs-toggle="pill" data-bs-target="#v-pills-4" type="button" role="tab" aria-controls="v-pills-4" aria-selected="false" tabIndex="-1">
-                    <div className="choose-accessories__nav-img nav-img d-flex">
-                        <div className="nav-img__item"></div>
-                        <div className="nav-img__item"></div>
-                        <div className="nav-img__item"></div>
-                    </div>
-                    <span className="button-number">04</span>
-                    <span className="d-sm-none me-1">Drawer</span>
-                </button>
+                {drawerButtons}
                 <div className="nav-list_top d-sm-none d-flex justify-content-center align-items-center"></div>
                 <div className="nav-list_bottom d-sm-none d-flex justify-content-center align-items-center"></div>
                 <div className="d-sm-none">
-                    <select id="mobileTabsSelect"><option value="1">Drawer 1</option><option value="2">Drawer 2</option><option value="3">Drawer 3</option><option value="4">Drawer 4</option></select>
+                    <select id="mobileTabsSelect">{mobileListDrawers}</select>
                 </div>
             </>
         )
     }
 
     const drawersView = () => {
+        const drawerItems = Array.from({length: drawersCurrentToolbox}, (_, i) => {
+            const drawerDepth = currentToolbox.drawers[i];
+            
+            let shelfImage = '';
+            if (drawerDepth === 3) {
+                shelfImage = <img src={drawer3} alt="Shelf" />;
+              } else if(drawerDepth === 4) {
+                shelfImage = <img src={drawer4} alt="Shelf" />;
+              } else {
+                shelfImage = <img src={drawer5} alt="Shelf" />;
+              }
+            return (
+                <div 
+                    key={i} 
+                    className="tab-pane active show" 
+                    id={`v-pills-${i + 1}`} 
+                    role="tabpanel" 
+                    aria-labelledby={`v-pills-${i + 1}-tab`}>
+                    <div className="choose-accessories__drawers-content drawers-content"></div>
+                    {shelfImage}
+                    <p className="d-flex align-items-center not-active"><img src={resetImage} alt="" />Reset</p>
+                </div>
+            )
+        })
         return (
             <>
-                <div className="tab-pane active show" id="v-pills-1" role="tabpanel" aria-labelledby="v-pills-1-tab" tabIndex="0">
-                    <div className="choose-accessories__drawers-content drawers-content"></div>
-                    <img src={drawer3} alt="Shelf" />
-                    <p className="d-flex align-items-center not-active"><img src={resetImage} alt="" />Reset</p>
-                </div>
-                <div className="tab-pane" id="v-pills-2" role="tabpanel" aria-labelledby="v-pills-2-tab" tabIndex="0">
-                    <div className="choose-accessories__drawers-content drawers-content"></div>
-                    <img src={drawer3} alt="Shelf" />
-                    <p className="d-flex align-items-center not-active"><img src={resetImage} alt="" />Reset</p>
-                </div>
-                <div className="tab-pane" id="v-pills-3" role="tabpanel" aria-labelledby="v-pills-3-tab" tabIndex="0">
-                    <div className="choose-accessories__drawers-content drawers-content"></div>
-                    <img src={drawer3} alt="Shelf" />
-                    <p className="d-flex align-items-center not-active"><img src={resetImage} alt="" />Reset</p>
-                </div>
-                <div className="tab-pane" id="v-pills-4" role="tabpanel" aria-labelledby="v-pills-4-tab" tabIndex="0">
-                    <div className="choose-accessories__drawers-content drawers-content"></div>
-                    <img src={drawer3} alt="Shelf" />
-                    <p className="d-flex align-items-center not-active"><img src={resetImage} alt="" />Reset</p>
-                </div>
+                {drawerItems}
             </>
         )
     }
@@ -126,7 +137,7 @@ const DrawerSideBar = ({currentToolbox, totalPrice}) => {
                 </div>
             </div>
             <div className="choose-accessories__drawers-price-button2 align-items-center justify-content-center d-sm-none">
-                <a><span><img src="img/icon/cart.svg" alt="" /> Færdig med valg</span></a>
+                <a><span><img src={cart} alt="Cart" /> Færdig med valg</span></a>
             </div>
         </div>
     )
