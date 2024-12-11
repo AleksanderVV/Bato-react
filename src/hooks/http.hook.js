@@ -17,11 +17,14 @@ export const useHttp = () => {
             }
 
             const data = await response.json();
+            setProcess('confirmed');
 
             return data;
 
         } catch(error) {
             setProcess('error');
+            console.error(error);
+            throw error;
         }
     }, []);
 

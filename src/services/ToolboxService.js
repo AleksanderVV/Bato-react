@@ -8,11 +8,23 @@ const useToolboxService = () => {
         return res;
     }
 
+    const getAccessories = async () => {
+        const acc = await request('http://localhost:3001/accessories');
+        return acc;
+    }
+
+    const getAttachingAccessories = async () => {
+        const attachAcc = await request('http://localhost:3001/attachingAccessories');
+        return attachAcc;
+    }
+
     return {
         process,
         setProcess,
         clearError,
-        getAllToolbox
+        getAllToolbox,
+        getAccessories,
+        getAttachingAccessories
     }
 }
 
