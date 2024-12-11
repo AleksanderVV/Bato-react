@@ -18,7 +18,7 @@ const MainContentSecondScreen = ({currentToolbox, totalPrice}) => {
                     <div className="col-xl-6 col-xxl-8">
                         <div className="choose-accessories__select">
                         <AccessoriesFilters />
-                        <AccessoriesList />
+                        <AccessoriesList currentToolbox={currentToolbox}/>
                         </div>
                     </div>
                 </div>

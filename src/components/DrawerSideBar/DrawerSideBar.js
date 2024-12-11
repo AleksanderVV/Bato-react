@@ -9,7 +9,7 @@ import drawer5 from '../../data/images/drawer5.webp';
 import resetImage from '../../data/images/icon/reset.svg';
 import cart from '../../data/images/icon/cart.svg';
 
-import { Tab, Tabs } from 'react-bootstrap';
+import { Tab, Tabs, Nav } from 'react-bootstrap';
 const DrawerSideBar = ({currentToolbox, totalPrice}) => {
     if (!currentToolbox) {
         return <p>No toolbox selected</p>;
@@ -28,22 +28,15 @@ const DrawerSideBar = ({currentToolbox, totalPrice}) => {
         const drawerCells = Array.from({length: drawerDepth}, (_, i) => (<div key={i} className="nav-img__item"></div>))
 
         return (
-            <button 
-                key={i}
-                className={`nav-link d-flex align-items-center ${i===0 ? 'active' : ''}`}
-                id={`v-pills-${i + 1}-tab`}
-                data-bs-toggle="pill" 
-                data-bs-target={`#v-pills-${i + 1}`} 
-                type="button" 
-                role="tab" 
-                aria-controls={`v-pills-${i + 1}`}
-                aria-selected="false">
-                <div className="choose-accessories__nav-img nav-img d-flex">
-                    {drawerCells}
-                </div>
-                <span className="button-number">{i + 1 < 10 ? `0${i + 1}` : i + 1}</span>
-                <span className="d-sm-none me-1">Drawer</span>
-            </button>
+            <Nav.Item>
+                <Nav.Link eventKey={i + 1} className='d-flex align-items-center'>
+                    <div className="choose-accessories__nav-img nav-img d-flex">
+                        {drawerCells}
+                    </div>
+                    <span className="button-number">{i + 1 < 10 ? `0${i + 1}` : i + 1}</span>
+                    <span className="d-sm-none me-1">Drawer</span>
+                </Nav.Link> 
+            </Nav.Item>
         )
     });
 
@@ -74,16 +67,11 @@ const DrawerSideBar = ({currentToolbox, totalPrice}) => {
                 shelfImage = <img src={drawer5} alt="Shelf" />;
               }
             return (
-                <div 
-                    key={i} 
-                    className="tab-pane active show" 
-                    id={`v-pills-${i + 1}`} 
-                    role="tabpanel" 
-                    aria-labelledby={`v-pills-${i + 1}-tab`}>
+                <Tab.Pane eventKey={i+1}>
                     <div className="choose-accessories__drawers-content drawers-content"></div>
                     {shelfImage}
                     <p className="d-flex align-items-center not-active"><img src={resetImage} alt="" />Reset</p>
-                </div>
+                </Tab.Pane>
             )
         })
         return (
@@ -104,12 +92,14 @@ const DrawerSideBar = ({currentToolbox, totalPrice}) => {
                 </div>
                 <div className="choose-accessories__drawers-tabs">
                     <div className="choose-accessories__drawers-wrapper d-flex align-items-start justify-content-center justify-content-xl-start">
-                        <div className="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                            {drawersNavigation()}
-                        </div>
-                        <div className="tab-content" id="v-pills-tabContent">
-                            {drawersView()}
-                        </div>
+                        <Tab.Container defaultActiveKey={1}>
+                            <Nav variant='pills' className='flex-column'>
+                                {drawersNavigation()}
+                            </Nav>
+                            <Tab.Content>
+                                {drawersView()}
+                            </Tab.Content>
+                        </Tab.Container>
                     </div>
                 </div>
                 <div className="choose-accessories__drawers-price-total">

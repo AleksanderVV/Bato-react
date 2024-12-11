@@ -1,3 +1,5 @@
+import { Tab, Nav } from 'react-bootstrap';
+
 
 import accImage from '../../data/images/accessory-1.png';
 import accImageSmall from '../../data/images/accessory-1-small.png';
