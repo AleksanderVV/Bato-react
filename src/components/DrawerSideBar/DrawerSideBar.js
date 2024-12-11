@@ -28,7 +28,7 @@ const DrawerSideBar = ({currentToolbox, totalPrice}) => {
         const drawerCells = Array.from({length: drawerDepth}, (_, i) => (<div key={i} className="nav-img__item"></div>))
 
         return (
-            <Nav.Item>
+            <Nav.Item key={i}>
                 <Nav.Link eventKey={i + 1} className='d-flex align-items-center'>
                     <div className="choose-accessories__nav-img nav-img d-flex">
                         {drawerCells}
@@ -39,20 +39,6 @@ const DrawerSideBar = ({currentToolbox, totalPrice}) => {
             </Nav.Item>
         )
     });
-
-    const drawersNavigation = () => {
-        return (
-            <>
-                <p className="d-none d-sm-block">Drawer</p>
-                {drawerButtons}
-                <div className="nav-list_top d-sm-none d-flex justify-content-center align-items-center"></div>
-                <div className="nav-list_bottom d-sm-none d-flex justify-content-center align-items-center"></div>
-                <div className="d-sm-none">
-                    <select id="mobileTabsSelect">{mobileListDrawers}</select>
-                </div>
-            </>
-        )
-    }
 
     const drawersView = () => {
         const drawerItems = Array.from({length: drawersCurrentToolbox}, (_, i) => {
@@ -67,7 +53,7 @@ const DrawerSideBar = ({currentToolbox, totalPrice}) => {
                 shelfImage = <img src={drawer5} alt="Shelf" />;
               }
             return (
-                <Tab.Pane eventKey={i+1}>
+                <Tab.Pane eventKey={i+1} key={i}>
                     <div className="choose-accessories__drawers-content drawers-content"></div>
                     {shelfImage}
                     <p className="d-flex align-items-center not-active"><img src={resetImage} alt="" />Reset</p>
@@ -94,7 +80,13 @@ const DrawerSideBar = ({currentToolbox, totalPrice}) => {
                     <div className="choose-accessories__drawers-wrapper d-flex align-items-start justify-content-center justify-content-xl-start">
                         <Tab.Container defaultActiveKey={1}>
                             <Nav variant='pills' className='flex-column'>
-                                {drawersNavigation()}
+                                <p className="d-none d-sm-block">Drawer</p>
+                                {drawerButtons}
+                                <div className="nav-list_top d-sm-none d-flex justify-content-center align-items-center"></div>
+                                <div className="nav-list_bottom d-sm-none d-flex justify-content-center align-items-center"></div>
+                                <div className="d-sm-none">
+                                    <select id="mobileTabsSelect">{mobileListDrawers}</select>
+                                </div>
                             </Nav>
                             <Tab.Content>
                                 {drawersView()}

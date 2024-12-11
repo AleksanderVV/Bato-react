@@ -12,8 +12,8 @@ const AccessoriesList = () => {
 
     return (
         <>
-            <div className="tab-content" id="pills-tabContent">
-                <div className="tab-pane show active" id="pills-all" role="tabpanel" aria-labelledby="pills-all-tab" tabIndex="0">
+            <Tab.Content>
+                <Tab.Pane eventKey={'all'}>
                     <div className="choose-accessories__cards accessory-cards d-flex flex-wrap justify-content-left">
                         <div className="accessory-cards__item d-flex flex-column">
                             <div className="accessory-cards__item_first">
@@ -50,23 +50,24 @@ const AccessoriesList = () => {
                             </div>
                         </div>
                     </div>
-                </div>
-                <div className="tab-pane" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabIndex="0">
-                    <div className="choose-accessories__cards accessory-cards d-flex flex-wrap justify-content-left">
+                </Tab.Pane>
 
-                    </div>
-                </div>
-                <div className="tab-pane" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabIndex="0">
+                <Tab.Pane eventKey={1}>
                     <div className="choose-accessories__cards accessory-cards d-flex flex-wrap justify-content-left">
-
+                        1
                     </div>
-                </div>
-                <div className="tab-pane" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab" tabIndex="0">
+                </Tab.Pane>
+                <Tab.Pane eventKey={2}>
                     <div className="choose-accessories__cards accessory-cards d-flex flex-wrap justify-content-left">
-
+                        2
                     </div>
-                </div>
-            </div>
+                </Tab.Pane>
+                <Tab.Pane eventKey={3}>
+                    <div className="choose-accessories__cards accessory-cards d-flex flex-wrap justify-content-left">
+                        3
+                    </div>
+                </Tab.Pane>
+            </Tab.Content>
             <div className="choose-accessories__cards-attaching-title">
                 <p>Attaching accessories</p><span></span>
             </div>

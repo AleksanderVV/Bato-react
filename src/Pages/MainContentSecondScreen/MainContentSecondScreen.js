@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { Tab } from 'react-bootstrap';
 
 import AccessoriesFilters from '../../components/AccessoriesFilters/AccessoriesFilters';
 import AccessoriesList from '../../components/AccessoriesList/AccessoriesList';
@@ -17,8 +18,10 @@ const MainContentSecondScreen = ({currentToolbox, totalPrice}) => {
                         totalPrice={totalPrice}/>
                     <div className="col-xl-6 col-xxl-8">
                         <div className="choose-accessories__select">
-                        <AccessoriesFilters />
-                        <AccessoriesList currentToolbox={currentToolbox}/>
+                        <Tab.Container defaultActiveKey={'all'}>
+                            <AccessoriesFilters />
+                            <AccessoriesList currentToolbox={currentToolbox}/>
+                        </Tab.Container>
                         </div>
                     </div>
                 </div>
