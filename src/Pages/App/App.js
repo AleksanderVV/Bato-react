@@ -16,11 +16,17 @@ import './App.scss';
 const App = () => {
     const [currentToolbox, setCurrentToolbox] = useState(null);
     const [totalPrice, setTotalPrice] = useState(0);
+    const [isMenuOpen, setMenuOpen] = useState(false);
+
+    const toggleDropdownMenuOpen = () => {setMenuOpen(!isMenuOpen)}
 
     return (
         <Router>
             <Header/>
             <TopBar 
+                isMenuOpen={isMenuOpen}
+                setMenuOpen={setMenuOpen}
+                toggleDropdownMenuOpen={toggleDropdownMenuOpen}
                 currentToolbox={currentToolbox} 
                 setCurrentToolbox={setCurrentToolbox} 
                 totalPrice={totalPrice} 
@@ -31,6 +37,7 @@ const App = () => {
                     path="/chooseAccessories" 
                     element={
                         <SecondScreen 
+                            toggleDropdownMenuOpen={toggleDropdownMenuOpen}
                             currentToolbox={currentToolbox} 
                             totalPrice={totalPrice}/>} />
                 <Route path="/sendForm" element={<ThirdScreen />} />
@@ -47,10 +54,13 @@ const FirstScreen = () =>  (
     </>
 );
 
-const SecondScreen = ({currentToolbox, totalPrice}) =>  (
+const SecondScreen = ({isMenuOpen, setMenuOpen, toggleDropdownMenuOpen,currentToolbox, totalPrice}) =>  (
     <>
         <MainTitleSecondScreen />
-        <MainContentSecondScreen currentToolbox={currentToolbox} totalPrice={totalPrice} />
+        <MainContentSecondScreen 
+            toggleDropdownMenuOpen={toggleDropdownMenuOpen}
+            currentToolbox={currentToolbox} 
+            totalPrice={totalPrice} />
     </>
 );
 

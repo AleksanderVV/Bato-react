@@ -10,7 +10,7 @@ import resetImage from '../../data/images/icon/reset.svg';
 import cart from '../../data/images/icon/cart.svg';
 
 import { Tab, Tabs, Nav } from 'react-bootstrap';
-const DrawerSideBar = ({currentToolbox, totalPrice}) => {
+const DrawerSideBar = ({toggleDropdownMenuOpen, currentToolbox, totalPrice}) => {
     if (!currentToolbox) {
         return <p>No toolbox selected</p>;
     }
@@ -111,7 +111,9 @@ const DrawerSideBar = ({currentToolbox, totalPrice}) => {
                         <div className="choose-accessories__drawers-price-quantity">
                             <span>0</span> items added
                         </div>
-                        <div className="choose-accessories__drawers-price-show">
+                        <div 
+                            className="choose-accessories__drawers-price-show"
+                            onClick={toggleDropdownMenuOpen}>
                             Show added items
                         </div>
                         </div>

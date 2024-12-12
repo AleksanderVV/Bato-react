@@ -46,13 +46,13 @@ window.addEventListener("load", (event) => {
     }
 
   // -------------------------------- Sticky block 
-  if (document.querySelector('#accessories')) {
-    if (this.window.scrollY > 1060) {
-      this.document.querySelector('.choose-accessories__drawers').classList.add('box-sticky');
-    } else {
-      this.document.querySelector('.choose-accessories__drawers').classList.remove('box-sticky');
+    if (document.querySelector('#accessories')) {
+      if (this.window.scrollY > 1060) {
+        this.document.querySelector('.choose-accessories__drawers').classList.add('box-sticky');
+      } else {
+        this.document.querySelector('.choose-accessories__drawers').classList.remove('box-sticky');
+      }
     }
-  }
   })
 
   // ------------------ Change text in block Result when display < 992px --------------------------

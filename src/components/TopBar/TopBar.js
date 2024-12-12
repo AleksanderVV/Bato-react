@@ -8,8 +8,8 @@ import arrowDown from '../../data/images/icon/arrow-down.svg';
 import arrowUpWhite from '../../data/images/icon/arrow-up-white.svg';
 import cartImage from '../../data/images/icon/cart.svg';
 
-const TopBar = ({currentToolbox, setCurrentToolbox, totalPrice, setTotalPrice}) => {
-    const [isMenuOpen, setMenuOpen] = useState(false);
+const TopBar = ({isMenuOpen, setMenuOpen, toggleDropdownMenuOpen, currentToolbox, setCurrentToolbox, totalPrice, setTotalPrice}) => {
+
     const location = useLocation();
     const dropdownRef = useRef(null);
 
@@ -21,9 +21,6 @@ const TopBar = ({currentToolbox, setCurrentToolbox, totalPrice, setTotalPrice}) 
             setTotalPrice(toolbox.price);
         }
     }, [location]);
-
-
-    const toggleDropdownMenuOpen = () => {setMenuOpen(!isMenuOpen)}
 
     useEffect(() => {
 

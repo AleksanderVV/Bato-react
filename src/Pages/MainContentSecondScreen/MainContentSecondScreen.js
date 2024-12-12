@@ -10,7 +10,7 @@ import useToolboxService from '../../services/ToolboxService';
 import './mainContentSecondScreen.scss';
 import filterMobile from '../../data/images/icon/filter-mobile.svg';
 
-const MainContentSecondScreen = ({currentToolbox, totalPrice}) => {
+const MainContentSecondScreen = ({isMenuOpen, setMenuOpen, toggleDropdownMenuOpen, currentToolbox, totalPrice}) => {
     const [accessories, setAccessories] = useState([]);
     const [attachingAccessories, setAttachingAccessories] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -42,6 +42,7 @@ const MainContentSecondScreen = ({currentToolbox, totalPrice}) => {
             <div className="container">
                 <div className="row">
                     <DrawerSideBar 
+                        toggleDropdownMenuOpen={toggleDropdownMenuOpen}
                         currentToolbox={currentToolbox}
                         totalPrice={totalPrice}/>
                     <div className="col-xl-6 col-xxl-8">
