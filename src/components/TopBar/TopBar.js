@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import classNames from 'classnames';
 
@@ -8,8 +8,16 @@ import arrowDown from '../../data/images/icon/arrow-down.svg';
 import arrowUpWhite from '../../data/images/icon/arrow-up-white.svg';
 import cartImage from '../../data/images/icon/cart.svg';
 
-const TopBar = ({isMenuOpen, setMenuOpen, toggleDropdownMenuOpen, currentToolbox, setCurrentToolbox, totalPrice, setTotalPrice}) => {
-
+const TopBar = ({
+                isSticky,
+                isMobile,
+                isMenuOpen, 
+                setMenuOpen, 
+                toggleDropdownMenuOpen, 
+                currentToolbox, 
+                setCurrentToolbox, 
+                totalPrice, 
+                setTotalPrice}) => {
     const location = useLocation();
     const dropdownRef = useRef(null);
 
@@ -36,7 +44,7 @@ const TopBar = ({isMenuOpen, setMenuOpen, toggleDropdownMenuOpen, currentToolbox
         return () => {
           document.removeEventListener('click', handleClickOutside);
         }
-      }, []);
+    }, []);
 
     const topBarSwitcher = () => {
         switch (location.pathname) {
@@ -72,7 +80,7 @@ const TopBar = ({isMenuOpen, setMenuOpen, toggleDropdownMenuOpen, currentToolbox
 
     return (
         <>
-            <section className="result">
+            <section className={`result ${isSticky ? 'result_sticky' : ''}`}>
                 <div className="container">
                     <div className="row">
                         <div className="col-12 col-md-9 col-lg-8">

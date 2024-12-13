@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
 
 import Header from "../Header/Header";
@@ -17,13 +17,29 @@ const App = () => {
     const [currentToolbox, setCurrentToolbox] = useState(null);
     const [totalPrice, setTotalPrice] = useState(0);
     const [isMenuOpen, setMenuOpen] = useState(false);
+    const [isSticky, setIsSticky] = useState(false);
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+    useEffect(() => {
+
+        window.addEventListener('scroll', () => {
+
+            if(window.scrollY > 78 && !isMobile) {
+                setIsSticky(true);
+            } else {setIsSticky(false)}
+
+        });
+
+    }, []);
 
     const toggleDropdownMenuOpen = () => {setMenuOpen(!isMenuOpen)}
 
     return (
         <Router>
-            <Header/>
+            <Header isSticky={isSticky} isMobile={isMobile}/>
             <TopBar 
+                isSticky={isSticky}
+                isMobile={isMobile}
                 isMenuOpen={isMenuOpen}
                 setMenuOpen={setMenuOpen}
                 toggleDropdownMenuOpen={toggleDropdownMenuOpen}
@@ -32,11 +48,13 @@ const App = () => {
                 totalPrice={totalPrice} 
                 setTotalPrice={setTotalPrice}/>
             <Routes>
-                <Route path="/" element={<FirstScreen />} />
+                <Route path="/" element={
+                    <FirstScreen isSticky={isSticky}/>} />
                 <Route 
                     path="/chooseAccessories" 
                     element={
                         <SecondScreen 
+                            isSticky={isSticky}
                             toggleDropdownMenuOpen={toggleDropdownMenuOpen}
                             currentToolbox={currentToolbox} 
                             totalPrice={totalPrice}/>} />
@@ -47,16 +65,20 @@ const App = () => {
     )
 }
 
-const FirstScreen = () =>  (
+const FirstScreen = ({isSticky}) =>  (
     <>
-        <MainTitleFirstScreen />
+        <MainTitleFirstScreen isSticky={isSticky}/>
         <MainContentFirstScreen />
     </>
 );
 
-const SecondScreen = ({isMenuOpen, setMenuOpen, toggleDropdownMenuOpen,currentToolbox, totalPrice}) =>  (
+const SecondScreen = ({
+                        isSticky, 
+                        toggleDropdownMenuOpen,
+                        currentToolbox, 
+                        totalPrice}) =>  (
     <>
-        <MainTitleSecondScreen />
+        <MainTitleSecondScreen isSticky={isSticky}/>
         <MainContentSecondScreen 
             toggleDropdownMenuOpen={toggleDropdownMenuOpen}
             currentToolbox={currentToolbox} 

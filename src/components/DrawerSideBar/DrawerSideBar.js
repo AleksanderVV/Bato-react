@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 import './drawerSideBar.scss';
 
@@ -11,6 +11,25 @@ import cart from '../../data/images/icon/cart.svg';
 
 import { Tab, Tabs, Nav } from 'react-bootstrap';
 const DrawerSideBar = ({toggleDropdownMenuOpen, currentToolbox, totalPrice}) => {
+    const [isBoxSticky, setIsBoxSticky] = useState(false);
+    const [drawerLeftStyle, setDrawerLeftStyle] = useState(null);
+
+    useEffect(() => {
+        let leftMargin =  `${150 + window.innerWidth - 1600}px`;
+        setDrawerLeftStyle(leftMargin);
+
+        window.addEventListener('resize', () => { 
+            if(window.innerWidth > 1600) {
+                setDrawerLeftStyle(`${150 + (window.innerWidth - 1600) / 2}px`)
+            }
+        })
+
+        window.addEventListener('scroll', () => {
+            document.querySelector('.choose-accessories__drawers') && window.scrollY > 1060 ? setIsBoxSticky(true) : setIsBoxSticky(false)
+        });
+
+    }, []);
+
     if (!currentToolbox) {
         return <p>No toolbox selected</p>;
     }
@@ -72,7 +91,9 @@ const DrawerSideBar = ({toggleDropdownMenuOpen, currentToolbox, totalPrice}) => 
             <div className="choose-accessories__drawers-title">
                 Drawer top view
             </div>
-            <div className="choose-accessories__drawers">
+            <div 
+                className={`choose-accessories__drawers ${isBoxSticky === true ? 'box-sticky' : ''}`}
+                style={{left:drawerLeftStyle}}>
                 <div className="choose-accessories__close-popup d-sm-none d-flex justify-content-center align-items-center">
                     <img src={xIcon} alt="close" />
                 </div>

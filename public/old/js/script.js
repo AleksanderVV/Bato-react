@@ -3,7 +3,10 @@ window.addEventListener("load", (event) => {
 
   // -------------------------------- Sticky block Result ----------------------------
   window.addEventListener('scroll', function() {
+    console.log(1);
     if(this.window.scrollY > 78 && this.window.screen.width > 768) {
+
+      
       this.document.querySelector('.result').classList.add('result_sticky');
 
       if (document.querySelector('#main')) {
@@ -18,11 +21,13 @@ window.addEventListener("load", (event) => {
         this.document.querySelector('.total-main').classList.add('margin-top');
       }
     } else if(this.window.scrollY >= 1 && this.window.screen.width < 768) {
+
         this.document.querySelector('header').classList.add('result_sticky');
         if(this.document.querySelector('.result-dropdown')) {
           this.document.querySelector('.result-dropdown').classList.add('result_sticky');
         }
         this.document.querySelector('.result').style.marginTop = '70px';
+
     }
     else {
       document.querySelector('.result').classList.remove('result_sticky');
@@ -45,7 +50,7 @@ window.addEventListener("load", (event) => {
       }
     }
 
-  // -------------------------------- Sticky block 
+  // +++----------------------------- Sticky block 
     if (document.querySelector('#accessories')) {
       if (this.window.scrollY > 1060) {
         this.document.querySelector('.choose-accessories__drawers').classList.add('box-sticky');
