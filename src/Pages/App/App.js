@@ -36,7 +36,9 @@ const App = () => {
 
     return (
         <Router>
-            <Header isSticky={isSticky} isMobile={isMobile}/>
+            <Header 
+                isSticky={isSticky} 
+                isMobile={isMobile}/>
             <TopBar 
                 isSticky={isSticky}
                 isMobile={isMobile}
@@ -58,7 +60,9 @@ const App = () => {
                             toggleDropdownMenuOpen={toggleDropdownMenuOpen}
                             currentToolbox={currentToolbox} 
                             totalPrice={totalPrice}/>} />
-                <Route path="/sendForm" element={<ThirdScreen />} />
+                <Route 
+                    path="/sendForm" 
+                    element={<ThirdScreen />} />
             </Routes>
             <Footer/>
         </Router>
@@ -78,7 +82,8 @@ const SecondScreen = ({
                         currentToolbox, 
                         totalPrice}) =>  (
     <>
-        <MainTitleSecondScreen isSticky={isSticky}/>
+        <MainTitleSecondScreen 
+            isSticky={isSticky}/>
         <MainContentSecondScreen 
             toggleDropdownMenuOpen={toggleDropdownMenuOpen}
             currentToolbox={currentToolbox} 

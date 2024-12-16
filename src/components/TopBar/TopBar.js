@@ -89,14 +89,15 @@ const TopBar = ({
                                                     "result__item", 
                                                     "result__item_first", 
                                                     {"result__item_current": location.pathname === '/'})}>
-                                    01. Toolbox Selection
+                                    
+                                    {isMobile ? '01. Toolbox' : '01. Toolbox Selection'}
                                 </div>
                                 <div className="result__delimiter flex-fill"></div>
                                 <div className={classNames(
                                                     "result__item", 
                                                     "result__item_second", 
                                                     {"result__item_current": location.pathname === '/chooseAccessories'})}>
-                                    02. Accessories Selection
+                                    {isMobile ? '02. Accessories' : '02. Accessories Selection'}
                                 </div>
                                 <div className="result__delimiter flex-fill"></div>
                                 <div className={classNames(

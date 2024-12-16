@@ -36,17 +36,14 @@ window.addEventListener("load", (event) => {
 
       if (document.querySelector('#main')) {
         this.document.querySelector('.main-header').classList.remove('margin-top');
-        this.document.querySelector('.main-header').classList.remove('margin-top-40');
       }
       if (document.querySelector('#accessories')) {
         this.document.querySelector('.result-dropdown').classList.remove('result_sticky');
         this.document.querySelector('.total-main').classList.remove('margin-top');
-        this.document.querySelector('.total-main').classList.remove('margin-top-40');
       }
       if (document.querySelector('#total')) {
         this.document.querySelector('.result-dropdown').classList.remove('result_sticky');
         this.document.querySelector('.total-main').classList.remove('margin-top');
-        this.document.querySelector('.total-main').classList.remove('margin-top-40');
       }
     }
 
