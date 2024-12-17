@@ -9,7 +9,7 @@ import drawer5 from '../../data/images/drawer5.webp';
 import resetImage from '../../data/images/icon/reset.svg';
 import cart from '../../data/images/icon/cart.svg';
 
-import { Tab, Tabs, Nav } from 'react-bootstrap';
+import { Tab, Nav } from 'react-bootstrap';
 const DrawerSideBar = ({toggleDropdownMenuOpen, currentToolbox, totalPrice}) => {
     const [isBoxSticky, setIsBoxSticky] = useState(false);
     const [drawerLeftStyle, setDrawerLeftStyle] = useState(null);

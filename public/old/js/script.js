@@ -23,10 +23,12 @@ window.addEventListener("load", (event) => {
     } else if(this.window.scrollY >= 1 && this.window.screen.width < 768) {
 
         this.document.querySelector('header').classList.add('result_sticky');
+        this.document.querySelector('.result').style.marginTop = '70px';
+
         if(this.document.querySelector('.result-dropdown')) {
           this.document.querySelector('.result-dropdown').classList.add('result_sticky');
         }
-        this.document.querySelector('.result').style.marginTop = '70px';
+
 
     }
     else {

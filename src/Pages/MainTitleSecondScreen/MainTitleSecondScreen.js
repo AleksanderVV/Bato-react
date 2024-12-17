@@ -4,9 +4,9 @@ import shadowImage from '../../data/images/box-shadow.png';
 import mouseImage from '../../data/images/icon/mouse.svg';
 import flagImage from '../../data/images/icon/flag.svg';
 
-const MainTitleSecondScreen = ({isSticky}) => {
+const MainTitleSecondScreen = ({isSticky, isMobile}) => {
     return (
-        <section className={`total-main total-accessories ${!isSticky ? '' : 'margin-top'}`}>
+        <section className={`total-main total-accessories ${!isSticky ? '' : isMobile ? '' : 'margin-top'}`}>
             <div className="container d-none d-sm-block">
                 <div className="row">
                     <div className="d-block d-md-none">

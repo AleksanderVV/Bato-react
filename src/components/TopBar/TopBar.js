@@ -78,9 +78,22 @@ const TopBar = ({
         }
     }
 
+    let resultDropdownClassName = 'result-dropdown';
+
+    if (isSticky && isMobile) {
+        resultDropdownClassName += ' result_sticky';
+    }
+
+    if (isMenuOpen) {
+        resultDropdownClassName += ' open-dropdown';
+    }
+
+
     return (
         <>
-            <section className={`result ${isSticky ? 'result_sticky' : ''}`}>
+            <section 
+            className={`result ${isSticky && location.pathname === '/' ? 'result_sticky' : ''}`}
+            style={{marginTop: isSticky && location.pathname === '/chooseAccessories' ? '70px' : '0px'}}>
                 <div className="container">
                     <div className="row">
                         <div className="col-12 col-md-9 col-lg-8">
@@ -114,7 +127,9 @@ const TopBar = ({
                     </div>
                 </div>
             </section>
-            <section ref={dropdownRef} className={isMenuOpen ? 'result-dropdown open-dropdown' : 'result-dropdown'}>
+            <section 
+                ref={dropdownRef} 
+                className={resultDropdownClassName}>
                 <div className="result-dropdown__wrapper">
                 <div className="container">
                     <div className="result-dropdown__section">

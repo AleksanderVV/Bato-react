@@ -24,7 +24,7 @@ const App = () => {
 
         window.addEventListener('scroll', () => {
 
-            if(window.scrollY > 78 && !isMobile) {
+            if((window.scrollY > 78 && !isMobile) || (window.scrollY > 1 && isMobile)) {
                 setIsSticky(true);
             } else {setIsSticky(false)}
 
@@ -38,7 +38,9 @@ const App = () => {
         <Router>
             <Header 
                 isSticky={isSticky} 
-                isMobile={isMobile}/>
+                isMobile={isMobile}
+                isMenuOpen={isMenuOpen}
+                toggleDropdownMenuOpen={toggleDropdownMenuOpen}/>
             <TopBar 
                 isSticky={isSticky}
                 isMobile={isMobile}
@@ -56,6 +58,7 @@ const App = () => {
                     path="/chooseAccessories" 
                     element={
                         <SecondScreen 
+                            isMobile={isMobile}
                             isSticky={isSticky}
                             toggleDropdownMenuOpen={toggleDropdownMenuOpen}
                             currentToolbox={currentToolbox} 
@@ -77,12 +80,14 @@ const FirstScreen = ({isSticky}) =>  (
 );
 
 const SecondScreen = ({
+                        isMobile,
                         isSticky, 
                         toggleDropdownMenuOpen,
                         currentToolbox, 
                         totalPrice}) =>  (
     <>
         <MainTitleSecondScreen 
+            isMobile={isMobile}
             isSticky={isSticky}/>
         <MainContentSecondScreen 
             toggleDropdownMenuOpen={toggleDropdownMenuOpen}
