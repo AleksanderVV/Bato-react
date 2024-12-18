@@ -9,13 +9,6 @@ import './header.scss';
 const Header = ({isMobile, isSticky, isMenuOpen, toggleDropdownMenuOpen}) => {
     const location = useLocation();
 
-    let headerDropdownMenu;
-    if (location.pathname === '/chooseAccessories' && isMobile && !isMenuOpen) {
-        headerDropdownMenu = <img src={arrowDown} className="header__img_close" alt="arrow" />
-    } else {
-        headerDropdownMenu = <img src={arrowUpWhite} className="header__img_open" alt="arrow" />;
-    }
-
     return (
         <>
             <div className='overlay'></div>
@@ -32,7 +25,11 @@ const Header = ({isMobile, isSticky, isMenuOpen, toggleDropdownMenuOpen}) => {
                         className="header__total-item d-flex justify-content-end"
                         onClick={toggleDropdownMenuOpen}>
                         <p><span>0</span> item added</p>
-                        {headerDropdownMenu}
+                        {
+                        location.pathname === '/chooseAccessories' && isMobile && !isMenuOpen ?
+                           <img src={arrowDown} className="header__img_close" alt="arrow" /> :
+                           <img src={arrowUpWhite} className="header__img_open" alt="arrow" /> 
+                        }
                     </div>
                     </div>
                 </div>
