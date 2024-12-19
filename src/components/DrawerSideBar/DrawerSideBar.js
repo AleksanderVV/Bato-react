@@ -12,11 +12,9 @@ import cart from '../../data/images/icon/cart.svg';
 import { Tab, Nav } from 'react-bootstrap';
 const DrawerSideBar = ({toggleDropdownMenuOpen, currentToolbox, totalPrice}) => {
     const [isBoxSticky, setIsBoxSticky] = useState(false);
-    const [drawerLeftStyle, setDrawerLeftStyle] = useState(null);
+    const [drawerLeftStyle, setDrawerLeftStyle] = useState('150px');
 
     useEffect(() => {
-        let leftMargin =  `${150 + window.innerWidth - 1600}px`;
-        setDrawerLeftStyle(leftMargin);
 
         window.addEventListener('resize', () => { 
             if(window.innerWidth > 1600) {

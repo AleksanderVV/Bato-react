@@ -2,7 +2,7 @@ import { Tab, Nav } from 'react-bootstrap';
 
 import './accessoriesFilters.scss';
 
-const AccessoriesFilters = () => {
+const AccessoriesFilters = ({searchAcc}) => {
 
     return (
         <>
@@ -11,7 +11,12 @@ const AccessoriesFilters = () => {
             </div>
             <div className="choose-accessories__top d-flex align-items-end">
                 <div className="choose-accessories__search flex-fill">
-                    <input type="search" name="search" id="search-accessories" placeholder="Search accessory by item number or name" />
+                    <input 
+                        onChange={searchAcc}
+                        type="search" 
+                        name="search" 
+                        id="search-accessories" 
+                        placeholder="Search accessory by item number or name" />
                 </div>
                 <p className="choose-accessories__title-size d-sm-none">Size</p>
                 <Nav variant='pills'>

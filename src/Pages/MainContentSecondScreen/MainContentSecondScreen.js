@@ -12,8 +12,11 @@ import filterMobile from '../../data/images/icon/filter-mobile.svg';
 
 const MainContentSecondScreen = ({isMenuOpen, setMenuOpen, toggleDropdownMenuOpen, currentToolbox, totalPrice}) => {
     const [accessories, setAccessories] = useState([]);
+    const [filteredAccessories, setFilteredAccessories] = useState([]);
     const [attachingAccessories, setAttachingAccessories] = useState([]);
     const [loading, setLoading] = useState(true);
+
+
     const {process, setProcess, getAccessories, getAttachingAccessories} = useToolboxService();
 
     useEffect(() => {
@@ -27,6 +30,7 @@ const MainContentSecondScreen = ({isMenuOpen, setMenuOpen, toggleDropdownMenuOpe
             const acc = await getAccessories();
             const attachingAcc = await getAttachingAccessories();
             setAccessories(acc);
+            setFilteredAccessories(acc);
             setAttachingAccessories(attachingAcc);
             setProcess('confirmed');
         } catch (error) {
@@ -35,6 +39,14 @@ const MainContentSecondScreen = ({isMenuOpen, setMenuOpen, toggleDropdownMenuOpe
         } finally {
             setLoading(false);
         }
+    }
+
+    const searchAcc = (event) => {
+        const searchValue = event.target.value.toLowerCase();
+
+        setFilteredAccessories(
+            accessories.filter(acc => acc.name.toLowerCase().includes(searchValue) || acc.id.includes(searchValue))
+        )
     }
 
     return (
@@ -48,11 +60,11 @@ const MainContentSecondScreen = ({isMenuOpen, setMenuOpen, toggleDropdownMenuOpe
                     <div className="col-xl-6 col-xxl-8">
                         <div className="choose-accessories__select">
                         <Tab.Container defaultActiveKey={'all'}>
-                            <AccessoriesFilters />
+                            <AccessoriesFilters searchAcc={searchAcc}/>
                             {!loading ? (
                                 <AccessoriesList 
                                     currentToolbox={currentToolbox} 
-                                    accessories={accessories} 
+                                    accessories={filteredAccessories} 
                                     attachingAccessories={attachingAccessories}/>
                             ) : (
                                 <p>Loading accessories...</p>
