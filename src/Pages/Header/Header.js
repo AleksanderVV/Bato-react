@@ -20,13 +20,13 @@ const Header = ({isMobile, isSticky, isMenuOpen, toggleDropdownMenuOpen}) => {
                     </div>
                     <div className="col-1 d-none justify-content-end d-md-flex">
                     </div>
-                    <div className="col-6 d-flex justify-content-end align-items-center d-md-none">
+                    <div className="col-6 d-flex justify-content-end align-items-center d-lg-none">
                     <div 
                         className="header__total-item d-flex justify-content-end"
                         onClick={toggleDropdownMenuOpen}>
                         <p><span>0</span> item added</p>
                         {
-                        location.pathname === '/chooseAccessories' && isMobile && !isMenuOpen ?
+                        location.pathname === '/chooseAccessories' && !isMenuOpen ?
                            <img src={arrowDown} className="header__img_close" alt="arrow" /> :
                            <img src={arrowUpWhite} className="header__img_open" alt="arrow" /> 
                         }

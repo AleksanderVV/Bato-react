@@ -96,7 +96,7 @@ const TopBar = ({
             style={{marginTop: isSticky && location.pathname === '/chooseAccessories' ? '70px' : '0px'}}>
                 <div className="container">
                     <div className="row">
-                        <div className="col-12 col-md-9 col-lg-8">
+                        <div className="col-12 col-lg-8">
                             <div className="result__items justify-content-between">
                                 <div className={classNames(
                                                     "result__item", 
@@ -121,7 +121,7 @@ const TopBar = ({
                                 </div>
                             </div>
                         </div>
-                        <div className="col-3 col-lg-4 d-none d-md-block">
+                        <div className="col-3 col-lg-4 d-none d-lg-block">
                             {topBarSwitcher()}
                         </div>
                     </div>
