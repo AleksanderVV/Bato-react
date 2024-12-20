@@ -89,10 +89,10 @@ p {
     padding-right: 0;
     width: auto;
   }
-  #total .total-result__price-box {
+  .total-result__price-box {
     padding: 57px 40px;
   }
-  #total .total-result .total-items-box__header p.total-items-box__name {
+  .total-result .total-items-box__header p.total-items-box__name {
     max-width: 330px;
   }
 }
@@ -107,16 +107,16 @@ p {
     right: -65px;
     width: 50px;
   }
-  #total .total-result__price-box {
+  .total-result__price-box {
     padding: 57px 25px;
   }
-  #total .total-result .total-items-box__header p.total-items-box__name {
+  .total-result .total-items-box__header p.total-items-box__name {
     max-width: 250px;
   }
   .total-result .total-items-box__items .total-items-box__name {
     max-width: 300px;
   }
-  #total .total-result .total-items-box__items .total-items-box__price {
+  .total-result .total-items-box__items .total-items-box__price {
     margin-right: 0px;
   }
   .result-dropdown .accessory-selected__data {
@@ -174,7 +174,7 @@ p {
   .total-result .total-items-box__total {
     font-size: 20px;
   }
-  #total .total-main__image img {
+  #total .total-main__image img { // ---------
     width: 360px;
   }
   .result-dropdown .box-selected {
