@@ -17,7 +17,8 @@ const TopBar = ({
                 currentToolbox, 
                 setCurrentToolbox, 
                 totalPrice, 
-                setTotalPrice}) => {
+                setTotalPrice,
+                handleClick}) => {
     const location = useLocation();
     const dropdownRef = useRef(null);
 
@@ -82,6 +83,11 @@ const TopBar = ({
 
     resultDropdownClassName = isSticky ? resultDropdownClassName += ' result_sticky' : resultDropdownClassName;
     resultDropdownClassName = isMenuOpen ? resultDropdownClassName += ' open-dropdown' : resultDropdownClassName;
+
+    const handleClickTopBar = () => {
+        handleClick();
+        setMenuOpen(false);
+    }
 
     return (
         <>
@@ -156,7 +162,7 @@ const TopBar = ({
                         </div>
                         <div className="col-12 d-flex justify-content-end">
                             <div className="result-dropdown__submit d-flex align-items-center justify-content-center">
-                            <button type="button"><span>
+                            <button type="button" onClick={handleClickTopBar}><span>
                                 <img src={cartImage} alt="cart" />Færdig med valg</span>
                             </button>
                             </div>

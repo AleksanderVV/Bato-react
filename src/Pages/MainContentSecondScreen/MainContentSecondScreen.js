@@ -10,7 +10,7 @@ import useToolboxService from '../../services/ToolboxService';
 import './mainContentSecondScreen.scss';
 import filterMobile from '../../data/images/icon/filter-mobile.svg';
 
-const MainContentSecondScreen = ({isMenuOpen, setMenuOpen, toggleDropdownMenuOpen, currentToolbox, totalPrice}) => {
+const MainContentSecondScreen = ({ toggleDropdownMenuOpen, currentToolbox, totalPrice, handleClick}) => {
     const [accessories, setAccessories] = useState([]);
     const [filteredAccessories, setFilteredAccessories] = useState([]);
     const [attachingAccessories, setAttachingAccessories] = useState([]);
@@ -56,7 +56,8 @@ const MainContentSecondScreen = ({isMenuOpen, setMenuOpen, toggleDropdownMenuOpe
                     <DrawerSideBar 
                         toggleDropdownMenuOpen={toggleDropdownMenuOpen}
                         currentToolbox={currentToolbox}
-                        totalPrice={totalPrice}/>
+                        totalPrice={totalPrice}
+                        handleClick={handleClick}/>
                     <div className="col-xl-6 col-xxl-8">
                         <div className="choose-accessories__select">
                         <Tab.Container defaultActiveKey={'all'}>

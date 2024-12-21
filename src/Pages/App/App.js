@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
+import { Route, Routes, BrowserRouter as Router, useNavigate } from "react-router-dom";
 import useBodyID from "../../hooks/useBodyID";
 
 import Header from "../Header/Header";
@@ -21,6 +21,12 @@ const App = () => {
     const [isSticky, setIsSticky] = useState(false);
     const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
+    const navigate = useNavigate();
+
+    const handleClick = () => {
+        navigate('/sendForm', {state: {currentToolbox}});
+    }
+
     useEffect(() => {
 
         window.addEventListener('scroll', () => {
@@ -36,7 +42,7 @@ const App = () => {
     const toggleDropdownMenuOpen = () => {setMenuOpen(!isMenuOpen)}
 
     return (
-        <Router>
+        <>
             <Header 
                 isSticky={isSticky} 
                 isMobile={isMobile}
@@ -51,7 +57,8 @@ const App = () => {
                 currentToolbox={currentToolbox} 
                 setCurrentToolbox={setCurrentToolbox} 
                 totalPrice={totalPrice} 
-                setTotalPrice={setTotalPrice}/>
+                setTotalPrice={setTotalPrice}
+                handleClick={handleClick}/>
             <Routes>
                 <Route path="/" element={
                     <FirstScreen isSticky={isSticky}/>} />
@@ -63,13 +70,14 @@ const App = () => {
                             isSticky={isSticky}
                             toggleDropdownMenuOpen={toggleDropdownMenuOpen}
                             currentToolbox={currentToolbox} 
-                            totalPrice={totalPrice}/>} />
+                            totalPrice={totalPrice}
+                            handleClick={handleClick}/>} />
                 <Route 
                     path="/sendForm" 
                     element={<ThirdScreen />} />
             </Routes>
             <Footer/>
-        </Router>
+        </>
     )
 }
 
@@ -87,7 +95,8 @@ const SecondScreen = ({
                         isSticky, 
                         toggleDropdownMenuOpen,
                         currentToolbox, 
-                        totalPrice}) =>  {
+                        totalPrice,
+                        handleClick}) =>  {
                             useBodyID('accessories');
                             return (
     <>
@@ -97,7 +106,8 @@ const SecondScreen = ({
         <MainContentSecondScreen 
             toggleDropdownMenuOpen={toggleDropdownMenuOpen}
             currentToolbox={currentToolbox} 
-            totalPrice={totalPrice} />
+            totalPrice={totalPrice}
+            handleClick={handleClick} />
     </>
 )};
 

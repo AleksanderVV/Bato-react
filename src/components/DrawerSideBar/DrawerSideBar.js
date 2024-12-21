@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Tab, Nav } from 'react-bootstrap';
 
 import './drawerSideBar.scss';
 
@@ -9,8 +10,7 @@ import drawer5 from '../../data/images/drawer5.webp';
 import resetImage from '../../data/images/icon/reset.svg';
 import cart from '../../data/images/icon/cart.svg';
 
-import { Tab, Nav } from 'react-bootstrap';
-const DrawerSideBar = ({toggleDropdownMenuOpen, currentToolbox, totalPrice}) => {
+const DrawerSideBar = ({toggleDropdownMenuOpen, currentToolbox, totalPrice, handleClick}) => {
     const [isBoxSticky, setIsBoxSticky] = useState(false);
     const [drawerLeftStyle, setDrawerLeftStyle] = useState('150px');
 
@@ -124,7 +124,9 @@ const DrawerSideBar = ({toggleDropdownMenuOpen, currentToolbox, totalPrice}) => 
                     </div>
                     <div className="choose-accessories__drawers-price-info d-flex justify-content-between">
                         <div className="choose-accessories__drawers-price-button align-items-center justify-content-center d-none d-sm-flex">
-                        <a><span><img src="img/icon/cart.svg" alt="" /> Færdig med valg</span></a>
+                        <button onClick={handleClick}>
+                            <img src={cart} alt="Cart" /> Færdig med valg
+                        </button>
                         </div>
                         <div className="choose-accessories__drawers-price-items text-end">
                         <div className="choose-accessories__drawers-price-quantity">
@@ -140,7 +142,9 @@ const DrawerSideBar = ({toggleDropdownMenuOpen, currentToolbox, totalPrice}) => 
                 </div>
             </div>
             <div className="choose-accessories__drawers-price-button2 align-items-center justify-content-center d-sm-none">
-                <a><span><img src={cart} alt="Cart" /> Færdig med valg</span></a>
+                <button onClick={handleClick}>
+                    <img src={cart} alt="Cart" /> Færdig med valg
+                </button>
             </div>
         </div>
     )
