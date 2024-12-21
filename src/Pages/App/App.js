@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
+import useBodyID from "../../hooks/useBodyID";
 
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
@@ -72,19 +73,23 @@ const App = () => {
     )
 }
 
-const FirstScreen = ({isSticky}) =>  (
+const FirstScreen = ({isSticky}) =>  {
+    useBodyID('main');
+    return (
     <>
         <MainTitleFirstScreen isSticky={isSticky}/>
         <MainContentFirstScreen />
     </>
-);
+)};
 
 const SecondScreen = ({
                         isMobile,
                         isSticky, 
                         toggleDropdownMenuOpen,
                         currentToolbox, 
-                        totalPrice}) =>  (
+                        totalPrice}) =>  {
+                            useBodyID('accessories');
+                            return (
     <>
         <MainTitleSecondScreen 
             isMobile={isMobile}
@@ -94,14 +99,16 @@ const SecondScreen = ({
             currentToolbox={currentToolbox} 
             totalPrice={totalPrice} />
     </>
-);
+)};
 
-const ThirdScreen = ({currentToolbox}) =>  (
+const ThirdScreen = ({currentToolbox}) =>  {
+    useBodyID('total');
+    return (
     <>
         <MainTitleThirdScreen />
         <MainContentThirdScreen />
     </>
-);
+)};
 
 export default App;
 
