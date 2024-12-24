@@ -20,7 +20,7 @@ const MainContentSecondScreen = ({ toggleDropdownMenuOpen, currentToolbox, total
     const [currentDrawer, setCurrentDrawer] = useState(0);
 
 
-    const {process, setProcess, getAccessories, getAttachingAccessories} = useToolboxService();
+    const {setProcess, getAccessories, getAttachingAccessories} = useToolboxService();
 
     useEffect(() => {
         onRequest();

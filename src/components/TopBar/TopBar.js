@@ -29,6 +29,7 @@ const TopBar = ({
             setCurrentToolbox(toolbox);
             setTotalPrice(toolbox.price);
         }
+        // eslint-disable-next-line
     }, [location]);
 
     useEffect(() => {
@@ -45,6 +46,7 @@ const TopBar = ({
         return () => {
           document.removeEventListener('click', handleClickOutside);
         }
+        // eslint-disable-next-line
     }, []);
 
     const topBarSwitcher = () => {

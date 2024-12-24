@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Route, Routes, BrowserRouter as Router, useNavigate } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import useBodyID from "../../hooks/useBodyID";
 
 import Header from "../Header/Header";
@@ -19,7 +19,7 @@ const App = () => {
     const [totalPrice, setTotalPrice] = useState(0);
     const [isMenuOpen, setMenuOpen] = useState(false);
     const [isSticky, setIsSticky] = useState(false);
-    const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+    const [isMobile, setIsMobile] = useState(null);
 
     const navigate = useNavigate();
 
@@ -29,6 +29,8 @@ const App = () => {
 
     useEffect(() => {
 
+        setIsMobile(window.innerWidth < 768);
+
         window.addEventListener('scroll', () => {
 
             if((window.scrollY > 78 && !isMobile) || (window.scrollY > 1 && isMobile)) {
@@ -36,7 +38,7 @@ const App = () => {
             } else {setIsSticky(false)}
 
         });
-
+// eslint-disable-next-line
     }, []);
 
     const toggleDropdownMenuOpen = () => {setMenuOpen(!isMenuOpen)}
