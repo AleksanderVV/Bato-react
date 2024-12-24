@@ -9,8 +9,8 @@ window.addEventListener("load", (event) => {
   let currentLengthAcc = 0;
   
   let addedAccessory, addedAccessorySize, arrSumAccessories;
-
-  if(arrayAccessoriesPrice.length != 0) {
+  
+  if(arrayAccessoriesPrice.length != 0) { // If you choose acc earlier and reboot page
     addedAccessory = arrayAccessories;
     const addedAccessoryArray = addedAccessory.flat();
     addedAccessorySize = arrayAccessoriesSize;
@@ -18,12 +18,6 @@ window.addEventListener("load", (event) => {
 
     itemAccessory.forEach((item,index) => {
       const accessoryID = item.querySelector('.accessory-cards__id').textContent;
-
-      // addedAccessoryArray.forEach(id => {
-      //   if(accessoryID == id) {
-      //     item.classList.add('accessory-cards__item_choose');
-      //   }
-      // });
 
       addedAccessory.forEach((array,i) => {
         
@@ -69,6 +63,8 @@ window.addEventListener("load", (event) => {
     }
   }
 
+  console.log(fullLengthBox);
+
   if (currentLengthAcc == fullLengthBox) {
     accessoriesContainer.querySelectorAll('.accessory-cards__item').forEach(item => {
       if(!item.classList.contains('accessory-cards__item_choose')) {
@@ -100,7 +96,7 @@ window.addEventListener("load", (event) => {
     });
 
     return totalCount;
-}
+  }
 
   function createDropdownContainer() {
     dropdownContainer.innerHTML = '';
@@ -131,7 +127,7 @@ window.addEventListener("load", (event) => {
     return { found: false, index: -1 };
   }
   
-  function addAccessories() {
+  function addAccessories() { // Adding acc to drawer
 
     let currentLengthAcc = 0;
     let currentDrawer = drawersContainer.querySelector('.active').getAttribute('id').split('-')[2]; //номер полки
@@ -139,7 +135,7 @@ window.addEventListener("load", (event) => {
     let currentAccessorySize = this.querySelector('.accessory-cards__size .accessory-cards__size-img').getAttribute('data-size'); //размер акс
     let currentAccessoryId = this.querySelector('.accessory-cards__id').textContent;
     let currentAccessoryPrice = this.querySelector('.accessory-cards__price span').textContent;
-    let currentTabsDrawer = drawersContainer.querySelectorAll('.nav-link')[currentDrawer-1];
+    // let currentTabsDrawer = drawersContainer.querySelectorAll('.nav-link')[currentDrawer-1];
 
     const { found, index } = findArrayIndexWithElement(addedAccessory, currentAccessoryId);
 
@@ -250,7 +246,7 @@ window.addEventListener("load", (event) => {
 
   }
 
-  function insertAccessoriesInDpordown() {
+  function insertAccessoriesInDpordown() { // Adding acc to dropdown
     let dropdownDrawer = dropdownContainer.querySelectorAll('.accessory-selected__drawer');
     const attachingAccessoriesContainer = dropdownContainer.querySelector('.accessory-selected__drawer-attaching');
 
@@ -331,6 +327,8 @@ window.addEventListener("load", (event) => {
       
     });
 
+    // Added attaching acc
+
     if (arrayAttachingAccessories.length > 0 && !Array.isArray(arrayAttachingAccessories[0])) {
 
       attachingAccessoriesContainer.innerHTML = `
@@ -378,7 +376,7 @@ window.addEventListener("load", (event) => {
     }
   }
 
-  function deleteDropdownAccessory() {
+  function deleteDropdownAccessory() {  // Delete acc from all
     let currentIdAccessory = this.getAttribute('data-id'); //id удаляемого акс
     let currentNumberDrawer = this.getAttribute('data-number-drawer'); //номер текущей полки
     let currentAccessoryPrice = this.querySelector('.accessory-selected__data-price span').textContent;
@@ -465,7 +463,7 @@ window.addEventListener("load", (event) => {
     
   }
 
-  function changeDrawersTabsImage() {
+  function changeDrawersTabsImage() { // Changing drawers tabs view
     let tabsDrawersItem = drawersContainer.querySelectorAll('.nav-link');
     addedAccessorySize.forEach((item,i) => {
       if (Array.isArray(item)) {
@@ -536,7 +534,7 @@ window.addEventListener("load", (event) => {
 
   }
 
-  function showAccesoriesOnDrawers() {
+  function showAccesoriesOnDrawers() { // Show added accessories on the drawer
     const drawers = drawersContainer.querySelectorAll('.tab-pane');
     const drawersTabs = drawersContainer.querySelectorAll('.nav-link');
 
@@ -638,8 +636,8 @@ window.addEventListener("load", (event) => {
     });
   }
 
-  function hideAccessories() {
-    // Функционал заполнения полки
+  function hideAccessories() { // Функционал заполнения полки
+    
 
     let currentDrawer = drawersContainer.querySelector('.active').getAttribute('id').split('-')[2]; //номер полки
     let currentDrawerLength = currentBoxData.drawers[currentDrawer-1]; //длинна выбранной полки

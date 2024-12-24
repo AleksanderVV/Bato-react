@@ -12,7 +12,8 @@ import d8909 from '../../data/images/d-8909.jpg';
 import d8940 from '../../data/images/d-8940.jpg';
 import d8919 from '../../data/images/d-8919.jpg';
 
-const AccessoriesList = ({currentToolbox, accessories, attachingAccessories}) => {
+const AccessoriesList = ({currentToolbox, accessories, attachingAccessories, selectedAcc, chooseCurrentAcc}) => {
+
         
     const filteredAccessories = attachingAccessories.filter(acc => 
         currentToolbox.accessories.includes(Number(acc.id))
@@ -34,9 +35,14 @@ const AccessoriesList = ({currentToolbox, accessories, attachingAccessories}) =>
                     accImage = d8919;
                     accSize = accSize3;
                 }
+
+                const isSelected = selectedAcc.includes(acc.id);
                 
                 return (
-                <div key={index} className="accessory-cards__item d-flex flex-column">
+                <div 
+                    key={index} 
+                    className={`accessory-cards__item d-flex flex-column ${isSelected ? 'accessory-cards__item_choose' : ''}`} 
+                    onClick={() => chooseCurrentAcc(acc.id)}>
                     <div className="accessory-cards__item_first">
                         <div className="accessory-cards__img">
                             <div className="accessory-cards__img-wrapper">
@@ -58,7 +64,10 @@ const AccessoriesList = ({currentToolbox, accessories, attachingAccessories}) =>
                                     </p>
                                 </div>
                                 <div className="accessory-cards__footer d-flex justify-content-between align-items-center">
-                                    <button type="button" className="d-flex align-items-center justify-content-center">
+                                    <button 
+                                        type="button" 
+                                        className="d-flex align-items-center justify-content-center"
+                                        onClick={() => chooseCurrentAcc(acc.id)}>
                                         <img src={plusBlack} alt="plus" className="accessory-cards__plus" />
                                         <img src={plusImage} alt="plus" className="accessory-cards__plus-hover" />
                                     </button>
@@ -104,8 +113,14 @@ const AccessoriesList = ({currentToolbox, accessories, attachingAccessories}) =>
             <div className="choose-accessories__cards-attaching accessory-cards d-flex flex-wrap justify-content-between">
                 {
                     filteredAccessories.length > 0 ? (
-                        filteredAccessories.map((acc,id) => (
-                            <div key={id} className="accessory-cards__item d-flex flex-column">
+                        filteredAccessories.map((acc,id) => {
+                            const isSelected = selectedAcc.includes(acc.id);
+
+                            return (
+                            <div 
+                                key={id} 
+                                className={`accessory-cards__item d-flex flex-column ${selectedAcc ? 'accessory-cards__item_choose' : ''}`} 
+                                onClick={() => chooseCurrentAcc(acc.id)}>
                                 <div className="accessory-cards__item_first">
                                     <div className="accessory-cards__img">
                                         <div className="accessory-cards__img-wrapper">
@@ -124,7 +139,10 @@ const AccessoriesList = ({currentToolbox, accessories, attachingAccessories}) =>
                                                 <p className="accessory-cards__size-subtitle">Size <span></span></p><p className="accessory-cards__size"><span className="accessory-cards__size-img" data-size={acc.size}></span></p>
                                             </div>
                                             <div className="accessory-cards__footer d-flex justify-content-between align-items-center">
-                                                    <button type="button" className="d-flex align-items-center justify-content-center">
+                                                    <button 
+                                                        type="button" 
+                                                        className="d-flex align-items-center justify-content-center"
+                                                        onClick={() => chooseCurrentAcc(acc.id)}>
                                                         <img src={plusBlack} alt="plus" className="accessory-cards__plus" />
                                                         <img src={plusImage} alt="plus" className="accessory-cards__plus-hover" /></button>
                                                     <p className="accessory-cards__price"><span>{acc.price}</span>,00 EUR</p>
@@ -135,7 +153,7 @@ const AccessoriesList = ({currentToolbox, accessories, attachingAccessories}) =>
                                 <div className="accessory-cards__item_second">
                                 </div>
                             </div>
-                        ))
+                        )})
                     ) : (
                         <p>No attaching accessories available</p>
                     )

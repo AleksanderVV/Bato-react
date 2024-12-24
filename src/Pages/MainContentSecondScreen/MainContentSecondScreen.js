@@ -16,6 +16,8 @@ const MainContentSecondScreen = ({ toggleDropdownMenuOpen, currentToolbox, total
     const [attachingAccessories, setAttachingAccessories] = useState([]);
     const [loading, setLoading] = useState(true);
 
+    const [selectedAcc, setSelectedAcc] = useState([]);
+
 
     const {process, setProcess, getAccessories, getAttachingAccessories} = useToolboxService();
 
@@ -49,6 +51,15 @@ const MainContentSecondScreen = ({ toggleDropdownMenuOpen, currentToolbox, total
         )
     }
 
+    const chooseCurrentAcc = (id) => {
+        setSelectedAcc(prevState => {
+            if (prevState.includes(id)) {
+                return prevState.filter(accId => accId !== id)
+            }
+            return [...prevState, id];
+        })
+    };
+
     return (
         <section id="choose-accessories" className="choose-accessories">
             <div className="container">
@@ -66,7 +77,9 @@ const MainContentSecondScreen = ({ toggleDropdownMenuOpen, currentToolbox, total
                                 <AccessoriesList 
                                     currentToolbox={currentToolbox} 
                                     accessories={filteredAccessories} 
-                                    attachingAccessories={attachingAccessories}/>
+                                    attachingAccessories={attachingAccessories}
+                                    selectedAcc={selectedAcc}
+                                    chooseCurrentAcc={chooseCurrentAcc}/>
                             ) : (
                                 <p>Loading accessories...</p>
                             )}

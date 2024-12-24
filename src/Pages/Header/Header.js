@@ -1,5 +1,6 @@
 
 import { useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import arrowDown from '../../data/images/icon/arrow-down.svg';
 import arrowUpWhite from '../../data/images/icon/arrow-up-white.svg'
@@ -16,7 +17,7 @@ const Header = ({isMobile, isSticky, isMenuOpen, toggleDropdownMenuOpen}) => {
                 <div className="container">
                 <div className="row justify-content-between">
                     <div className="col-1 align-middle">
-                    <a href="index.html" className="header__logo">BATO</a>
+                    <Link to={{pathname: "/"}} className="header__logo">BATO</Link>
                     </div>
                     <div className="col-1 d-none justify-content-end d-md-flex">
                     </div>
