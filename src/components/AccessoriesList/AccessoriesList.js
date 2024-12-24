@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { Tab, Nav } from 'react-bootstrap';
+// import { useState, useEffect } from 'react';
+import { Tab } from 'react-bootstrap';
 
 import accImage from '../../data/images/accessory-1.png';
 import accImageSmall from '../../data/images/accessory-1-small.png';
@@ -11,9 +11,32 @@ import accSize3 from '../../data/images/icon/accessory-size-3.svg';
 import d8909 from '../../data/images/d-8909.jpg';
 import d8940 from '../../data/images/d-8940.jpg';
 import d8919 from '../../data/images/d-8919.jpg';
+import { useState } from 'react';
 
-const AccessoriesList = ({currentToolbox, accessories, attachingAccessories, selectedAcc, chooseCurrentAcc}) => {
+const AccessoriesList = ({
+                            currentToolbox, 
+                            accessories, 
+                            attachingAccessories, 
+                            selectedAcc, 
+                            chooseCurrentAcc,
+                            currentDrawer}) => {
 
+    const [drawerData, setDrawerData] = useState({});
+
+    const handleAccessoryClick = (accId) => {
+        setDrawerData((prev) => {
+          const newDrawerData = { ...prev };
+    
+          if (newDrawerData[accId] === currentDrawer) {
+            delete newDrawerData[accId]; // Remove data-drawer if already selected
+          } else {
+            newDrawerData[accId] = String(currentDrawer); // Set data-drawer
+          }
+          return newDrawerData;
+        });
+    
+        chooseCurrentAcc(accId); // Call the provided function to handle selection logic
+      };
         
     const filteredAccessories = attachingAccessories.filter(acc => 
         currentToolbox.accessories.includes(Number(acc.id))
@@ -37,12 +60,17 @@ const AccessoriesList = ({currentToolbox, accessories, attachingAccessories, sel
                 }
 
                 const isSelected = selectedAcc.includes(acc.id);
+                const dataDrawer = drawerData[acc.id];
+                const isNotActive = dataDrawer !== undefined && dataDrawer !== currentDrawer;
                 
                 return (
                 <div 
                     key={index} 
-                    className={`accessory-cards__item d-flex flex-column ${isSelected ? 'accessory-cards__item_choose' : ''}`} 
-                    onClick={() => chooseCurrentAcc(acc.id)}>
+                    data-drawer={dataDrawer}
+                    className={`accessory-cards__item d-flex flex-column ${isSelected 
+                                ? 'accessory-cards__item_choose'
+                                : ''} ${isNotActive ? 'not-active' : ''}`}
+                    onClick={() => handleAccessoryClick(acc.id)}>
                     <div className="accessory-cards__item_first">
                         <div className="accessory-cards__img">
                             <div className="accessory-cards__img-wrapper">
@@ -119,7 +147,7 @@ const AccessoriesList = ({currentToolbox, accessories, attachingAccessories, sel
                             return (
                             <div 
                                 key={id} 
-                                className={`accessory-cards__item d-flex flex-column ${selectedAcc ? 'accessory-cards__item_choose' : ''}`} 
+                                className={`accessory-cards__item d-flex flex-column ${isSelected ? 'accessory-cards__item_choose' : ''}`} 
                                 onClick={() => chooseCurrentAcc(acc.id)}>
                                 <div className="accessory-cards__item_first">
                                     <div className="accessory-cards__img">

@@ -17,6 +17,7 @@ const MainContentSecondScreen = ({ toggleDropdownMenuOpen, currentToolbox, total
     const [loading, setLoading] = useState(true);
 
     const [selectedAcc, setSelectedAcc] = useState([]);
+    const [currentDrawer, setCurrentDrawer] = useState(0);
 
 
     const {process, setProcess, getAccessories, getAttachingAccessories} = useToolboxService();
@@ -57,7 +58,12 @@ const MainContentSecondScreen = ({ toggleDropdownMenuOpen, currentToolbox, total
                 return prevState.filter(accId => accId !== id)
             }
             return [...prevState, id];
-        })
+        });
+
+        let accDrawer = null;
+        accDrawer = currentDrawer === accDrawer ? '' : currentDrawer;
+
+        return accDrawer;
     };
 
     return (
@@ -68,7 +74,9 @@ const MainContentSecondScreen = ({ toggleDropdownMenuOpen, currentToolbox, total
                         toggleDropdownMenuOpen={toggleDropdownMenuOpen}
                         currentToolbox={currentToolbox}
                         totalPrice={totalPrice}
-                        handleClick={handleClick}/>
+                        handleClick={handleClick}
+                        currentDrawer={currentDrawer}
+                        setCurrentDrawer={setCurrentDrawer}/>
                     <div className="col-xl-6 col-xxl-8">
                         <div className="choose-accessories__select">
                         <Tab.Container defaultActiveKey={'all'}>
@@ -79,7 +87,8 @@ const MainContentSecondScreen = ({ toggleDropdownMenuOpen, currentToolbox, total
                                     accessories={filteredAccessories} 
                                     attachingAccessories={attachingAccessories}
                                     selectedAcc={selectedAcc}
-                                    chooseCurrentAcc={chooseCurrentAcc}/>
+                                    chooseCurrentAcc={chooseCurrentAcc}
+                                    currentDrawer={currentDrawer}/>
                             ) : (
                                 <p>Loading accessories...</p>
                             )}

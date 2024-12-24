@@ -10,21 +10,35 @@ import drawer5 from '../../data/images/drawer5.webp';
 import resetImage from '../../data/images/icon/reset.svg';
 import cart from '../../data/images/icon/cart.svg';
 
-const DrawerSideBar = ({toggleDropdownMenuOpen, currentToolbox, totalPrice, handleClick}) => {
+const DrawerSideBar = ({toggleDropdownMenuOpen, currentToolbox, totalPrice, handleClick, currentDrawer, setCurrentDrawer}) => {
     const [isBoxSticky, setIsBoxSticky] = useState(false);
     const [drawerLeftStyle, setDrawerLeftStyle] = useState('150px');
 
     useEffect(() => {
 
-        window.addEventListener('resize', () => { 
+        const handleScroll = () => {
+            document.querySelector('.choose-accessories__drawers') && window.scrollY > 1060 ? setIsBoxSticky(true) : setIsBoxSticky(false);
+        }
+
+        const handleResize = () => {
             if(window.innerWidth > 1600) {
                 setDrawerLeftStyle(`${150 + (window.innerWidth - 1600) / 2}px`)
             }
-        })
+        }
 
-        window.addEventListener('scroll', () => {
-            document.querySelector('.choose-accessories__drawers') && window.scrollY > 1060 ? setIsBoxSticky(true) : setIsBoxSticky(false)
-        });
+        const debounce = (func, delay) => {
+            let timeout;
+            return (...args) => {
+                clearTimeout(timeout);
+                timeout = setTimeout(() => func(...args), delay);
+            };
+        };
+
+        const debouncedScroll = debounce(handleScroll, 10);
+        const debouncedResize = debounce(handleResize, 100);
+
+        window.addEventListener('resize', debouncedResize);
+        window.addEventListener('scroll', debouncedScroll);
 
     }, []);
 
@@ -46,7 +60,7 @@ const DrawerSideBar = ({toggleDropdownMenuOpen, currentToolbox, totalPrice, hand
 
         return (
             <Nav.Item key={i}>
-                <Nav.Link eventKey={i + 1} className='d-flex align-items-center'>
+                <Nav.Link eventKey={i} className='d-flex align-items-center'>
                     <div className="choose-accessories__nav-img nav-img d-flex">
                         {drawerCells}
                     </div>
@@ -70,7 +84,7 @@ const DrawerSideBar = ({toggleDropdownMenuOpen, currentToolbox, totalPrice, hand
                 shelfImage = <img src={drawer5} alt="Shelf" />;
               }
             return (
-                <Tab.Pane eventKey={i+1} key={i}>
+                <Tab.Pane eventKey={i} key={i}>
                     <div className="choose-accessories__drawers-content drawers-content"></div>
                     {shelfImage}
                     <p className="d-flex align-items-center not-active"><img src={resetImage} alt="" />Reset</p>
@@ -83,6 +97,10 @@ const DrawerSideBar = ({toggleDropdownMenuOpen, currentToolbox, totalPrice, hand
             </>
         )
     }
+
+    const handleMobileDrawerChange = (event) => {
+        setCurrentDrawer(event.target.value);
+    };
 
     return (
         <div className="col-xl-6 col-xxl-4">
@@ -97,14 +115,16 @@ const DrawerSideBar = ({toggleDropdownMenuOpen, currentToolbox, totalPrice, hand
                 </div>
                 <div className="choose-accessories__drawers-tabs">
                     <div className="choose-accessories__drawers-wrapper d-flex align-items-start justify-content-center justify-content-xl-start">
-                        <Tab.Container defaultActiveKey={1}>
+                        <Tab.Container defaultActiveKey={currentDrawer} onSelect={selectedKey => setCurrentDrawer(selectedKey)}>
                             <Nav variant='pills' className='flex-column'>
                                 <p className="d-none d-sm-block">Drawer</p>
                                 {drawerButtons}
                                 <div className="nav-list_top d-sm-none d-flex justify-content-center align-items-center"></div>
                                 <div className="nav-list_bottom d-sm-none d-flex justify-content-center align-items-center"></div>
                                 <div className="d-sm-none">
-                                    <select id="mobileTabsSelect">{mobileListDrawers}</select>
+                                    <select id="mobileTabsSelect" value={currentDrawer} onChange={handleMobileDrawerChange}>
+                                        {mobileListDrawers}
+                                    </select>
                                 </div>
                             </Nav>
                             <Tab.Content>
@@ -124,7 +144,7 @@ const DrawerSideBar = ({toggleDropdownMenuOpen, currentToolbox, totalPrice, hand
                     </div>
                     <div className="choose-accessories__drawers-price-info d-flex justify-content-between">
                         <div className="choose-accessories__drawers-price-button align-items-center justify-content-center d-none d-sm-flex">
-                        <button onClick={handleClick}>
+                        <button onClick={handleClick}  aria-label="Complete selection">
                             <img src={cart} alt="Cart" /> Færdig med valg
                         </button>
                         </div>
@@ -142,7 +162,7 @@ const DrawerSideBar = ({toggleDropdownMenuOpen, currentToolbox, totalPrice, hand
                 </div>
             </div>
             <div className="choose-accessories__drawers-price-button2 align-items-center justify-content-center d-sm-none">
-                <button onClick={handleClick}>
+                <button onClick={handleClick} aria-label="Complete selection">
                     <img src={cart} alt="Cart" /> Færdig med valg
                 </button>
             </div>
