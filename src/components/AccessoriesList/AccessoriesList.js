@@ -23,7 +23,10 @@ const AccessoriesList = ({
 
     const [drawerData, setDrawerData] = useState({});
 
+    const currentDrawerLength = currentToolbox.drawers[currentDrawer];
+
     const handleAccessoryClick = (accId) => {
+
         setDrawerData((prev) => {
           const newDrawerData = { ...prev };
     
@@ -34,9 +37,9 @@ const AccessoriesList = ({
           }
           return newDrawerData;
         });
-    
+
         chooseCurrentAcc(accId); // Call the provided function to handle selection logic
-      };
+    };
         
     const filteredAccessories = attachingAccessories.filter(acc => 
         currentToolbox.accessories.includes(Number(acc.id))
@@ -61,7 +64,7 @@ const AccessoriesList = ({
 
                 const isSelected = selectedAcc.includes(acc.id);
                 const dataDrawer = drawerData[acc.id];
-                const isNotActive = dataDrawer !== undefined && dataDrawer !== currentDrawer;
+                const isNotActive = dataDrawer !== undefined && +dataDrawer !== +currentDrawer;
                 
                 return (
                 <div 
