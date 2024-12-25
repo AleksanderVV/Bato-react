@@ -21,24 +21,40 @@ const AccessoriesList = ({
                             chooseCurrentAcc,
                             currentDrawer}) => {
 
-    const [drawerData, setDrawerData] = useState({});
+    const [drawersData, setDrawersData] = useState({});
 
     const currentDrawerLength = currentToolbox.drawers[currentDrawer];
 
     const handleAccessoryClick = (accId) => {
 
-        setDrawerData((prev) => {
+        setDrawersData((prev) => {
           const newDrawerData = { ...prev };
-    
-          if (newDrawerData[accId] === currentDrawer) {
-            delete newDrawerData[accId]; // Remove data-drawer if already selected
-          } else {
-            newDrawerData[accId] = String(currentDrawer); // Set data-drawer
+
+          if (!newDrawerData[currentDrawer]) {
+            newDrawerData[currentDrawer] = [];
           }
+
+          const accessoryIndex = newDrawerData[currentDrawer].findIndex((acc) => acc.id === accId);
+    
+          if (accessoryIndex !== -1) {
+            // Remove accessory if it already exists
+            newDrawerData[currentDrawer].splice(accessoryIndex, 1);
+            if (newDrawerData[currentDrawer].length === 0) {
+              delete newDrawerData[currentDrawer]; // Remove drawer if it's empty
+            }
+          } else {
+            // Add accessory to the drawer
+            const accessory = accessories.find((acc) => acc.id === accId);
+            if (accessory) {
+              newDrawerData[currentDrawer].push(accessory);
+            }
+          }
+
           return newDrawerData;
         });
 
         chooseCurrentAcc(accId); // Call the provided function to handle selection logic
+
     };
         
     const filteredAccessories = attachingAccessories.filter(acc => 
@@ -62,14 +78,18 @@ const AccessoriesList = ({
                     accSize = accSize3;
                 }
 
-                const isSelected = selectedAcc.includes(acc.id);
-                const dataDrawer = drawerData[acc.id];
-                const isNotActive = dataDrawer !== undefined && +dataDrawer !== +currentDrawer;
+                const isSelected = Object.values(drawersData).some(
+                    drawerAcc => drawerAcc.some(selectedAcc => selectedAcc.id === acc.id)
+                );
+                const selectedDrawer = Object.keys(drawersData).find(key =>
+                    drawersData[key]?.some(selectedAcc => selectedAcc.id === acc.id)
+                );
+                const isNotActive = selectedDrawer !== undefined && selectedDrawer !== String(currentDrawer);
                 
                 return (
                 <div 
                     key={index} 
-                    data-drawer={dataDrawer}
+                    data-drawer={selectedDrawer}
                     className={`accessory-cards__item d-flex flex-column ${isSelected 
                                 ? 'accessory-cards__item_choose'
                                 : ''} ${isNotActive ? 'not-active' : ''}`}

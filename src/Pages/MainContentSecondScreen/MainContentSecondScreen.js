@@ -65,6 +65,7 @@ const MainContentSecondScreen = ({ toggleDropdownMenuOpen, currentToolbox, total
 
         return accDrawer;
     };
+    
 
     return (
         <section id="choose-accessories" className="choose-accessories">
