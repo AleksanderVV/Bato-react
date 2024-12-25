@@ -25,6 +25,32 @@ const AccessoriesList = ({
 
     const currentDrawerLength = currentToolbox.drawers[currentDrawer];
 
+    // Function to calculate remaining space in the current drawer
+    const calculateRemainingSpace = (drawerItems) => {
+        let remainingSpace = currentDrawerLength; // Total space in a drawer
+
+        drawerItems.forEach((item) => {
+            remainingSpace -= item.size;
+        });
+
+        return remainingSpace;
+    };
+
+    // const canAddAccessory = (drawerItems, newAccessory) => {
+    //     const remainingSpace = calculateRemainingSpace(drawerItems);
+    
+    //     if (newAccessory.size > remainingSpace) {
+    //         if (newAccessory.size === 2 && remainingSpace === 2) {
+    //             // Полка позволяет положить только два аксессуара size = 1, но не аксессуар size = 2
+    //             const sizeOneItems = drawerItems.filter((item) => item.size === 1).length;
+    //             return sizeOneItems < 2;
+    //         }
+    //         return false; // Недостаточно места для аксессуара
+    //     }
+    
+    //     return true; // Достаточно места
+    // };
+
     const handleAccessoryClick = (accId) => {
 
         setDrawersData((prev) => {
@@ -34,20 +60,37 @@ const AccessoriesList = ({
             newDrawerData[currentDrawer] = [];
           }
 
-          const accessoryIndex = newDrawerData[currentDrawer].findIndex((acc) => acc.id === accId);
+          const drawerItems = newDrawerData[currentDrawer];
+          const accessoryIndex = drawerItems.findIndex((acc) => acc.id === accId);
+          const accessory = accessories.find((acc) => acc.id === accId);
     
           if (accessoryIndex !== -1) {
-            // Remove accessory if it already exists
-            newDrawerData[currentDrawer].splice(accessoryIndex, 1);
-            if (newDrawerData[currentDrawer].length === 0) {
-              delete newDrawerData[currentDrawer]; // Remove drawer if it's empty
-            }
+            drawerItems.splice(accessoryIndex, 1); // Remove accessory if it already exists
           } else {
-            // Add accessory to the drawer
-            const accessory = accessories.find((acc) => acc.id === accId);
-            if (accessory) {
-              newDrawerData[currentDrawer].push(accessory);
+            const remainingSpace = calculateRemainingSpace(drawerItems); 
+
+            if (accessory && accessory.size <= remainingSpace) {
+                newDrawerData[currentDrawer].push(accessory); // Add accessory to the drawer
             }
+            // if (accessory && accessory.size <= remainingSpace) {
+            //     if (currentDrawerLength === 4) {
+            //         if (accessory.size === 2 && remainingSpace > 2) {
+            //             newDrawerData[currentDrawer].push(accessory);
+            //         } else if (accessory.size === 1 && remainingSpace >= 1) {
+            //             newDrawerData[currentDrawer].push(accessory);
+            //         } else if (accessory.size === 3) {
+            //             newDrawerData[currentDrawer].push(accessory);
+            //         }
+            //     } else {
+            //         newDrawerData[currentDrawer].push(accessory); // Add accessory to the drawer
+            //     }
+            // }
+          }
+
+          if (drawerItems.length === 0) {
+            delete newDrawerData[currentDrawer]; // Remove drawer if empty
+          } else {
+            newDrawerData[currentDrawer] = drawerItems;
           }
 
           return newDrawerData;
@@ -61,7 +104,14 @@ const AccessoriesList = ({
         currentToolbox.accessories.includes(Number(acc.id))
     );
 
-    const currentSizeAcc = (size = null) => accessories
+    const currentSizeAcc = (size = null) => {
+        const currentDrawerItems = drawersData[currentDrawer] || [];
+        const remainingSpace = calculateRemainingSpace(currentDrawerItems);
+        const isCurrentDrawerHasSize2 = currentDrawerItems.some(item => item.size === 2);
+        console.log(isCurrentDrawerHasSize2);
+        
+
+        return accessories
             .filter(acc => size === null || acc.size === size)
             .map((acc, index) => {
                 let accImage = null;
@@ -84,8 +134,10 @@ const AccessoriesList = ({
                 const selectedDrawer = Object.keys(drawersData).find(key =>
                     drawersData[key]?.some(selectedAcc => selectedAcc.id === acc.id)
                 );
-                const isNotActive = selectedDrawer !== undefined && selectedDrawer !== String(currentDrawer);
-                
+                const isNotActive = (!isSelected && acc.size > remainingSpace) 
+                                    || (selectedDrawer !== undefined && selectedDrawer !== String(currentDrawer))
+                                    || (currentDrawerLength === 4 && remainingSpace === 2 && !isSelected && acc.size !== 1 && isCurrentDrawerHasSize2);
+
                 return (
                 <div 
                     key={index} 
@@ -93,7 +145,7 @@ const AccessoriesList = ({
                     className={`accessory-cards__item d-flex flex-column ${isSelected 
                                 ? 'accessory-cards__item_choose'
                                 : ''} ${isNotActive ? 'not-active' : ''}`}
-                    onClick={() => handleAccessoryClick(acc.id)}>
+                    onClick={() => !isNotActive && handleAccessoryClick(acc.id)}>
                     <div className="accessory-cards__item_first">
                         <div className="accessory-cards__img">
                             <div className="accessory-cards__img-wrapper">
@@ -130,7 +182,8 @@ const AccessoriesList = ({
                     <div className="accessory-cards__item_second">
                     </div>
                 </div>
-    )});
+        )})
+    };
 
     return (
         <>
