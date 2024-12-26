@@ -1,4 +1,4 @@
-// import { useState, useEffect } from 'react';
+// import { useState } from 'react';
 import { Tab } from 'react-bootstrap';
 
 import accImage from '../../data/images/accessory-1.png';
@@ -11,106 +11,29 @@ import accSize3 from '../../data/images/icon/accessory-size-3.svg';
 import d8909 from '../../data/images/d-8909.jpg';
 import d8940 from '../../data/images/d-8940.jpg';
 import d8919 from '../../data/images/d-8919.jpg';
-import { useState } from 'react';
 
 const AccessoriesList = ({
                             currentToolbox, 
                             accessories, 
                             attachingAccessories, 
-                            selectedAcc, 
-                            chooseCurrentAcc,
-                            currentDrawer}) => {
+                            selectedAttachedAcc, 
+                            chooseCurrentAttachedAcc,
+                            currentDrawer,
+                            drawersData,
+                            calculateRemainingSpace,
+                            handleAccessoryClick}) => {
 
-    const [drawersData, setDrawersData] = useState({});
-
-    const currentDrawerLength = currentToolbox.drawers[currentDrawer];
-
-    // Function to calculate remaining space in the current drawer
-    const calculateRemainingSpace = (drawerItems) => {
-        let remainingSpace = currentDrawerLength; // Total space in a drawer
-
-        drawerItems.forEach((item) => {
-            remainingSpace -= item.size;
-        });
-
-        return remainingSpace;
-    };
-
-    // const canAddAccessory = (drawerItems, newAccessory) => {
-    //     const remainingSpace = calculateRemainingSpace(drawerItems);
-    
-    //     if (newAccessory.size > remainingSpace) {
-    //         if (newAccessory.size === 2 && remainingSpace === 2) {
-    //             // Полка позволяет положить только два аксессуара size = 1, но не аксессуар size = 2
-    //             const sizeOneItems = drawerItems.filter((item) => item.size === 1).length;
-    //             return sizeOneItems < 2;
-    //         }
-    //         return false; // Недостаточно места для аксессуара
-    //     }
-    
-    //     return true; // Достаточно места
-    // };
-
-    const handleAccessoryClick = (accId) => {
-
-        setDrawersData((prev) => {
-          const newDrawerData = { ...prev };
-
-          if (!newDrawerData[currentDrawer]) {
-            newDrawerData[currentDrawer] = [];
-          }
-
-          const drawerItems = newDrawerData[currentDrawer];
-          const accessoryIndex = drawerItems.findIndex((acc) => acc.id === accId);
-          const accessory = accessories.find((acc) => acc.id === accId);
-    
-          if (accessoryIndex !== -1) {
-            drawerItems.splice(accessoryIndex, 1); // Remove accessory if it already exists
-          } else {
-            const remainingSpace = calculateRemainingSpace(drawerItems); 
-
-            if (accessory && accessory.size <= remainingSpace) {
-                newDrawerData[currentDrawer].push(accessory); // Add accessory to the drawer
-            }
-            // if (accessory && accessory.size <= remainingSpace) {
-            //     if (currentDrawerLength === 4) {
-            //         if (accessory.size === 2 && remainingSpace > 2) {
-            //             newDrawerData[currentDrawer].push(accessory);
-            //         } else if (accessory.size === 1 && remainingSpace >= 1) {
-            //             newDrawerData[currentDrawer].push(accessory);
-            //         } else if (accessory.size === 3) {
-            //             newDrawerData[currentDrawer].push(accessory);
-            //         }
-            //     } else {
-            //         newDrawerData[currentDrawer].push(accessory); // Add accessory to the drawer
-            //     }
-            // }
-          }
-
-          if (drawerItems.length === 0) {
-            delete newDrawerData[currentDrawer]; // Remove drawer if empty
-          } else {
-            newDrawerData[currentDrawer] = drawerItems;
-          }
-
-          return newDrawerData;
-        });
-
-        chooseCurrentAcc(accId); // Call the provided function to handle selection logic
-
-    };
-        
     const filteredAccessories = attachingAccessories.filter(acc => 
         currentToolbox.accessories.includes(Number(acc.id))
     );
+
+    const currentDrawerLength = currentToolbox.drawers[currentDrawer];
 
     const currentSizeAcc = (size = null) => {
         const currentDrawerItems = drawersData[currentDrawer] || [];
         const remainingSpace = calculateRemainingSpace(currentDrawerItems);
         const isCurrentDrawerHasSize2 = currentDrawerItems.some(item => item.size === 2);
-        console.log(isCurrentDrawerHasSize2);
         
-
         return accessories
             .filter(acc => size === null || acc.size === size)
             .map((acc, index) => {
@@ -170,7 +93,7 @@ const AccessoriesList = ({
                                     <button 
                                         type="button" 
                                         className="d-flex align-items-center justify-content-center"
-                                        onClick={() => chooseCurrentAcc(acc.id)}>
+                                        onClick={() => !isNotActive && handleAccessoryClick(acc.id)}>
                                         <img src={plusBlack} alt="plus" className="accessory-cards__plus" />
                                         <img src={plusImage} alt="plus" className="accessory-cards__plus-hover" />
                                     </button>
@@ -218,13 +141,13 @@ const AccessoriesList = ({
                 {
                     filteredAccessories.length > 0 ? (
                         filteredAccessories.map((acc,id) => {
-                            const isSelected = selectedAcc.includes(acc.id);
+                            const isSelected = selectedAttachedAcc.includes(acc.id);
 
                             return (
                             <div 
                                 key={id} 
                                 className={`accessory-cards__item d-flex flex-column ${isSelected ? 'accessory-cards__item_choose' : ''}`} 
-                                onClick={() => chooseCurrentAcc(acc.id)}>
+                                onClick={() => chooseCurrentAttachedAcc(acc.id)}>
                                 <div className="accessory-cards__item_first">
                                     <div className="accessory-cards__img">
                                         <div className="accessory-cards__img-wrapper">
@@ -246,7 +169,7 @@ const AccessoriesList = ({
                                                     <button 
                                                         type="button" 
                                                         className="d-flex align-items-center justify-content-center"
-                                                        onClick={() => chooseCurrentAcc(acc.id)}>
+                                                        onClick={() => chooseCurrentAttachedAcc(acc.id)}>
                                                         <img src={plusBlack} alt="plus" className="accessory-cards__plus" />
                                                         <img src={plusImage} alt="plus" className="accessory-cards__plus-hover" /></button>
                                                     <p className="accessory-cards__price"><span>{acc.price}</span>,00 EUR</p>

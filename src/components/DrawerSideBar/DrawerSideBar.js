@@ -10,7 +10,13 @@ import drawer5 from '../../data/images/drawer5.webp';
 import resetImage from '../../data/images/icon/reset.svg';
 import cart from '../../data/images/icon/cart.svg';
 
-const DrawerSideBar = ({toggleDropdownMenuOpen, currentToolbox, totalPrice, handleClick, currentDrawer, setCurrentDrawer}) => {
+const DrawerSideBar = ({toggleDropdownMenuOpen, 
+                        currentToolbox, 
+                        totalPrice, 
+                        handleClick, 
+                        currentDrawer, 
+                        setCurrentDrawer,
+                        drawersData}) => {
     const [isBoxSticky, setIsBoxSticky] = useState(false);
     const [drawerLeftStyle, setDrawerLeftStyle] = useState('150px');
 
@@ -58,10 +64,12 @@ const DrawerSideBar = ({toggleDropdownMenuOpen, currentToolbox, totalPrice, hand
         const drawerDepth = currentToolbox.drawers[i];
         const drawerCells = Array.from({length: drawerDepth}, (_, i) => (<div key={i} className="nav-img__item"></div>))
 
+        const drawersFill = drawersData[i]?.reduce((total, acc) => total + acc.size, 0);
+        
         return (
             <Nav.Item key={i}>
                 <Nav.Link eventKey={i} className='d-flex align-items-center'>
-                    <div className="choose-accessories__nav-img nav-img d-flex">
+                        <div className={`choose-accessories__nav-img nav-img-${drawersFill || 0} d-flex`}>
                         {drawerCells}
                     </div>
                     <span className="button-number">{i + 1 < 10 ? `0${i + 1}` : i + 1}</span>

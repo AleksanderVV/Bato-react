@@ -16,9 +16,9 @@ const MainContentSecondScreen = ({ toggleDropdownMenuOpen, currentToolbox, total
     const [attachingAccessories, setAttachingAccessories] = useState([]);
     const [loading, setLoading] = useState(true);
 
-    const [selectedAcc, setSelectedAcc] = useState([]);
+    const [selectedAttachedAcc, setSelectedAttachedAcc] = useState([]);
     const [currentDrawer, setCurrentDrawer] = useState(0);
-
+    const [drawersData, setDrawersData] = useState({});
 
     const {setProcess, getAccessories, getAttachingAccessories} = useToolboxService();
 
@@ -52,20 +52,59 @@ const MainContentSecondScreen = ({ toggleDropdownMenuOpen, currentToolbox, total
         )
     }
 
-    const chooseCurrentAcc = (id) => {
-        setSelectedAcc(prevState => {
+
+
+    // Function to calculate remaining space in the current drawer
+    const calculateRemainingSpace = (drawerItems) => {
+        let remainingSpace = currentToolbox.drawers[currentDrawer]; // Total space in a drawer
+
+        drawerItems.forEach((item) => {
+            remainingSpace -= item.size;
+        });
+
+        return remainingSpace;
+    };
+
+    const handleAccessoryClick = (accId) => {
+        setDrawersData((prev) => {
+          const newDrawerData = { ...prev };
+
+          if (!newDrawerData[currentDrawer]) {
+            newDrawerData[currentDrawer] = [];
+          }
+
+          const drawerItems = newDrawerData[currentDrawer];
+          const accessoryIndex = drawerItems.findIndex((acc) => acc.id === accId);
+          const accessory = accessories.find((acc) => acc.id === accId);
+    
+          if (accessoryIndex !== -1) {
+            drawerItems.splice(accessoryIndex, 1); // Remove accessory if it already exists
+          } else {
+            const remainingSpace = calculateRemainingSpace(drawerItems); 
+
+            if (accessory && accessory.size <= remainingSpace) {
+                newDrawerData[currentDrawer].push(accessory); // Add accessory to the drawer
+            }
+          }
+
+          if (drawerItems.length === 0) {
+            delete newDrawerData[currentDrawer]; // Remove drawer if empty
+          } else {
+            newDrawerData[currentDrawer] = drawerItems;
+          }
+
+          return newDrawerData;
+        });
+    };
+        
+    const chooseCurrentAttachedAcc = (id) => {
+        setSelectedAttachedAcc(prevState => {
             if (prevState.includes(id)) {
                 return prevState.filter(accId => accId !== id)
             }
             return [...prevState, id];
         });
-
-        let accDrawer = null;
-        accDrawer = currentDrawer === accDrawer ? '' : currentDrawer;
-
-        return accDrawer;
     };
-    
 
     return (
         <section id="choose-accessories" className="choose-accessories">
@@ -77,7 +116,8 @@ const MainContentSecondScreen = ({ toggleDropdownMenuOpen, currentToolbox, total
                         totalPrice={totalPrice}
                         handleClick={handleClick}
                         currentDrawer={currentDrawer}
-                        setCurrentDrawer={setCurrentDrawer}/>
+                        setCurrentDrawer={setCurrentDrawer}
+                        drawersData={drawersData}/>
                     <div className="col-xl-6 col-xxl-8">
                         <div className="choose-accessories__select">
                         <Tab.Container defaultActiveKey={'all'}>
@@ -87,9 +127,12 @@ const MainContentSecondScreen = ({ toggleDropdownMenuOpen, currentToolbox, total
                                     currentToolbox={currentToolbox} 
                                     accessories={filteredAccessories} 
                                     attachingAccessories={attachingAccessories}
-                                    selectedAcc={selectedAcc}
-                                    chooseCurrentAcc={chooseCurrentAcc}
-                                    currentDrawer={currentDrawer}/>
+                                    selectedAttachedAcc={selectedAttachedAcc}
+                                    chooseCurrentAttachedAcc={chooseCurrentAttachedAcc}
+                                    currentDrawer={currentDrawer}
+                                    drawersData={drawersData}
+                                    calculateRemainingSpace={calculateRemainingSpace}
+                                    handleAccessoryClick={handleAccessoryClick}/>
                             ) : (
                                 <p>Loading accessories...</p>
                             )}
