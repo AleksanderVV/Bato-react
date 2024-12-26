@@ -16,7 +16,8 @@ const DrawerSideBar = ({toggleDropdownMenuOpen,
                         handleClick, 
                         currentDrawer, 
                         setCurrentDrawer,
-                        drawersData}) => {
+                        drawersData,
+                        setDrawersData}) => {
     const [isBoxSticky, setIsBoxSticky] = useState(false);
     const [drawerLeftStyle, setDrawerLeftStyle] = useState('150px');
 
@@ -60,6 +61,14 @@ const DrawerSideBar = ({toggleDropdownMenuOpen,
         </option>
     ));
 
+    const resetCurrentDrawer = () => {
+        setDrawersData( prev => {
+            const updateData = { ...prev};
+            delete updateData[currentDrawer];
+            return updateData;
+        });
+    }
+
     const drawerButtons = Array.from({length: drawersCurrentToolbox}, (_,i) => {
         const drawerDepth = currentToolbox.drawers[i];
         const drawerCells = Array.from({length: drawerDepth}, (_, i) => (<div key={i} className="nav-img__item"></div>))
@@ -82,6 +91,7 @@ const DrawerSideBar = ({toggleDropdownMenuOpen,
     const drawersView = () => {
         const drawerItems = Array.from({length: drawersCurrentToolbox}, (_, i) => {
             const drawerDepth = currentToolbox.drawers[i];
+            const drawersFill = drawersData[i]?.reduce((total, acc) => total + acc.size, 0);
             
             let shelfImage = '';
             if (drawerDepth === 3) {
@@ -95,7 +105,12 @@ const DrawerSideBar = ({toggleDropdownMenuOpen,
                 <Tab.Pane eventKey={i} key={i}>
                     <div className="choose-accessories__drawers-content drawers-content"></div>
                     {shelfImage}
-                    <p className="d-flex align-items-center not-active"><img src={resetImage} alt="" />Reset</p>
+                    <p 
+                        className={`d-flex align-items-center ${!drawersFill ? 'not-active' : ''}`}
+                        onClick={resetCurrentDrawer}>
+                        <img src={resetImage} alt="" />
+                        Reset
+                    </p>
                 </Tab.Pane>
             )
         })
