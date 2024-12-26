@@ -1,8 +1,8 @@
 import './mainTitleSecondScreen.scss';
-import plusImage from '../../data/images/icon/plus.svg';
-import shadowImage from '../../data/images/box-shadow.png';
-import mouseImage from '../../data/images/icon/mouse.svg';
-import flagImage from '../../data/images/icon/flag.svg';
+import plusImage from '../../../data/images/icon/plus.svg';
+import shadowImage from '../../../data/images/box-shadow.png';
+import mouseImage from '../../../data/images/icon/mouse.svg';
+import flagImage from '../../../data/images/icon/flag.svg';
 
 const MainTitleSecondScreen = ({isSticky, isMobile}) => {
     return (

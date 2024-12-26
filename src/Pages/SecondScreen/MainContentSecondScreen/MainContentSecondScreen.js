@@ -2,12 +2,12 @@
 import { Link } from 'react-router-dom';
 import { Tab } from 'react-bootstrap';
 
-import AccessoriesFilters from '../../components/AccessoriesFilters/AccessoriesFilters';
-import AccessoriesList from '../../components/AccessoriesList/AccessoriesList';
-import DrawerSideBar from '../../components/DrawerSideBar/DrawerSideBar';
+import AccessoriesFilters from '../../../components/AccessoriesFilters/AccessoriesFilters';
+import AccessoriesList from '../../../components/AccessoriesList/AccessoriesList';
+import DrawerSideBar from '../../../components/DrawerSideBar/DrawerSideBar';
 
 import './mainContentSecondScreen.scss';
-import filterMobile from '../../data/images/icon/filter-mobile.svg';
+import filterMobile from '../../../data/images/icon/filter-mobile.svg';
 
 const MainContentSecondScreen = ({ toggleDropdownMenuOpen, 
                                     currentToolbox, 

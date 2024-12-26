@@ -168,7 +168,7 @@
           border-radius: 4px;
           &-all {
             border-radius: 4px;
-            background: url('../../data/images/icon/clr-slct-all.svg') no-repeat center center /cover;
+            background: url('../../../data/images/icon/clr-slct-all.svg') no-repeat center center /cover;
           }
           &-blue {
             background-color: $brandBlue-color;
@@ -276,7 +276,7 @@
         height: 878px;
         border-radius: 12px;
         transition: all 0.3s ease;
-        background: url('../../data/images/card_hover_big.svg') no-repeat center bottom ;
+        background: url('../../../data/images/card_hover_big.svg') no-repeat center bottom ;
       }
       &_first:hover {
         border-radius: 12px;

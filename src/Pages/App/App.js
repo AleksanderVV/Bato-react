@@ -1,17 +1,14 @@
 import { useState, useEffect } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
-import useBodyID from "../../hooks/useBodyID";
 import useToolboxService from '../../services/ToolboxService';
 
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import TopBar from "../../components/TopBar/TopBar";
-import MainTitleFirstScreen from "../MainTitleFirstScreen/MainTitleFirstScreen";
-import MainContentFirstScreen from "../MainContentFirstScreen/MainContentFirstScreen";
-import MainTitleSecondScreen from "../MainTitleSecondScreen/MainTitleSecondScreen";
-import MainContentSecondScreen from "../MainContentSecondScreen/MainContentSecondScreen";
-import MainTitleThirdScreen from "../MainTitleThirdScreen/MainTitleThirdScreen";
-import MainContentThirdScreen from "../MainContentThirdScreen/MainContentThirdScreen";
+
+import FirstScreen from '../FirstScreen/FirstScreen';
+import SecondScreen from '../SecondScreen/SecondScreen';
+import ThirdScreen from '../ThirdScreen/ThirdScreen';
 
 import './App.scss';
 
@@ -181,75 +178,13 @@ const App = () => {
                             attachingAccessories={attachingAccessories} />} />
                 <Route 
                     path="/sendForm" 
-                    element={<ThirdScreen />} />
+                    element={<ThirdScreen 
+                                currentToolbox={currentToolbox} />} />
             </Routes>
             <Footer/>
         </>
     )
 }
-
-const FirstScreen = ({isSticky}) =>  {
-    useBodyID('main');
-    return (
-    <>
-        <MainTitleFirstScreen isSticky={isSticky}/>
-        <MainContentFirstScreen />
-    </>
-)};
-
-const SecondScreen = ({
-                        isMobile,
-                        isSticky, 
-                        toggleDropdownMenuOpen,
-                        currentToolbox, 
-                        totalPrice,
-                        handleClick,
-                        drawersData,
-                        setDrawersData,
-                        selectedAttachedAcc,
-                        handleAccessoryClick,
-                        chooseCurrentAttachedAcc,
-                        currentDrawer,
-                        setCurrentDrawer,
-                        calculateRemainingSpace,
-                        searchAcc,
-                        loading,
-                        filteredAccessories,
-                        attachingAccessories}) =>  {
-                            useBodyID('accessories');
-                            return (
-    <>
-        <MainTitleSecondScreen 
-            isMobile={isMobile}
-            isSticky={isSticky}/>
-        <MainContentSecondScreen 
-            toggleDropdownMenuOpen={toggleDropdownMenuOpen}
-            currentToolbox={currentToolbox} 
-            totalPrice={totalPrice}
-            handleClick={handleClick}
-            drawersData={drawersData}
-            setDrawersData={setDrawersData}
-            selectedAttachedAcc={selectedAttachedAcc}
-            handleAccessoryClick={handleAccessoryClick}
-            chooseCurrentAttachedAcc={chooseCurrentAttachedAcc}
-            currentDrawer={currentDrawer}
-            setCurrentDrawer={setCurrentDrawer}
-            calculateRemainingSpace={calculateRemainingSpace}
-            searchAcc={searchAcc}
-            loading={loading}
-            filteredAccessories={filteredAccessories}
-            attachingAccessories={attachingAccessories} />
-    </>
-)};
-
-const ThirdScreen = ({currentToolbox}) =>  {
-    useBodyID('total');
-    return (
-    <>
-        <MainTitleThirdScreen />
-        <MainContentThirdScreen />
-    </>
-)};
 
 export default App;
 

@@ -1,7 +1,7 @@
-import ToolboxFilters from '../../components/ToolboxFilters/ToolboxFilters';
-import ToolboxList from '../../components/ToolboxList/ToolboxList';
+import ToolboxFilters from '../../../components/ToolboxFilters/ToolboxFilters';
+import ToolboxList from '../../../components/ToolboxList/ToolboxList';
 
-import useToolboxService from "../../services/ToolboxService";
+import useToolboxService from "../../../services/ToolboxService";
 import { useEffect, useState } from "react";
 
 import './mainContentFirstScreen.scss';
