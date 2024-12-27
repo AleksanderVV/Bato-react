@@ -160,7 +160,8 @@ const App = () => {
                 setTotalPrice={setTotalPrice}
                 handleClick={handleClick}
                 drawersData={drawersData}
-                selectedAttachedAcc={selectedAttachedAcc} />
+                selectedAttachedAcc={selectedAttachedAcc}
+                attachingAccessories={attachingAccessories} />
             <Routes>
                 <Route path="/" element={
                     <FirstScreen isSticky={isSticky}/>} />

@@ -17,7 +17,8 @@ const DrawerSideBar = ({toggleDropdownMenuOpen,
                         currentDrawer, 
                         setCurrentDrawer,
                         drawersData,
-                        setDrawersData}) => {
+                        setDrawersData,
+                        selectedAttachedAcc}) => {
     const [isBoxSticky, setIsBoxSticky] = useState(false);
     const [drawerLeftStyle, setDrawerLeftStyle] = useState('150px');
 
@@ -125,6 +126,8 @@ const DrawerSideBar = ({toggleDropdownMenuOpen,
         setCurrentDrawer(event.target.value);
     };
 
+    const quantityItems =  selectedAttachedAcc.length + Object.values(drawersData).reduce((sum, array) => sum + array.length, 0);
+
     return (
         <div className="col-xl-6 col-xxl-4">
             <div className="choose-accessories__drawers-title">
@@ -173,7 +176,7 @@ const DrawerSideBar = ({toggleDropdownMenuOpen,
                         </div>
                         <div className="choose-accessories__drawers-price-items text-end">
                         <div className="choose-accessories__drawers-price-quantity">
-                            <span>0</span> items added
+                            <span>{quantityItems}</span> items added
                         </div>
                         <div 
                             className="choose-accessories__drawers-price-show"
