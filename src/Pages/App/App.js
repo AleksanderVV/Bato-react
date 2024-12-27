@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes, useNavigate, useLocation } from "react-router-dom";
 import useToolboxService from '../../services/ToolboxService';
 
 import Header from "../Header/Header";
@@ -30,6 +30,7 @@ const App = () => {
     const {setProcess, getAccessories, getAttachingAccessories} = useToolboxService();
 
     const navigate = useNavigate();
+    const location = useLocation();
 
     const handleClick = () => {
         navigate('/sendForm', {state: {currentToolbox}});
@@ -54,7 +55,14 @@ const App = () => {
     useEffect(() => {
         onRequest();
         // eslint-disable-next-line
-      }, []);
+    }, []);
+
+    useEffect(() => {
+        if (location.pathname === "/") {   
+            setDrawersData({});
+            setSelectedAttachedAcc([]);
+        }
+    },[location.pathname])
     
     const onRequest = async () => {
         setLoading(true);
@@ -150,7 +158,9 @@ const App = () => {
                 setCurrentToolbox={setCurrentToolbox} 
                 totalPrice={totalPrice} 
                 setTotalPrice={setTotalPrice}
-                handleClick={handleClick}/>
+                handleClick={handleClick}
+                drawersData={drawersData}
+                selectedAttachedAcc={selectedAttachedAcc} />
             <Routes>
                 <Route path="/" element={
                     <FirstScreen isSticky={isSticky}/>} />

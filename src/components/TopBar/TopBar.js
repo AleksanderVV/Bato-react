@@ -18,7 +18,9 @@ const TopBar = ({
                 setCurrentToolbox, 
                 totalPrice, 
                 setTotalPrice,
-                handleClick}) => {
+                handleClick,
+                drawersData,
+                selectedAttachedAcc}) => {
     const location = useLocation();
     const dropdownRef = useRef(null);
 
@@ -50,6 +52,9 @@ const TopBar = ({
     }, []);
 
     const topBarSwitcher = () => {
+        
+        const quantityItems =  selectedAttachedAcc.length + Object.values(drawersData).reduce((sum, array) => sum + array.length, 0);
+
         switch (location.pathname) {
             case "/chooseAccessories":
                 return (
@@ -57,7 +62,7 @@ const TopBar = ({
                         className="result__total-item d-flex justify-content-end"
                         onClick={toggleDropdownMenuOpen}>
                         <p>
-                            <span>0</span> items added
+                            <span>{quantityItems || 0}</span> items added
                             <span className="result__total-item-text">, show items </span>
                             <img 
                                 src={arrowDown} 
@@ -150,6 +155,8 @@ const TopBar = ({
                     <div className="row flex-fill">
                         <div className="col-12">
                             <div className="result-dropdown__accessory accessory-selected">
+                                    {<Accessories />}
+                                    {<AttachedAcc />}
                             </div>
                         </div>
                     </div>
@@ -178,6 +185,18 @@ const TopBar = ({
             </section>
         </>
     );
+}
+
+const Accessories = () => {
+    return <>
+        
+    </>
+}
+
+const AttachedAcc = () => {
+    return <>
+        
+    </>
 }
 
 export default TopBar;

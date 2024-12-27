@@ -24,7 +24,7 @@ const AccessoriesList = ({
                             handleAccessoryClick}) => {
 
     const filteredAccessories = attachingAccessories.filter(acc => 
-        currentToolbox.accessories.includes(Number(acc.id))
+        currentToolbox?.accessories.includes(Number(acc.id))
     );
 
     const currentDrawerLength = currentToolbox.drawers[currentDrawer];
