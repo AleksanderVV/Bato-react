@@ -14,13 +14,13 @@ import './App.scss';
 
 const App = () => {
     const [currentToolbox, setCurrentToolbox] = useState(null);
-    const [totalPrice, setTotalPrice] = useState(0);
     const [isMenuOpen, setMenuOpen] = useState(false);
     const [isSticky, setIsSticky] = useState(false);
     const [isMobile, setIsMobile] = useState(null);
     const [drawersData, setDrawersData] = useState({});
     const [selectedAttachedAcc, setSelectedAttachedAcc] = useState([]);
     const [currentDrawer, setCurrentDrawer] = useState(0);
+    const [fullPrice, setFullPrice] = useState(currentToolbox?.price || 0);
 
     const [accessories, setAccessories] = useState([]);
     const [filteredAccessories, setFilteredAccessories] = useState([]);
@@ -156,12 +156,12 @@ const App = () => {
                 toggleDropdownMenuOpen={toggleDropdownMenuOpen}
                 currentToolbox={currentToolbox} 
                 setCurrentToolbox={setCurrentToolbox} 
-                totalPrice={totalPrice} 
-                setTotalPrice={setTotalPrice}
                 handleClick={handleClick}
                 drawersData={drawersData}
                 selectedAttachedAcc={selectedAttachedAcc}
-                attachingAccessories={attachingAccessories} />
+                attachingAccessories={attachingAccessories}
+                fullPrice={fullPrice}
+                setFullPrice={setFullPrice} />
             <Routes>
                 <Route path="/" element={
                     <FirstScreen isSticky={isSticky}/>} />
@@ -173,7 +173,6 @@ const App = () => {
                             isSticky={isSticky}
                             toggleDropdownMenuOpen={toggleDropdownMenuOpen}
                             currentToolbox={currentToolbox} 
-                            totalPrice={totalPrice}
                             handleClick={handleClick}
                             drawersData={drawersData}
                             setDrawersData={setDrawersData}
@@ -186,7 +185,8 @@ const App = () => {
                             searchAcc={searchAcc}
                             loading={loading}
                             filteredAccessories={filteredAccessories}
-                            attachingAccessories={attachingAccessories} />} />
+                            attachingAccessories={attachingAccessories}
+                            fullPrice={fullPrice} />} />
                 <Route 
                     path="/sendForm" 
                     element={<ThirdScreen 

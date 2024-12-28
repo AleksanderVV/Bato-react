@@ -8,7 +8,7 @@ const SecondScreen = ({
     isSticky, 
     toggleDropdownMenuOpen,
     currentToolbox, 
-    totalPrice,
+    fullPrice,
     handleClick,
     drawersData,
     setDrawersData,
@@ -31,7 +31,7 @@ const SecondScreen = ({
                     <MainContentSecondScreen 
                         toggleDropdownMenuOpen={toggleDropdownMenuOpen}
                         currentToolbox={currentToolbox} 
-                        totalPrice={totalPrice}
+                        fullPrice={fullPrice}
                         handleClick={handleClick}
                         drawersData={drawersData}
                         setDrawersData={setDrawersData}

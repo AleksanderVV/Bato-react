@@ -12,7 +12,7 @@ import cart from '../../data/images/icon/cart.svg';
 
 const DrawerSideBar = ({toggleDropdownMenuOpen, 
                         currentToolbox, 
-                        totalPrice, 
+                        fullPrice, 
                         handleClick, 
                         currentDrawer, 
                         setCurrentDrawer,
@@ -165,7 +165,7 @@ const DrawerSideBar = ({toggleDropdownMenuOpen,
                         Total price
                         </p>
                         <p className="choose-accessories__drawers-price-summ">
-                        <span>{totalPrice}</span>,00 EUR
+                        <span>{fullPrice}</span>,00 EUR
                         </p>
                     </div>
                     <div className="choose-accessories__drawers-price-info d-flex justify-content-between">

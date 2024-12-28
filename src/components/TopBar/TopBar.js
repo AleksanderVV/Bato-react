@@ -1,13 +1,14 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import classNames from 'classnames';
+import TopBarAccessory from '../TopBarAccessory/TopBarAccessory';
+import TopBarAttachedAccessory from '../TopBarAttachedAccessory/TopBarAttachedAccessory';
 
 import './topBar.scss';
 
 import arrowDown from '../../data/images/icon/arrow-down.svg';
 import arrowUpWhite from '../../data/images/icon/arrow-up-white.svg';
 import cartImage from '../../data/images/icon/cart.svg';
-import xIconImage from '../../data/images/icon/x-icon.svg';
 
 const TopBar = ({
                 isSticky,
@@ -17,21 +18,19 @@ const TopBar = ({
                 toggleDropdownMenuOpen, 
                 currentToolbox, 
                 setCurrentToolbox, 
-                totalPrice, 
-                setTotalPrice,
                 handleClick,
                 drawersData,
                 selectedAttachedAcc,
-                attachingAccessories}) => {
+                attachingAccessories,
+                fullPrice,
+                setFullPrice}) => {    
     const location = useLocation();
     const dropdownRef = useRef(null);
 
     useEffect(() => {
         if(location.pathname === '/chooseAccessories' && location.state?.item) {
             const toolbox = location.state.item;
-
             setCurrentToolbox(toolbox);
-            setTotalPrice(toolbox.price);
         }
         // eslint-disable-next-line
     }, [location]);
@@ -98,6 +97,15 @@ const TopBar = ({
         setMenuOpen(false);
     }
 
+    useEffect(() => {
+        const attachedAccPrice = attachingAccessories
+                .filter(item => selectedAttachedAcc.includes(item.id))
+                .reduce((total, item) => total + item.price, 0);
+        const accessoriesPrice = Object.values(drawersData).flat().reduce((total, item) => total + item.price, 0);
+        
+        setFullPrice((currentToolbox?.price || 0) + attachedAccPrice + accessoriesPrice)
+    },[selectedAttachedAcc, attachingAccessories, currentToolbox, drawersData])
+    
     return (
         <>
             <section 
@@ -157,8 +165,8 @@ const TopBar = ({
                     <div className="row flex-fill">
                         <div className="col-12">
                             <div className="result-dropdown__accessory accessory-selected">
-                                    {<Accessories />}
-                                    {<AttachedAcc 
+                                    {<TopBarAccessory drawersData={drawersData}/>}
+                                    {<TopBarAttachedAccessory 
                                         selectedAttachedAcc={selectedAttachedAcc}
                                         attachingAccessories={attachingAccessories}/>}
                             </div>
@@ -170,7 +178,7 @@ const TopBar = ({
                             <div className="result-dropdown__total total-selected d-flex justify-content-between align-items-end">
                             <div className="total-selected__text">Total price</div>
                             <div className="total-selected__delimiter flex-fill"></div>
-                            <div className="total-selected__price"><span>{totalPrice}</span>,00 EUR</div>
+                            <div className="total-selected__price"><span>{fullPrice}</span>,00 EUR</div>
                             </div>
                         </div>
                         <div className="col-12 d-flex justify-content-end">
@@ -189,49 +197,6 @@ const TopBar = ({
             </section>
         </>
     );
-}
-
-const Accessories = () => {
-    return <>
-        
-    </>
-}
-
-const AttachedAcc = ({selectedAttachedAcc, attachingAccessories}) => {
-    const titleAttachedAcc = <div className="accessory-selected__drawer-number d-flex align-items-start flex-shrink-0 pt-3">
-                                Attaching accessories
-                            </div>;
-    const attachedAccList = selectedAttachedAcc ? selectedAttachedAcc.map((item,i) => {
-        const currentAcc = attachingAccessories.filter(acc => acc.id === item)[0];    
-        
-        return (
-            <div key={i} className="accessory-selected__data d-flex align-items-center justify-content-between" data-id={currentAcc.id} data-number-drawer="none">
-                <div className="accessory-selected__data-name">
-                <span>{currentAcc.name}</span>
-                <span className="d-sm-none">EVA {currentAcc.size}/3</span>
-                </div>
-                <div className="accessory-selected__data-contain d-flex justify-content-between">
-                <div className="accessory-selected__data-size flex-shrink-1 d-none d-sm-block">
-                    EVA {currentAcc.size}/3
-                </div>
-                <div className="accessory-selected__data-price flex-shrink-0">
-                <span>{currentAcc.price}</span>,00 EUR
-                </div>
-                <div className="accessory-selected__data-close d-flex justify-content-center align-items-center">
-                    <img src={xIconImage} alt="close" />
-                </div>
-                </div>
-            </div>
-        )
-    }) : '';
-    const contentAttachedAcc = <div className="accessory-selected__drawer-items flex-shink-0">
-                                   {attachedAccList}
-                               </div>;
-    
-    return <div className='accessory-selected__drawer-attaching d-flex justify-content-between'>
-        {titleAttachedAcc}
-        {contentAttachedAcc}
-    </div>
 }
 
 export default TopBar;
