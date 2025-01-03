@@ -166,10 +166,6 @@ window.addEventListener("load", (event) => {
         } else { // добавляем на аксессуар класс и акс, что он выбран
 
           let currentAccessorySizeOnDrawer = addedAccessorySize[currentDrawer-1].reduce((acc,current) => parseInt(acc)+parseInt(current), 0); // заполняем полку
-
-          // if (currentDrawerLength == 4 && currentAccessorySizeOnDrawer == 2 && currentAccessorySize == 2) { // отменяем возможность положить на полку 4 второго акс 2
-
-          // } else {
             
             if(currentDrawerLength > currentAccessorySizeOnDrawer + parseInt(currentAccessorySize) -1) { //проверка на длинну подмассива
               this.classList.add('accessory-cards__item_choose');
