@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import classNames from 'classnames';
 import TopBarAccessory from '../TopBarAccessory/TopBarAccessory';
@@ -104,7 +104,7 @@ const TopBar = ({
         const accessoriesPrice = Object.values(drawersData).flat().reduce((total, item) => total + item.price, 0);
         
         setFullPrice((currentToolbox?.price || 0) + attachedAccPrice + accessoriesPrice)
-    },[selectedAttachedAcc, attachingAccessories, currentToolbox, drawersData])
+    },[selectedAttachedAcc, attachingAccessories, currentToolbox, drawersData, setFullPrice])
     
     return (
         <>
