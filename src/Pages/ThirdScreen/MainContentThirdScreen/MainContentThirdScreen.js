@@ -1,5 +1,10 @@
 import './mainContentThirdScreen.scss';
 
+import mailSendImage from '../../../data/images/icon/mail-send.svg';
+import mailSendBlackImage from '../../../data/images/icon/mail-send-black.svg';
+import xIcon from '../../../data/images/icon/x-icon.svg';
+
+
 const MainContentThirdScreen = () => {
     return (
         <section class="total-result" id="total-result">
@@ -33,8 +38,8 @@ const MainContentThirdScreen = () => {
                     </form>
                 </div>
                 <div class="total-result__after-send">
-                    <img src="img/icon/mail-send.svg" alt="Email" class="d-none d-md-inline" />
-                    <img src="img/icon/mail-send-black.svg" alt="Email" class="d-inline d-md-none" />
+                    <img src={mailSendImage} alt="Email" class="d-none d-md-inline" />
+                    <img src={mailSendBlackImage} alt="Email" class="d-inline d-md-none" />
                     <p class="total-result__title-send">Thank you for your interest</p>
                     <p class="total-result__text-send">
                     We will process your request as quickly as we can, and you will soon receive an offer from us by e-mail of the composition that you have chosen and can see above.
@@ -55,60 +60,60 @@ const MainContentThirdScreen = () => {
                     <div class="total-items-box_item">
                         <div class="total-items-box__name d-flex justify-content-between">
                         <p>BATO Socket wrench set 3/8" 6 edge 6-24mm short. 6-19mm long. EVA 1/3.</p>
-                        <div class="total-items-box__close d-none"><img src="img/icon/x-icon.svg" alt="close" /></div>
+                        <div class="total-items-box__close d-none"><img src={xIcon} alt="close" /></div>
                         </div>
                         <div class="total-items-box__price d-flex">
                         360,00 EUR
                         <p class="d-flex d-none justify-content-center align-items-center">
-                            <img src="img/icon/x-icon.svg" class="delete_item" alt="delete" />
+                            <img src={xIcon} class="delete_item" alt="delete" />
                         </p>
                         </div>
                     </div>
                     <div class="total-items-box_item">
                         <div class="total-items-box__name d-flex justify-content-between">
                         <p>BATO Socket wrench set 3/8" 6 edge 6-24mm short. 6-19mm long. EVA 1/3.</p>
-                        <div class="total-items-box__close d-none"><img src="img/icon/x-icon.svg" alt="close" /></div>
+                        <div class="total-items-box__close d-none"><img src={xIcon} alt="close" /></div>
                         </div>
                         <div class="total-items-box__price d-flex">
                         590,00 EUR
                         <p class="d-flex d-none justify-content-center align-items-center">
-                            <img src="img/icon/x-icon.svg" class="delete_item" alt="delete" />
+                            <img src={xIcon} class="delete_item" alt="delete" />
                         </p>                
                         </div>
                     </div>
                     <div class="total-items-box_item">
                         <div class="total-items-box__name d-flex justify-content-between">
                         <p>BATO Socket wrench set 3/8" 6 edge 6-24mm short. 6-19mm long. EVA 1/3.</p>
-                        <div class="total-items-box__close d-none"><img src="img/icon/x-icon.svg" alt="close" /></div>
+                        <div class="total-items-box__close d-none"><img src={xIcon} alt="close" /></div>
                         </div>
                         <div class="total-items-box__price d-flex">
                         310,00 EUR
                         <p class="d-flex d-none justify-content-center align-items-center">
-                            <img src="img/icon/x-icon.svg" class="delete_item" alt="delete" />
+                            <img src={xIcon} class="delete_item" alt="delete" />
                         </p>                
                         </div>
                     </div>
                     <div class="total-items-box_item">
                         <div class="total-items-box__name d-flex justify-content-between">
                         <p>BATO Socket wrench set 3/8" 6 edge 6-24mm short. 6-19mm long. EVA 1/3.</p>
-                        <div class="total-items-box__close d-none"><img src="img/icon/x-icon.svg" alt="close" /></div>
+                        <div class="total-items-box__close d-none"><img src={xIcon} alt="close" /></div>
                         </div>
                         <div class="total-items-box__price d-flex">
                         140,00 EUR
                         <p class="d-flex d-none justify-content-center align-items-center">
-                            <img src="img/icon/x-icon.svg" class="delete_item" alt="delete" />
+                            <img src={xIcon} class="delete_item" alt="delete" />
                         </p>
                         </div>
                     </div>
                     <div class="total-items-box_item">
                         <div class="total-items-box__name d-flex justify-content-between">
                         <p>BATO Socket wrench set 3/8" 6 edge 6-24mm short. 6-19mm long. EVA 1/3.</p>
-                        <div class="total-items-box__close d-none"><img src="img/icon/x-icon.svg" alt="close" /></div>
+                        <div class="total-items-box__close d-none"><img src={xIcon} alt="close" /></div>
                         </div>
                         <div class="total-items-box__price d-flex">
                         890,00 EUR
                         <p class="d-flex d-none justify-content-center align-items-center">
-                            <img src="img/icon/x-icon.svg" class="delete_item" alt="delete" />
+                            <img src={xIcon} class="delete_item" alt="delete" />
                         </p>                
                         </div>
                     </div>
