@@ -190,7 +190,10 @@ const App = () => {
                 <Route 
                     path="/sendForm" 
                     element={<ThirdScreen 
-                                currentToolbox={currentToolbox} />} />
+                                currentToolbox={currentToolbox}
+                                filteredAccessories={filteredAccessories}
+                                attachingAccessories={attachingAccessories}
+                                fullPrice={fullPrice} />} />
             </Routes>
             <Footer/>
         </>

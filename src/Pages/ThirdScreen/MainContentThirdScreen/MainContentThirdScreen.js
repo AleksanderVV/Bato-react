@@ -5,7 +5,12 @@ import mailSendBlackImage from '../../../data/images/icon/mail-send-black.svg';
 import xIcon from '../../../data/images/icon/x-icon.svg';
 
 
-const MainContentThirdScreen = () => {
+const MainContentThirdScreen = ({
+        currentToolbox, 
+        filteredAccessories, 
+        attachingAccessories, 
+        fullPrice
+    }) => {
     return (
         <section class="total-result" id="total-result">
             <div class="container">
@@ -53,7 +58,7 @@ const MainContentThirdScreen = () => {
                         Tools Cabinet, 7 drawers and cabinet, 5 small, 1 medium, 1 large, blue color
                     </p>
                     <p class="total-items-box__price">
-                        <span>1960</span>,00 EUR
+                        <span>{currentToolbox.price}</span>,00 EUR
                     </p>
                     </div>
                     <div class="total-items-box__items">
