@@ -55,73 +55,25 @@ const MainContentThirdScreen = ({
                 <div class="total-result__price-box total-items-box">
                     <div class="total-items-box__header">
                     <p class="total-items-box__name">
-                        Tools Cabinet, 7 drawers and cabinet, 5 small, 1 medium, 1 large, blue color
+                        {currentToolbox.name}
                     </p>
                     <p class="total-items-box__price">
                         <span>{currentToolbox.price}</span>,00 EUR
                     </p>
                     </div>
                     <div class="total-items-box__items">
-                    <div class="total-items-box_item">
-                        <div class="total-items-box__name d-flex justify-content-between">
-                        <p>BATO Socket wrench set 3/8" 6 edge 6-24mm short. 6-19mm long. EVA 1/3.</p>
-                        <div class="total-items-box__close d-none"><img src={xIcon} alt="close" /></div>
+                        <div class="total-items-box_item">
+                            <div class="total-items-box__name d-flex justify-content-between">
+                            <p>BATO Socket wrench set 3/8" 6 edge 6-24mm short. 6-19mm long. EVA 1/3.</p>
+                            <div class="total-items-box__close d-none"><img src={xIcon} alt="close" /></div>
+                            </div>
+                            <div class="total-items-box__price d-flex">
+                            360,00 EUR
+                            <p class="d-flex d-none justify-content-center align-items-center">
+                                <img src={xIcon} class="delete_item" alt="delete" />
+                            </p>
+                            </div>
                         </div>
-                        <div class="total-items-box__price d-flex">
-                        360,00 EUR
-                        <p class="d-flex d-none justify-content-center align-items-center">
-                            <img src={xIcon} class="delete_item" alt="delete" />
-                        </p>
-                        </div>
-                    </div>
-                    <div class="total-items-box_item">
-                        <div class="total-items-box__name d-flex justify-content-between">
-                        <p>BATO Socket wrench set 3/8" 6 edge 6-24mm short. 6-19mm long. EVA 1/3.</p>
-                        <div class="total-items-box__close d-none"><img src={xIcon} alt="close" /></div>
-                        </div>
-                        <div class="total-items-box__price d-flex">
-                        590,00 EUR
-                        <p class="d-flex d-none justify-content-center align-items-center">
-                            <img src={xIcon} class="delete_item" alt="delete" />
-                        </p>                
-                        </div>
-                    </div>
-                    <div class="total-items-box_item">
-                        <div class="total-items-box__name d-flex justify-content-between">
-                        <p>BATO Socket wrench set 3/8" 6 edge 6-24mm short. 6-19mm long. EVA 1/3.</p>
-                        <div class="total-items-box__close d-none"><img src={xIcon} alt="close" /></div>
-                        </div>
-                        <div class="total-items-box__price d-flex">
-                        310,00 EUR
-                        <p class="d-flex d-none justify-content-center align-items-center">
-                            <img src={xIcon} class="delete_item" alt="delete" />
-                        </p>                
-                        </div>
-                    </div>
-                    <div class="total-items-box_item">
-                        <div class="total-items-box__name d-flex justify-content-between">
-                        <p>BATO Socket wrench set 3/8" 6 edge 6-24mm short. 6-19mm long. EVA 1/3.</p>
-                        <div class="total-items-box__close d-none"><img src={xIcon} alt="close" /></div>
-                        </div>
-                        <div class="total-items-box__price d-flex">
-                        140,00 EUR
-                        <p class="d-flex d-none justify-content-center align-items-center">
-                            <img src={xIcon} class="delete_item" alt="delete" />
-                        </p>
-                        </div>
-                    </div>
-                    <div class="total-items-box_item">
-                        <div class="total-items-box__name d-flex justify-content-between">
-                        <p>BATO Socket wrench set 3/8" 6 edge 6-24mm short. 6-19mm long. EVA 1/3.</p>
-                        <div class="total-items-box__close d-none"><img src={xIcon} alt="close" /></div>
-                        </div>
-                        <div class="total-items-box__price d-flex">
-                        890,00 EUR
-                        <p class="d-flex d-none justify-content-center align-items-center">
-                            <img src={xIcon} class="delete_item" alt="delete" />
-                        </p>                
-                        </div>
-                    </div>
                     </div>
                     <div class="total-items-box__total">
                     <p class="total-items-box__name">
