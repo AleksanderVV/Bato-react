@@ -128,7 +128,7 @@ const MainContentThirdScreen = ({
                         Total price
                     </p>
                     <p class="total-items-box__price">
-                        <span>12 434</span>,00 EUR
+                        <span>{fullPrice}</span>,00 EUR
                     </p>
                     </div>
                 </div>
