@@ -28,12 +28,14 @@ const TopBar = ({
     const dropdownRef = useRef(null);
 
     useEffect(() => {
+
         if(location.pathname === '/chooseAccessories' && location.state?.item) {
             const toolbox = location.state.item;
+
             setCurrentToolbox(toolbox);
         }
         // eslint-disable-next-line
-    }, [location]);
+    }, [location.key]);
 
     useEffect(() => {
 
@@ -63,8 +65,8 @@ const TopBar = ({
                         className="result__total-item d-flex justify-content-end"
                         onClick={toggleDropdownMenuOpen}>
                         <p>
-                            <span>{quantityItems || 0}</span> items added
-                            <span className="result__total-item-text">, show items </span>
+                            <span>{quantityItems || 0}</span> accessories
+                            <span className="result__total-item-text">, show</span>
                             <img 
                                 src={arrowDown} 
                                 className={classNames("result__img_close", {close: isMenuOpen})} 
@@ -81,7 +83,7 @@ const TopBar = ({
             default:
                 return (
                     <div className="result__total-item d-flex justify-content-end">
-                        <p><span>0</span> item added</p>
+                        <p><span>0</span> accessories</p>
                     </div>
                 );
         }

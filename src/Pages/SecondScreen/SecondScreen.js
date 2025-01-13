@@ -23,6 +23,7 @@ const SecondScreen = ({
     filteredAccessories,
     attachingAccessories}) =>  {
         useBodyID('accessories');
+
         return (
                 <>
                     <MainTitleSecondScreen 

@@ -176,7 +176,7 @@ const DrawerSideBar = ({toggleDropdownMenuOpen,
                         </div>
                         <div className="choose-accessories__drawers-price-items text-end">
                         <div className="choose-accessories__drawers-price-quantity">
-                            <span>{quantityItems}</span> items added
+                            <span>{quantityItems}</span> accessories
                         </div>
                         <div 
                             className="choose-accessories__drawers-price-show"

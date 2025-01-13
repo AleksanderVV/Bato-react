@@ -27,7 +27,8 @@ const AccessoriesList = ({
         currentToolbox?.accessories.includes(Number(acc.id))
     );
 
-    const currentDrawerLength = currentToolbox.drawers[currentDrawer];
+    
+    const currentDrawerLength = currentToolbox?.drawers[currentDrawer];
 
     const currentSizeAcc = (size = null) => {
         const currentDrawerItems = drawersData[currentDrawer] || [];

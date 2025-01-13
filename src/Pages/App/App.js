@@ -91,7 +91,7 @@ const App = () => {
 
     // Function to calculate remaining space in the current drawer
     const calculateRemainingSpace = (drawerItems) => {
-        let remainingSpace = currentToolbox.drawers[currentDrawer]; // Total space in a drawer
+        let remainingSpace = currentToolbox?.drawers[currentDrawer]; // Total space in a drawer
 
         drawerItems.forEach((item) => {
             remainingSpace -= item.size;
