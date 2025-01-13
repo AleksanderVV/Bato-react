@@ -15,46 +15,45 @@ const TopBarAccessory = ({drawersData, deleteAcc}) => {
             {Object.entries(drawersData).map(([key, array], index) => {
                 const figure = getFigureImage(array.length);
 
-                if (array.length) {
-                    return <div className='accessory-selected__drawer d-flex justify-content-between' key={index}>
-                            <div className="accessory-selected__drawer-number d-flex align-items-center flex-shrink-0">
-                                Drawer 0{+key + 1}
-                            </div>
-                            <div 
-                                className="accessory-selected__drawer-devider" 
-                                style={{background: `url(${figure}) no-repeat center right /contain`}}>
-                            </div>
-                            <div className='accessory-selected__drawer-items'>
-                                {array.map((item, i) => (
+                const accessory = <div className='accessory-selected__drawer d-flex justify-content-between' key={index}>
+                                    <div className="accessory-selected__drawer-number d-flex align-items-center flex-shrink-0">
+                                        Drawer 0{+key + 1}
+                                    </div>
                                     <div 
-                                        className="accessory-selected__data d-flex align-items-center justify-content-between" 
-                                        data-id={item.id} 
-                                        data-number-drawer={+key + 1}
-                                        key={i}>
-                                    <div className="accessory-selected__data-name">
-                                        <span>{item.name}</span>
-                                        <span className="d-sm-none">EVA {item.size}/3</span>
+                                        className="accessory-selected__drawer-devider" 
+                                        style={{background: `url(${figure}) no-repeat center right /contain`}}>
                                     </div>
-                                    <div className="accessory-selected__data-contain d-flex justify-content-between">
-                                        <div className="accessory-selected__data-size flex-shrink-1 d-none d-sm-block">
-                                            EVA {item.size}/3
-                                        </div>
-                                        <div className="accessory-selected__data-price flex-shrink-0">
-                                            <span>{item.price}</span>,00 EUR
-                                        </div>
-                                        <div 
-                                            className="accessory-selected__data-close d-flex justify-content-center align-items-center"
-                                            onClick={deleteAcc}>
-                                            <img src={xIconImage} alt="close" data-id={item.id} data-drawer={key}/>
-                                        </div>
+                                    <div className='accessory-selected__drawer-items'>
+                                        {array.map((item, i) => (
+                                            <div 
+                                                className="accessory-selected__data d-flex align-items-center justify-content-between" 
+                                                data-id={item.id} 
+                                                data-number-drawer={+key + 1}
+                                                key={i}>
+                                            <div className="accessory-selected__data-name">
+                                                <span>{item.name}</span>
+                                                <span className="d-sm-none">EVA {item.size}/3</span>
+                                            </div>
+                                            <div className="accessory-selected__data-contain d-flex justify-content-between">
+                                                <div className="accessory-selected__data-size flex-shrink-1 d-none d-sm-block">
+                                                    EVA {item.size}/3
+                                                </div>
+                                                <div className="accessory-selected__data-price flex-shrink-0">
+                                                    <span>{item.price}</span>,00 EUR
+                                                </div>
+                                                <div 
+                                                    className="accessory-selected__data-close d-flex justify-content-center align-items-center"
+                                                    onClick={deleteAcc}>
+                                                    <img src={xIconImage} alt="close" data-id={item.id} data-drawer={key}/>
+                                                </div>
+                                            </div>
+                                            </div>
+                                        ))}
                                     </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                } else {
-                    return '';
-                }
+                                </div>
+
+                return array.length ? accessory : '';
+
             })}
         </>
 }
