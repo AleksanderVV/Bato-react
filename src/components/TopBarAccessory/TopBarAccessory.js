@@ -5,7 +5,7 @@ import figure3Image from '../../data/images/icon/fig3.svg';
 import figure4Image from '../../data/images/icon/fig4.svg';
 import figure5Image from '../../data/images/icon/fig5.svg';
 
-const TopBarAccessory = ({drawersData}) => {
+const TopBarAccessory = ({drawersData, deleteAcc}) => {
     const getFigureImage = (length) => {
         const figures = [figure1Image, figure2Image, figure3Image, figure4Image, figure5Image];
         return figures[length - 1]
@@ -13,9 +13,10 @@ const TopBarAccessory = ({drawersData}) => {
 
     return <>
             {Object.entries(drawersData).map(([key, array], index) => {
-                const figure = getFigureImage(array.length)
+                const figure = getFigureImage(array.length);
 
-                return <div className='accessory-selected__drawer d-flex justify-content-between' key={index}>
+                if (array.length) {
+                    return <div className='accessory-selected__drawer d-flex justify-content-between' key={index}>
                             <div className="accessory-selected__drawer-number d-flex align-items-center flex-shrink-0">
                                 Drawer 0{+key + 1}
                             </div>
@@ -36,19 +37,24 @@ const TopBarAccessory = ({drawersData}) => {
                                     </div>
                                     <div className="accessory-selected__data-contain d-flex justify-content-between">
                                         <div className="accessory-selected__data-size flex-shrink-1 d-none d-sm-block">
-                                        EVA {item.size}/3
+                                            EVA {item.size}/3
                                         </div>
                                         <div className="accessory-selected__data-price flex-shrink-0">
-                                        <span>{item.price}</span>,00 EUR
+                                            <span>{item.price}</span>,00 EUR
                                         </div>
-                                        <div className="accessory-selected__data-close d-flex justify-content-center align-items-center">
-                                        <img src={xIconImage} alt="close" />
+                                        <div 
+                                            className="accessory-selected__data-close d-flex justify-content-center align-items-center"
+                                            onClick={deleteAcc}>
+                                            <img src={xIconImage} alt="close" data-id={item.id} data-drawer={key}/>
                                         </div>
                                     </div>
                                     </div>
                                 ))}
                             </div>
                         </div>
+                } else {
+                    return '';
+                }
             })}
         </>
 }

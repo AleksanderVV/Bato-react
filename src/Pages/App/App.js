@@ -141,6 +141,21 @@ const App = () => {
         });
     };
 
+    const deleteAcc = (event) => {
+        const drawerAcc = event.target.dataset.drawer;
+        const idAcc = event.target.dataset.id;
+        const currentAcc = drawersData[drawerAcc].find(i => i.id === idAcc).id;
+
+        if ( idAcc === currentAcc) {
+            setDrawersData(prev => {
+                const newDrawerData = { ...prev };
+                newDrawerData[drawerAcc] = newDrawerData[drawerAcc].filter(i => i.id !== idAcc);
+                
+                return newDrawerData;
+            })
+        }
+    }
+
     return (
         <>
             <Header 
@@ -161,7 +176,8 @@ const App = () => {
                 selectedAttachedAcc={selectedAttachedAcc}
                 attachingAccessories={attachingAccessories}
                 fullPrice={fullPrice}
-                setFullPrice={setFullPrice} />
+                setFullPrice={setFullPrice}
+                deleteAcc={deleteAcc} />
             <Routes>
                 <Route path="/" element={
                     <FirstScreen isSticky={isSticky}/>} />

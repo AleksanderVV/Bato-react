@@ -23,7 +23,8 @@ const TopBar = ({
                 selectedAttachedAcc,
                 attachingAccessories,
                 fullPrice,
-                setFullPrice}) => {    
+                setFullPrice,
+                deleteAcc}) => {    
     const location = useLocation();
     const dropdownRef = useRef(null);
 
@@ -107,7 +108,7 @@ const TopBar = ({
         
         setFullPrice((currentToolbox?.price || 0) + attachedAccPrice + accessoriesPrice)
     },[selectedAttachedAcc, attachingAccessories, currentToolbox, drawersData, setFullPrice])
-    
+
     return (
         <>
             <section 
@@ -167,7 +168,9 @@ const TopBar = ({
                     <div className="row flex-fill">
                         <div className="col-12">
                             <div className="result-dropdown__accessory accessory-selected">
-                                    {<TopBarAccessory drawersData={drawersData}/>}
+                                    {<TopBarAccessory 
+                                        drawersData={drawersData}
+                                        deleteAcc={deleteAcc} />}
                                     {<TopBarAttachedAccessory 
                                         selectedAttachedAcc={selectedAttachedAcc}
                                         attachingAccessories={attachingAccessories}/>}
