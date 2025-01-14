@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Tab, Nav } from 'react-bootstrap';
+import DrawerViewAccessory from '../DrawerViewAccessory/DrawerViewAccessory';
 
 import './drawerSideBar.scss';
 
@@ -106,7 +107,9 @@ const DrawerSideBar = ({toggleDropdownMenuOpen,
             return (
                 <Tab.Pane eventKey={i} key={i}>
                     <div className="choose-accessories__drawers-content drawers-content">
-                        
+                        <DrawerViewAccessory 
+                            drawersData={drawersData}
+                            setDrawersData={setDrawersData} />
                     </div>
                     {shelfImage}
                     <p 
