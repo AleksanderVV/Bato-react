@@ -102,9 +102,12 @@ const DrawerSideBar = ({toggleDropdownMenuOpen,
               } else {
                 shelfImage = <img src={drawer5} alt="Shelf" />;
               }
+
             return (
                 <Tab.Pane eventKey={i} key={i}>
-                    <div className="choose-accessories__drawers-content drawers-content"></div>
+                    <div className="choose-accessories__drawers-content drawers-content">
+                        
+                    </div>
                     {shelfImage}
                     <p 
                         className={`d-flex align-items-center ${!drawersFill ? 'not-active' : ''}`}
