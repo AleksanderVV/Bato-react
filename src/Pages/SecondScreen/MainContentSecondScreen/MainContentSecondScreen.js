@@ -24,7 +24,8 @@ const MainContentSecondScreen = ({ toggleDropdownMenuOpen,
                                     searchAcc,
                                     loading,
                                     filteredAccessories,
-                                    attachingAccessories}) => {
+                                    attachingAccessories,
+                                    deleteAcc}) => {
 
     return (
         <section id="choose-accessories" className="choose-accessories">
@@ -39,7 +40,8 @@ const MainContentSecondScreen = ({ toggleDropdownMenuOpen,
                         setCurrentDrawer={setCurrentDrawer}
                         drawersData={drawersData}
                         setDrawersData={setDrawersData}
-                        selectedAttachedAcc={selectedAttachedAcc}/>
+                        selectedAttachedAcc={selectedAttachedAcc}
+                        deleteAcc={deleteAcc} />
                     <div className="col-xl-6 col-xxl-8">
                         <div className="choose-accessories__select">
                         <Tab.Container defaultActiveKey={'all'}>

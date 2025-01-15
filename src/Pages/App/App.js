@@ -152,7 +152,7 @@ const App = () => {
 
         setDrawersData(prev => {
             const newDrawerData = { ...prev };
-            
+
             newDrawerData[drawerAcc] = newDrawerData[drawerAcc].filter(i => i.id !== idAcc);
 
             return newDrawerData;
@@ -205,7 +205,8 @@ const App = () => {
                             loading={loading}
                             filteredAccessories={filteredAccessories}
                             attachingAccessories={attachingAccessories}
-                            fullPrice={fullPrice} />} />
+                            fullPrice={fullPrice}
+                            deleteAcc={deleteAcc} />} />
                 <Route 
                     path="/sendForm" 
                     element={<ThirdScreen 

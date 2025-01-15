@@ -19,7 +19,8 @@ const DrawerSideBar = ({toggleDropdownMenuOpen,
                         setCurrentDrawer,
                         drawersData,
                         setDrawersData,
-                        selectedAttachedAcc}) => {
+                        selectedAttachedAcc,
+                        deleteAcc}) => {
     const [isBoxSticky, setIsBoxSticky] = useState(false);
     const [drawerLeftStyle, setDrawerLeftStyle] = useState('150px');
 
@@ -109,7 +110,8 @@ const DrawerSideBar = ({toggleDropdownMenuOpen,
                     <div className="choose-accessories__drawers-content drawers-content">
                         <DrawerViewAccessory 
                             drawersData={drawersData}
-                            setDrawersData={setDrawersData} />
+                            setDrawersData={setDrawersData}
+                            deleteAcc={deleteAcc} />
                     </div>
                     {shelfImage}
                     <p 
