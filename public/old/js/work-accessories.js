@@ -610,8 +610,6 @@ window.addEventListener("load", (event) => {
               }
             }
 
-            
-
           }
 
 
