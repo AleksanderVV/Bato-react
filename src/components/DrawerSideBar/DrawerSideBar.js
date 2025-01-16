@@ -110,8 +110,8 @@ const DrawerSideBar = ({toggleDropdownMenuOpen,
                     <div className="choose-accessories__drawers-content drawers-content">
                         <DrawerViewAccessory 
                             drawersData={drawersData}
-                            setDrawersData={setDrawersData}
-                            deleteAcc={deleteAcc} />
+                            deleteAcc={deleteAcc}
+                            currentDrawer={currentDrawer} />
                     </div>
                     {shelfImage}
                     <p 
