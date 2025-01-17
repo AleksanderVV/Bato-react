@@ -575,15 +575,14 @@ window.addEventListener("load", (event) => {
               window.innerWidth > 550 ? pointTop = 47 : pointTop = 37;
             }
 
-            if(currentAccessorySize == 1 && addedAccessorySize[index].includes('2')) { // добавляем 1 при наличии 3
-
+            if(currentAccessorySize == 1 && addedAccessorySize[index].includes('2')) { // добавляем 1 при наличии 2
               window.innerWidth > 550 ? pointTop = 47 : pointTop = 37;
             }
 
             if(currentAccessorySize == 1 && addedAccessorySize[index].includes('2') && addedAccessorySize[index].includes('1')) { // добавляем 1 при наличии 2
-              if (i==1 && addedAccessoriesOnDrawer.length == 3 && accessories.filter(item => item.id == addedAccessoriesOnDrawer[2])[0].size == 2) {
-                window.innerWidth > 550 ? pointTop = 233 : pointTop = 393;
-              }
+              // if (i==1 && addedAccessoriesOnDrawer.length == 3 && accessories.filter(item => item.id == addedAccessoriesOnDrawer[2])[0].size == 2) {
+              //   window.innerWidth > 550 ? pointTop = 233 : pointTop = 393;
+              // }
               
               if (i==2) {
                 window.innerWidth > 550 ? pointTop = 501 : pointTop = 393;
