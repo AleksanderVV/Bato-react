@@ -28,46 +28,35 @@ const DrawerViewAccessory = ({drawersData, deleteAcc, currentToolbox, currentDra
         };
 
         updateLayoutConfig(); // Initialize on mount
+
         window.addEventListener("resize", updateLayoutConfig);
         return () => window.removeEventListener("resize", updateLayoutConfig);
     }, []);
 
-    const calculateTopSpaceAcc = (index, size, arrayLength) => {
+    const calculateTopSpaceAcc = (index, size, array) => {
         const { pointTop, stepPoint } = layoutConfig;
-        const multiplier = size;
-        const offset = index * stepPoint;
-        return pointTop + multiplier * offset;
+        let top = pointTop;
+
+        for (let i = 0; i < index; i++) {
+            top += array[i].size * stepPoint; 
+        }
+
+        return top;
     };
-
-
-
-    // const calculateTopSpaceAcc = (item, array) => {
-
-    //     if (window.innerWidth > 550) {
-    //         setPointTop(37);
-    //         setStepPoint(105);
-    //         setStepPointMax(146);
-    //     }
-        
-    //     if((currentToolbox.drawers[currentDrawer] === 3 || currentToolbox.drawers[currentDrawer] === 5) && array.length > 1) {
-    //         item.size === 1 ? setPointTop(prev => prev + stepPoint) :
-    //         item.size === 2 ? setPointTop(prev => prev + stepPoint*2) : setPointTop(prev => prev + stepPoint*3);
-    //     } 
-
-
-    //     return pointTop;
-    // }
 
     return <>
                 {Object.entries(drawersData).map(([key, array]) => {
                     if (+key !== +currentDrawer) return null;
                         
                         return array.map((item, index) => {
+                            console.log(array.length);
+                            
+                            const top = calculateTopSpaceAcc(index, item.size, array);
                             
                             return (
                             <div 
                                 className={`drawers-content__image-size${item.size}`} 
-                                style={{top:`${calculateTopSpaceAcc(index, item.size, array.length)}px`}} 
+                                style={{top:`${top}px`}} 
                                 data-id={item.id} 
                                 key={item.id}
                             >
