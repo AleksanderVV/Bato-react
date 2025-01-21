@@ -4,7 +4,7 @@ import './drawerFilterToolbox.scss';
 
 import arrowDown from '../../data/images/icon/arrow-down-black.svg';
 
-const DrawerFilterToolbox = ({data, updateFilter}) => {
+const DrawerFilterToolbox = ({data, isMobile, updateFilter}) => {
   const [numberDrawers, setNumberDrawers] = useState([]);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [handleChooseNumberOfDrawers, setHandleChooseNumberOfDrawers] = useState('all');
@@ -53,7 +53,7 @@ const DrawerFilterToolbox = ({data, updateFilter}) => {
   return (
       <div ref={menuRef} className="filter-boxes__drawers filter-drawers" onClick={toggleMenu}>
       <div className="filter-drawers__top d-flex align-items-center justify-content-center">
-        <div className="filter-drawers__text">Number of drawers:</div>
+        <div className="filter-drawers__text">{isMobile ? 'Drawers:' : 'Number of drawers:'}</div>
         <div className="filter-drawers__number">{handleChooseNumberOfDrawers === 'all' ? 'All' : handleChooseNumberOfDrawers}</div>
         <div className="filter-drawers__close open"><img src={arrowDown} alt="Open"/></div>
       </div>

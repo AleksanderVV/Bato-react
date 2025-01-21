@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 
 import './mainContentFirstScreen.scss';
 
-const MainContentFirstScreen = () => {
+const MainContentFirstScreen = ({isMobile}) => {
 
     const [toolboxList, setToolboxList] = useState([]);
     const [filteredToolboxList, setFilteredToolboxList] = useState([]);
@@ -63,7 +63,8 @@ const MainContentFirstScreen = () => {
                 <ToolboxFilters 
                     data={toolboxList} 
                     filters={filters} 
-                    updateFilter={updateFilter} />
+                    updateFilter={updateFilter}
+                    isMobile={isMobile} />
                 <ToolboxList data={filteredToolboxList} process={process}/>
             </div>
         </section>

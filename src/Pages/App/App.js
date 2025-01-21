@@ -183,7 +183,9 @@ const App = () => {
                 deleteAcc={deleteAcc} />
             <Routes>
                 <Route path="/" element={
-                    <FirstScreen isSticky={isSticky}/>} />
+                    <FirstScreen 
+                        isSticky={isSticky}
+                        isMobile={isMobile} />} />
                 <Route 
                     path="/chooseAccessories" 
                     element={
