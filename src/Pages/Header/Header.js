@@ -7,7 +7,7 @@ import arrowUpWhite from '../../data/images/icon/arrow-up-white.svg'
 
 import './header.scss';
 
-const Header = ({isMobile, isSticky, isMenuOpen, toggleDropdownMenuOpen}) => {
+const Header = ({isMobile, isSticky, isMenuOpen, toggleDropdownMenuOpen, quantityItems}) => {
     const location = useLocation();
 
     return (
@@ -25,7 +25,7 @@ const Header = ({isMobile, isSticky, isMenuOpen, toggleDropdownMenuOpen}) => {
                     <div 
                         className="header__total-item d-flex justify-content-end"
                         onClick={toggleDropdownMenuOpen}>
-                        <p><span>0</span> item added</p>
+                        <p><span>{ quantityItems || 0}</span> item added</p>
                         {
                         location.pathname === '/chooseAccessories' && !isMenuOpen ?
                            <img src={arrowDown} className="header__img_close" alt="arrow" /> :

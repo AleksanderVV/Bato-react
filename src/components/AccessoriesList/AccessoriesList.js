@@ -94,7 +94,9 @@ const AccessoriesList = ({
                                     <button 
                                         type="button" 
                                         className="d-flex align-items-center justify-content-center"
-                                        onClick={() => !isNotActive && handleAccessoryClick(acc.id)}>
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            !isNotActive && handleAccessoryClick(acc.id)}}>
                                         <img src={plusBlack} alt="plus" className="accessory-cards__plus" />
                                         <img src={plusImage} alt="plus" className="accessory-cards__plus-hover" />
                                     </button>

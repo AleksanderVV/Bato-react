@@ -9,7 +9,8 @@ import DrawerSideBar from '../../../components/DrawerSideBar/DrawerSideBar';
 import './mainContentSecondScreen.scss';
 import filterMobile from '../../../data/images/icon/filter-mobile.svg';
 
-const MainContentSecondScreen = ({ toggleDropdownMenuOpen, 
+const MainContentSecondScreen = ({  mobileOpen,
+                                    toggleDropdownMenuOpen, 
                                     currentToolbox, 
                                     fullPrice, 
                                     handleClick,
@@ -25,7 +26,12 @@ const MainContentSecondScreen = ({ toggleDropdownMenuOpen,
                                     loading,
                                     filteredAccessories,
                                     attachingAccessories,
-                                    deleteAcc}) => {
+                                    deleteAcc,
+                                    quantityItems}) => {
+
+    const openChooseDrawers = () => {
+        
+    }
 
     return (
         <section id="choose-accessories" className="choose-accessories">
@@ -41,7 +47,8 @@ const MainContentSecondScreen = ({ toggleDropdownMenuOpen,
                         drawersData={drawersData}
                         setDrawersData={setDrawersData}
                         selectedAttachedAcc={selectedAttachedAcc}
-                        deleteAcc={deleteAcc} />
+                        deleteAcc={deleteAcc}
+                        mobileOpen={mobileOpen} />
                     <div className="col-xl-6 col-xxl-8">
                         <div className="choose-accessories__select">
                         <Tab.Container defaultActiveKey={'all'}>
@@ -65,10 +72,14 @@ const MainContentSecondScreen = ({ toggleDropdownMenuOpen,
                     </div>
                 </div>
             </div>
-            <Link className="choose-accessories__filter-top d-sm-none">
+            <button 
+                className="choose-accessories__filter-top d-sm-none"
+                style={{display: mobileOpen ? 'flex' : 'none'}}
+                onClick={openChooseDrawers}
+                 >
                 <img src={filterMobile} alt="icon" />
-                <span>1</span>
-            </Link>
+                <span>{quantityItems}</span>
+            </button>
         </section>
     )
 }

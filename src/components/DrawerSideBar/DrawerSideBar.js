@@ -20,7 +20,8 @@ const DrawerSideBar = ({toggleDropdownMenuOpen,
                         drawersData,
                         setDrawersData,
                         selectedAttachedAcc,
-                        deleteAcc}) => {
+                        deleteAcc,
+                        mobileOpen}) => {
     const [isBoxSticky, setIsBoxSticky] = useState(false);
     const [drawerLeftStyle, setDrawerLeftStyle] = useState('150px');
 
@@ -201,10 +202,12 @@ const DrawerSideBar = ({toggleDropdownMenuOpen,
                     </div>
                 </div>
             </div>
-            <div className="choose-accessories__drawers-price-button2 align-items-center justify-content-center d-sm-none">
-                <button onClick={handleClick} aria-label="Complete selection">
+            <div 
+                className="choose-accessories__drawers-price-button2 align-items-center justify-content-center d-sm-none"
+                style={{display: mobileOpen ? 'flex' : 'none'}}>
+                <a onClick={handleClick} aria-label="Complete selection">
                     <img src={cart} alt="Cart" /> Færdig med valg
-                </button>
+                </a>
             </div>
         </div>
     )

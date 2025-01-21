@@ -5,6 +5,7 @@ import MainContentSecondScreen from "./MainContentSecondScreen/MainContentSecond
 
 const SecondScreen = ({
     isMobile,
+    mobileOpen,
     isSticky, 
     toggleDropdownMenuOpen,
     currentToolbox, 
@@ -22,7 +23,8 @@ const SecondScreen = ({
     loading,
     filteredAccessories,
     attachingAccessories,
-    deleteAcc}) =>  {
+    deleteAcc,
+    quantityItems}) =>  {
         useBodyID('accessories');
 
         return (
@@ -31,6 +33,7 @@ const SecondScreen = ({
                         isMobile={isMobile}
                         isSticky={isSticky}/>
                     <MainContentSecondScreen 
+                        mobileOpen={mobileOpen}
                         toggleDropdownMenuOpen={toggleDropdownMenuOpen}
                         currentToolbox={currentToolbox} 
                         fullPrice={fullPrice}
@@ -47,7 +50,9 @@ const SecondScreen = ({
                         loading={loading}
                         filteredAccessories={filteredAccessories}
                         attachingAccessories={attachingAccessories}
-                        deleteAcc={deleteAcc} />
+                        deleteAcc={deleteAcc}
+                        quantityItems={quantityItems}
+                         />
                 </>
 )};
 

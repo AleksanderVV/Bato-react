@@ -24,7 +24,8 @@ const TopBar = ({
                 attachingAccessories,
                 fullPrice,
                 setFullPrice,
-                deleteAcc}) => {    
+                deleteAcc,
+                quantityItems}) => {    
     const location = useLocation();
     const dropdownRef = useRef(null);
 
@@ -57,8 +58,6 @@ const TopBar = ({
 
     const topBarSwitcher = () => {
         
-        const quantityItems =  selectedAttachedAcc.length + Object.values(drawersData).reduce((sum, array) => sum + array.length, 0);
-
         switch (location.pathname) {
             case "/chooseAccessories":
                 return (
@@ -84,7 +83,7 @@ const TopBar = ({
             default:
                 return (
                     <div className="result__total-item d-flex justify-content-end">
-                        <p><span>0</span> accessories</p>
+                        <p><span>{quantityItems || 0}</span> accessories</p>
                     </div>
                 );
         }
@@ -112,7 +111,7 @@ const TopBar = ({
     return (
         <>
             <section 
-            className={`result ${isSticky ? 'result_sticky' : ''}`}
+            className={`result ${isSticky && !isMobile ? 'result_sticky' : ''}`}
             style={{marginTop: isSticky && isMobile && location.pathname === '/chooseAccessories' ? '70px' : '0px'}}>
                 <div className="container">
                     <div className="row">

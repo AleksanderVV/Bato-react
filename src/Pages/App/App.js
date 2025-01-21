@@ -26,6 +26,7 @@ const App = () => {
     const [filteredAccessories, setFilteredAccessories] = useState([]);
     const [attachingAccessories, setAttachingAccessories] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [mobileOpen, setMobileOpen] = useState(false);
 
     const {setProcess, getAccessories, getAttachingAccessories} = useToolboxService();
 
@@ -42,7 +43,7 @@ const App = () => {
 
         window.addEventListener('scroll', () => {
 
-            if((window.scrollY > 78 && !isMobile) || (window.scrollY > 1 && isMobile)) {
+            if((window.scrollY > 78 && !isMobile) || (window.scrollY > 0 && isMobile)) {
                 setIsSticky(true);
             } else {setIsSticky(false)}
 
@@ -101,6 +102,10 @@ const App = () => {
     };
 
     const handleAccessoryClick = (accId) => {
+        if (isMobile) {
+            setMobileOpen(true);
+        }
+
         setDrawersData((prev) => {
           const newDrawerData = { ...prev };
 
@@ -133,6 +138,10 @@ const App = () => {
     };
         
     const chooseCurrentAttachedAcc = (id) => {
+        if (isMobile) {
+            setMobileOpen(true);
+        }
+
         setSelectedAttachedAcc(prevState => {
             if (prevState.includes(id)) {
                 return prevState.filter(accId => accId !== id)
@@ -157,7 +166,9 @@ const App = () => {
 
             return newDrawerData;
         })
-}
+    }
+
+    const quantityItems =  selectedAttachedAcc.length + Object.values(drawersData).reduce((sum, array) => sum + array.length, 0);
 
     return (
         <>
@@ -165,7 +176,8 @@ const App = () => {
                 isSticky={isSticky} 
                 isMobile={isMobile}
                 isMenuOpen={isMenuOpen}
-                toggleDropdownMenuOpen={toggleDropdownMenuOpen}/>
+                toggleDropdownMenuOpen={toggleDropdownMenuOpen}
+                quantityItems={quantityItems}/>
             <TopBar 
                 isSticky={isSticky}
                 isMobile={isMobile}
@@ -180,7 +192,8 @@ const App = () => {
                 attachingAccessories={attachingAccessories}
                 fullPrice={fullPrice}
                 setFullPrice={setFullPrice}
-                deleteAcc={deleteAcc} />
+                deleteAcc={deleteAcc}
+                quantityItems={quantityItems} />
             <Routes>
                 <Route path="/" element={
                     <FirstScreen 
@@ -191,6 +204,7 @@ const App = () => {
                     element={
                         <SecondScreen 
                             isMobile={isMobile}
+                            mobileOpen={mobileOpen}
                             isSticky={isSticky}
                             toggleDropdownMenuOpen={toggleDropdownMenuOpen}
                             currentToolbox={currentToolbox} 
@@ -208,7 +222,8 @@ const App = () => {
                             filteredAccessories={filteredAccessories}
                             attachingAccessories={attachingAccessories}
                             fullPrice={fullPrice}
-                            deleteAcc={deleteAcc} />} />
+                            deleteAcc={deleteAcc}
+                            quantityItems={quantityItems} />} />
                 <Route 
                     path="/sendForm" 
                     element={<ThirdScreen 
