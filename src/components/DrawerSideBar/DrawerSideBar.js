@@ -50,6 +50,11 @@ const DrawerSideBar = ({toggleDropdownMenuOpen,
         window.addEventListener('resize', debouncedResize);
         window.addEventListener('scroll', debouncedScroll);
 
+        return () => {
+            window.removeEventListener('resize', debouncedResize);
+            window.removeEventListener('scroll', debouncedScroll);
+        };
+
     }, []);
 
     if (!currentToolbox) {
@@ -99,11 +104,11 @@ const DrawerSideBar = ({toggleDropdownMenuOpen,
             let shelfImage = '';
             if (drawerDepth === 3) {
                 shelfImage = <img src={drawer3} alt="Shelf" />;
-              } else if(drawerDepth === 4) {
+            } else if(drawerDepth === 4) {
                 shelfImage = <img src={drawer4} alt="Shelf" />;
-              } else {
+            } else {
                 shelfImage = <img src={drawer5} alt="Shelf" />;
-              }
+            }
 
             return (
                 <Tab.Pane eventKey={i} key={i}>

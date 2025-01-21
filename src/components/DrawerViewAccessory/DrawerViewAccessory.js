@@ -38,7 +38,7 @@ const DrawerViewAccessory = ({ drawersData, deleteAcc, currentToolbox, currentDr
     }, []);
 
     const calculateTopSpaceAcc = (index, size, array) => {
-        const { pointTop, stepPoint, stepPointMax, secondaryTop, thirdTop, secondaryStepPoint } = layoutConfig;
+        const { pointTop, stepPoint, secondaryTop, thirdTop, secondaryStepPoint } = layoutConfig;
 
         if (currentToolbox.drawers[currentDrawer] === 4) {
             if (size === 1) {

@@ -47,7 +47,7 @@ const App = () => {
             } else {setIsSticky(false)}
 
         });
-// eslint-disable-next-line
+        // eslint-disable-next-line
     }, []);
 
     const toggleDropdownMenuOpen = () => {setMenuOpen(!isMenuOpen)}
