@@ -21,11 +21,16 @@ const DrawerSideBar = ({toggleDropdownMenuOpen,
                         setDrawersData,
                         selectedAttachedAcc,
                         deleteAcc,
-                        mobileOpen}) => {
+                        mobileOpen,
+                        openChooseDrawers,
+                        setOpenChooseDrawers}) => {
     const [isBoxSticky, setIsBoxSticky] = useState(false);
     const [drawerLeftStyle, setDrawerLeftStyle] = useState('150px');
 
     useEffect(() => {
+        if (window.innerWidth < 576) {
+            setDrawerLeftStyle('0px');
+        }
 
         const handleScroll = () => {
             document.querySelector('.choose-accessories__drawers') && window.scrollY > 1060 ? setIsBoxSticky(true) : setIsBoxSticky(false);
@@ -150,8 +155,10 @@ const DrawerSideBar = ({toggleDropdownMenuOpen,
             </div>
             <div 
                 className={`choose-accessories__drawers ${isBoxSticky === true ? 'box-sticky' : ''}`}
-                style={{left:drawerLeftStyle}}>
-                <div className="choose-accessories__close-popup d-sm-none d-flex justify-content-center align-items-center">
+                style={{left:drawerLeftStyle, display: openChooseDrawers ? 'block' : 'none'}}>
+                <div 
+                    className="choose-accessories__close-popup d-sm-none d-flex justify-content-center align-items-center"
+                    onClick={() => setOpenChooseDrawers(false)}>
                     <img src={xIcon} alt="close" />
                 </div>
                 <div className="choose-accessories__drawers-tabs">

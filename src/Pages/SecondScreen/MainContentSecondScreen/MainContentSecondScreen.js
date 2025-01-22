@@ -1,4 +1,4 @@
-
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Tab } from 'react-bootstrap';
 
@@ -28,10 +28,7 @@ const MainContentSecondScreen = ({  mobileOpen,
                                     attachingAccessories,
                                     deleteAcc,
                                     quantityItems}) => {
-
-    const openChooseDrawers = () => {
-        
-    }
+    const [openChooseDrawers, setOpenChooseDrawers] = useState(false);
 
     return (
         <section id="choose-accessories" className="choose-accessories">
@@ -48,7 +45,9 @@ const MainContentSecondScreen = ({  mobileOpen,
                         setDrawersData={setDrawersData}
                         selectedAttachedAcc={selectedAttachedAcc}
                         deleteAcc={deleteAcc}
-                        mobileOpen={mobileOpen} />
+                        mobileOpen={mobileOpen}
+                        openChooseDrawers={openChooseDrawers}
+                        setOpenChooseDrawers={setOpenChooseDrawers} />
                     <div className="col-xl-6 col-xxl-8">
                         <div className="choose-accessories__select">
                         <Tab.Container defaultActiveKey={'all'}>
@@ -75,7 +74,7 @@ const MainContentSecondScreen = ({  mobileOpen,
             <button 
                 className="choose-accessories__filter-top d-sm-none"
                 style={{display: mobileOpen ? 'flex' : 'none'}}
-                onClick={openChooseDrawers}
+                onClick={() => setOpenChooseDrawers(true)}
                  >
                 <img src={filterMobile} alt="icon" />
                 <span>{quantityItems}</span>
