@@ -22,12 +22,12 @@ const DrawerViewAccessory = ({ drawersData, deleteAcc, currentToolbox, currentDr
     useEffect(() => {
         const updateLayoutConfig = () => {
             setLayoutConfig({
-                pointTop: window.innerWidth > 550 ? 47 : 37,
-                stepPoint: window.innerWidth > 550 ? 134 : 105,
-                stepPointMax: window.innerWidth > 550 ? 186 : 146,
-                secondaryTop: window.innerWidth > 550 ? 233 : 183,
-                thirdTop: window.innerWidth > 550 ? 367 : 288, 
-                secondaryStepPoint: window.innerWidth > 550 ? 501 : 393,
+                pointTop: window.innerWidth > 575 ? 47 : 37,
+                stepPoint: window.innerWidth > 575 ? 134 : 105,
+                stepPointMax: window.innerWidth > 575 ? 186 : 146,
+                secondaryTop: window.innerWidth > 575 ? 233 : 183,
+                thirdTop: window.innerWidth > 575 ? 367 : 288, 
+                secondaryStepPoint: window.innerWidth > 575 ? 501 : 393,
             });
         };
 
