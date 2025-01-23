@@ -99,7 +99,7 @@ const DrawerSideBar = ({isMobile,
         return (
             <Nav.Item 
                 key={i}
-                style={{width: '143px'}}>
+            >
                 <Nav.Link eventKey={i} className={`d-flex align-items-center gap-1 ${activeClass}`}>
                         <div className={`choose-accessories__nav-img nav-img-${drawersFill || 0} d-flex`}>
                         {drawerCells}
