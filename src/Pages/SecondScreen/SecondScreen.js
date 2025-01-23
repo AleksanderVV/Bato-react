@@ -33,6 +33,7 @@ const SecondScreen = ({
                         isMobile={isMobile}
                         isSticky={isSticky}/>
                     <MainContentSecondScreen 
+                        isMobile={isMobile}
                         mobileOpen={mobileOpen}
                         toggleDropdownMenuOpen={toggleDropdownMenuOpen}
                         currentToolbox={currentToolbox} 

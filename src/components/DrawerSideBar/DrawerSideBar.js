@@ -11,7 +11,8 @@ import drawer5 from '../../data/images/drawer5.webp';
 import resetImage from '../../data/images/icon/reset.svg';
 import cart from '../../data/images/icon/cart.svg';
 
-const DrawerSideBar = ({toggleDropdownMenuOpen, 
+const DrawerSideBar = ({isMobile,
+                        toggleDropdownMenuOpen, 
                         currentToolbox, 
                         fullPrice, 
                         handleClick, 
@@ -70,7 +71,7 @@ const DrawerSideBar = ({toggleDropdownMenuOpen,
     const drawersCurrentToolbox = currentToolbox.drawers.length;
 
     const mobileListDrawers = Array.from({ length: drawersCurrentToolbox }, (_, i) => (
-        <option key={i} value={i + 1}>
+        <option key={i} value={i}>
             Drawer {i + 1}
         </option>
     ));
@@ -88,15 +89,23 @@ const DrawerSideBar = ({toggleDropdownMenuOpen,
         const drawerCells = Array.from({length: drawerDepth}, (_, i) => (<div key={i} className="nav-img__item"></div>))
 
         const drawersFill = drawersData[i]?.reduce((total, acc) => total + acc.size, 0);
+
+        if (isMobile && +currentDrawer !== i) {
+            return null;
+        }
+
+        const activeClass = +currentDrawer === +i ? 'active' : null;
         
         return (
-            <Nav.Item key={i}>
-                <Nav.Link eventKey={i} className='d-flex align-items-center'>
+            <Nav.Item 
+                key={i}
+                style={{width: '143px'}}>
+                <Nav.Link eventKey={i} className={`d-flex align-items-center gap-1 ${activeClass}`}>
                         <div className={`choose-accessories__nav-img nav-img-${drawersFill || 0} d-flex`}>
                         {drawerCells}
                     </div>
                     <span className="button-number">{i + 1 < 10 ? `0${i + 1}` : i + 1}</span>
-                    <span className="d-sm-none me-1">Drawer</span>
+                    <span className="d-sm-none">Drawer</span>
                 </Nav.Link> 
             </Nav.Item>
         )
@@ -155,7 +164,7 @@ const DrawerSideBar = ({toggleDropdownMenuOpen,
             </div>
             <div 
                 className={`choose-accessories__drawers ${isBoxSticky === true ? 'box-sticky' : ''}`}
-                style={{left:drawerLeftStyle, display: openChooseDrawers ? 'block' : 'none'}}>
+                style={{left:drawerLeftStyle, display: openChooseDrawers ? 'block' : ''}}>
                 <div 
                     className="choose-accessories__close-popup d-sm-none d-flex justify-content-center align-items-center"
                     onClick={() => setOpenChooseDrawers(false)}>
@@ -167,8 +176,14 @@ const DrawerSideBar = ({toggleDropdownMenuOpen,
                             <Nav variant='pills' className='flex-column'>
                                 <p className="d-none d-sm-block">Drawer</p>
                                 {drawerButtons}
-                                <div className="nav-list_top d-sm-none d-flex justify-content-center align-items-center"></div>
-                                <div className="nav-list_bottom d-sm-none d-flex justify-content-center align-items-center"></div>
+                                <div 
+                                    className="nav-list_top d-sm-none d-flex justify-content-center align-items-center"
+                                    onClick={() => (currentDrawer >= 0 && currentDrawer < drawersCurrentToolbox - 1) ? setCurrentDrawer(+currentDrawer + 1) : null}>
+                                </div>
+                                <div 
+                                    className="nav-list_bottom d-sm-none d-flex justify-content-center align-items-center"
+                                    onClick={() => (currentDrawer > 0 && currentDrawer < drawersCurrentToolbox) ? setCurrentDrawer(+currentDrawer - 1) : null}>
+                                </div>
                                 <div className="d-sm-none">
                                     <select id="mobileTabsSelect" value={currentDrawer} onChange={handleMobileDrawerChange}>
                                         {mobileListDrawers}
