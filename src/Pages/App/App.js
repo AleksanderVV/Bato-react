@@ -228,11 +228,11 @@ const App = () => {
                     path="/sendForm" 
                     element={<ThirdScreen 
                                 currentToolbox={currentToolbox}
-                                filteredAccessories={filteredAccessories}
-                                attachingAccessories={attachingAccessories}
+                                drawersData={drawersData}
+                                selectedAttachedAcc={selectedAttachedAcc}
                                 fullPrice={fullPrice} />} />
-            </Routes>
-            <Footer/>
+                </Routes>
+            <Footer />
         </>
     )
 }

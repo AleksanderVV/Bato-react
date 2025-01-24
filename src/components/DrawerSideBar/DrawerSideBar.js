@@ -227,9 +227,9 @@ const DrawerSideBar = ({isMobile,
             <div 
                 className="choose-accessories__drawers-price-button2 align-items-center justify-content-center d-sm-none"
                 style={{display: mobileOpen ? 'flex' : 'none'}}>
-                <a onClick={handleClick} aria-label="Complete selection">
+                <button onClick={handleClick} aria-label="Complete selection">
                     <img src={cart} alt="Cart" /> Færdig med valg
-                </a>
+                </button>
             </div>
         </div>
     )

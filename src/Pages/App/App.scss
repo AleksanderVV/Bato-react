@@ -831,7 +831,7 @@ p {
   #accessories .choose-accessories__drawers-price-title, #accessories .choose-accessories__drawers-price-items {
     display: none !important;
   }
-  #accessories .choose-accessories__drawers-price-button2 {
+  #accessories .choose-accessories__drawers-price-button2{
     display: none;
     position: fixed;
     bottom: 0;
@@ -839,10 +839,15 @@ p {
     height: 60px;
     width: 100%;
     border-radius: 0px;
-    background-color: #006ABA;
-    color: #ffffff;
     cursor: pointer;
     z-index: 100;
+
+    button {
+      width: 100%;
+      height: 100%;
+      background-color: #006ABA;
+      color: #ffffff;
+    }
   }
   #accessories .choose-accessories__drawers-wrapper {
     flex-direction: column-reverse;

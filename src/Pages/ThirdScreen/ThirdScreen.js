@@ -5,18 +5,18 @@ import MainContentThirdScreen from "./MainContentThirdScreen/MainContentThirdScr
 
 const ThirdScreen = ({
         currentToolbox, 
-        filteredAccessories, 
-        attachingAccessories, 
+        drawersData, 
+        selectedAttachedAcc, 
         fullPrice}) =>  {
     useBodyID('total');
-    console.log(currentToolbox);
+
     return (
     <>        
         <MainTitleThirdScreen />
         <MainContentThirdScreen 
             currentToolbox={currentToolbox}
-            filteredAccessories={filteredAccessories}
-            attachingAccessories={attachingAccessories}
+            drawersData={drawersData}
+            selectedAttachedAcc={selectedAttachedAcc}
             fullPrice={fullPrice} />
     </>
 )};
