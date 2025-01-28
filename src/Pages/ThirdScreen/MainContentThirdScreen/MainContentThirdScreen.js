@@ -1,5 +1,6 @@
 import {v4 as uuidv4} from 'uuid';
 import { useFormik } from 'formik';
+import * as Yup from 'yup';
 
 import './mainContentThirdScreen.scss';
 
@@ -95,27 +96,6 @@ const ListAccessories = ({drawersData, selectedAttachedAcc}) => {
 
 const Form = () => {
 
-    const validate = values => {
-        const errors = {};
-
-        if (!values.name) {
-            errors.name = 'Required';
-        } else if (values.name.length < 2) {
-            errors.name = 'Minimum 2 letters length!!!'
-        }
-
-        if (!values.email) {
-          errors.email = 'Required';
-        } else if (
-          !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-        ) {
-          errors.email = 'Invalid email address';
-        }
-
-        return errors;
-    }
-
-
     const formik = useFormik({
         initialValues: {
             name: '',
@@ -125,10 +105,23 @@ const Form = () => {
             phone: '',
             message: ''
         },
-        validate,
+        validationSchema: Yup.object({
+            name: Yup.string()
+                        .min(2, 'Minimum 2 letters!!!')
+                        .required('Required!!!'),
+            company: Yup.string()
+                        .required('Required!!!'),
+            zip: Yup.string()
+                        .required('Required!!!'),
+            email: Yup.string()
+                        .email('Enter valid email!!!')
+                        .required('Required'),
+            phone: Yup.number()
+                        .required('Required!!!'),
+            message: Yup.string()
+        }),
         onSubmit: values => console.log(JSON.stringify(values, null, 2))
     })
-
 
     return (
         <form onSubmit={formik.handleSubmit}>
@@ -137,20 +130,23 @@ const Form = () => {
                 {formik.errors.name && formik.touched.name ? <span style={{color: 'red'}}>{formik.errors.name}</span> : null}
             </p>
             <p>
-                <input type="text" name="company" id="company" placeholder="Company" value={formik.values.company} onChange={formik.handleChange} />
+                <input type="text" name="company" id="company" placeholder="Company" value={formik.values.company} onChange={formik.handleChange} onBlur={formik.handleBlur} />
+                {formik.errors.company && formik.touched.company ? <span style={{color: 'red'}}>{formik.errors.company}</span> : null}
             </p>
             <p>
-                <input type="text" name="zip" id="zip" placeholder="Zip Code" value={formik.values.zip} onChange={formik.handleChange} />
+                <input type="text" name="zip" id="zip" placeholder="Zip Code" value={formik.values.zip} onChange={formik.handleChange} onBlur={formik.handleBlur} />
+                {formik.errors.zip && formik.touched.zip ? <span style={{color: 'red'}}>{formik.errors.zip}</span> : null}
             </p>
             <p>
                 <input type="text" name="email" id="email" placeholder="E-mail address" value={formik.values.email} onChange={formik.handleChange} onBlur={formik.handleBlur} />
                 {formik.errors.email && formik.touched.email ? <span style={{color: 'red'}}>{formik.errors.email}</span> : null}
             </p>
             <p>
-                <input type="text" name="phone" id="phone" placeholder="Telephone" value={formik.values.phone} onChange={formik.handleChange} />
+                <input type="number" name="phone" id="phone" placeholder="Telephone" value={formik.values.phone} onChange={formik.handleChange} onBlur={formik.handleBlur} />
+                {formik.errors.phone && formik.touched.phone ? <span style={{color: 'red'}}>{formik.errors.phone}</span> : null}
             </p>
             <p>
-                <textarea name="message" id="message" placeholder="Message" value={formik.values.message} onChange={formik.handleChange}></textarea>
+                <textarea name="message" id="message" placeholder="Message" value={formik.values.message} onChange={formik.handleChange} onBlur={formik.handleBlur}></textarea>
             </p>
             <p className="total-result__submit">
                 <button type="submit"><span>Ja tak, send mig et tilbud</span></button>
