@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import {v4 as uuidv4} from 'uuid';
 import { Formik, Form, Field,ErrorMessage } from 'formik';
 import * as Yup from 'yup';
@@ -16,6 +17,8 @@ const MainContentThirdScreen = ({
         fullPrice
     }) => {  
 
+    const priceBoxRef = useRef(null);
+
     return (
         <section className="total-result" id="total-result">
             <div className="container">
@@ -23,7 +26,7 @@ const MainContentThirdScreen = ({
                 <div className="col-12 order-2 col-md-6 order-md-1 d-flex align-items-center">
                 <div className="total-result__form-box">
                     <h3>Get a offer for the selected toolbox and accessories</h3>
-                    <FormSend />
+                    <FormSend priceBoxRef={priceBoxRef}/>
                 </div>
                 <div className="total-result__after-send">
                     <img src={mailSendImage} alt="Email" className="d-none d-md-inline" />
@@ -35,7 +38,7 @@ const MainContentThirdScreen = ({
                 </div>
                 </div>
                 <div className="col-12 order-1 col-md-6 order-md-2">
-                <div className="total-result__price-box total-items-box">
+                <div ref={priceBoxRef} className="total-result__price-box total-items-box">
                     <div className="total-items-box__header">
                     <p className="total-items-box__name">
                         {currentToolbox.name}
@@ -94,7 +97,31 @@ const ListAccessories = ({drawersData, selectedAttachedAcc}) => {
     </>
 };
 
-const FormSend = () => {
+const FormSend = ({priceBoxRef}) => {
+
+    const handleSubmit = (values) => {
+        if (priceBoxRef.current) {
+            const priceBoxContent = priceBoxRef.current.innerText; // Extract text content
+            console.log('Price Box Content:', priceBoxContent);
+
+            const emailContent = `
+                Name: ${values.name}
+                Company: ${values.company}
+                Zip Code: ${values.zip}
+                Email: ${values.email}
+                Phone: ${values.phone}
+                Message: ${values.message}
+
+                --- Selected Items ---
+                ${priceBoxContent}
+                `;
+
+            console.log('Email Content:', emailContent);
+
+            // Replace this with your email sending logic
+            alert('Email sent with the following content:\n' + emailContent);
+        }
+    };
 
     return (
         <Formik 
@@ -121,7 +148,7 @@ const FormSend = () => {
                             .required('Required!!!'),
                 message: Yup.string()
             })}
-            onSubmit = {values => console.log(JSON.stringify(values, null, 2))}
+            onSubmit = {handleSubmit}
         >
             <Form>
                 <p>
